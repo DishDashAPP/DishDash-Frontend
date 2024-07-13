@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'iranyekan';
+    src: url('../src/app/_assets/fonts/farsi/woff2/IRANYekanWebRegular.woff2') format('woff-variations');
+    font-display: swap;
+}
+
+:root {
+    --font-iranyekan: 'iranyekan' !important;
+}
+
+* {
+    font-family: var(--font-iranyekan) !important;
+}
+
+body {
+    font-size: 14px;
+}
+
+.sb-show-main {
+    direction: rtl;
+}

@@ -3,13 +3,9 @@ import type { Config } from 'tailwindcss'
 const config: Config = {
   content: ['./src/app/**/*.{js,ts,jsx,tsx,mdx,scss}'],
   theme: {
-    fontFamily: {
-      sans: ['var(--font-iranyekan)'],
-      serif: ['var(--font-iranyekan)'],
-      mono: ['var(--font-iranyekan)'],
-      icon: ['var(--font-icon)'],
-    },
     colors: {
+      primary: '#FF9800',
+      secondary: '#FCE5C9',
       transparent: 'transparent',
       white: {
         DEFAULT: '#FFFFFF',

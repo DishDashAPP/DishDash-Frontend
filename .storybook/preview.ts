@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react'
+import type { Preview, ReactRenderer } from '@storybook/react'
 import '../src/app/_styles/tailwind.css'
 // import '../src/app/_assets/FontIcon/style.css'
 import './main.css'

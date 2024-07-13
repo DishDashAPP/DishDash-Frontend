@@ -1,15 +1,15 @@
 @font-face {
-    font-family: 'iranyekan';
-    src: url('../src/app/_assets/fonts/farsi/woff2/IRANYekanWebRegular.woff2') format('woff-variations');
+    font-family: 'dana VF';
+    src: url('../src/app/_assets/DanaVF.woff2') format('woff-variations');
     font-display: swap;
 }
 
 :root {
-    --font-iranyekan: 'iranyekan' !important;
+    --font-dana: 'dana VF' !important;
 }
 
 * {
-    font-family: var(--font-iranyekan) !important;
+    font-family: var(--font-dana) !important;
 }
 
 body {

@@ -3,6 +3,12 @@ import type { Config } from 'tailwindcss'
 const config: Config = {
   content: ['./src/app/**/*.{js,ts,jsx,tsx,mdx,scss}'],
   theme: {
+    fontFamily: {
+      sans: ['var(--font-dana)'],
+      serif: ['var(--font-dana)'],
+      mono: ['var(--font-dana)'],
+      icon: ['var(--font-icon)'],
+    },
     colors: {
       primary: '#FF9800',
       secondary: '#FCE5C9',

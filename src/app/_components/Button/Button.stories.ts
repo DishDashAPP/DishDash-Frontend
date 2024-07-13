@@ -34,6 +34,14 @@ export const Secondary: Story = {
   },
 }
 
+export const Outline: Story = {
+  args: {
+    variant: 'outline',
+    label: 'باتن',
+    className: 'w-[311px]',
+  },
+}
+
 export const Disabled: Story = {
   args: {
     variant: 'primary',

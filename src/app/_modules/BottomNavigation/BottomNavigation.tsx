@@ -72,7 +72,7 @@ const BottomNavigation: FC<BottomNavigationProps> = ({userType}) => {
 
     return (
         <div
-            className="p-4 border-t fixed inset-x-0 bottom-0 mx-auto border-gray-border w-full max-w-lg z-10 flex items-center justify-between">
+            className="p-4 border-t fixed inset-x-0 bottom-0 mx-auto border-gray-border w-full max-w-lg z-10 flex items-center justify-between bg-white-background">
             {navigationItems.map((item, index) => (
                 <Link href={item.route[userType]} key={index} passHref className="flex-1">
                     <div key={index} className={classJoin([

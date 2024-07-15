@@ -6,6 +6,8 @@ import LOGO from "@public/logo.svg";
 import {Controller, RegisterOptions, useForm} from "react-hook-form";
 import TextInput from "@components/TextInput/TextInput";
 import Button from "@components/Button/Button";
+import {SIGNUP} from "@utils/links";
+import Link from "next/link";
 
 type Inputs = {
     username: string,
@@ -65,7 +67,8 @@ const Login: FC = (props) => {
             </div>
             <div className="bg-white rounded-lg p-6 mt-20">
                 <h1 className="text-base font-medium">ورود</h1>
-                <p className="text-sm mt-10 mb-8">لطفاً نام‌کاربری و گذرواژه خود را وارد کنید تا وارد حساب کاربری خود شوید.</p>
+                <p className="text-sm mt-10 mb-8">لطفاً نام‌کاربری و گذرواژه خود را وارد کنید تا وارد حساب کاربری خود
+                    شوید.</p>
                 <form>
                     {fields.map((field) => (
                         <Controller
@@ -98,6 +101,10 @@ const Login: FC = (props) => {
                         ورود
                     </Button>
                 </form>
+                <div className="flex items-center justify-between w-full mt-4">
+                    <span className="text-sm">اگر تا کنون ثبت‌نام نکرده‌اید</span>
+                    <Link href={SIGNUP} className="text-sm text-primary hover:text-brand">ثبت‌نام</Link>
+                </div>
             </div>
         </div>
     )

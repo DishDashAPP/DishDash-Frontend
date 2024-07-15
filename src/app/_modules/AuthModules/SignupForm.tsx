@@ -4,6 +4,8 @@ import {FC} from "react";
 import {Controller, RegisterOptions, useForm} from "react-hook-form";
 import TextInput from "@components/TextInput/TextInput";
 import Button from "@components/Button/Button";
+import Link from "next/link";
+import {LOGIN} from "@utils/links";
 
 type TSingUpFormProps = {
     type: 'customer' | 'restaurant' | 'courier'
@@ -112,6 +114,10 @@ const SignupForm: FC<TSingUpFormProps> = ({ type }) => {
                         ورود
                     </Button>
                 </form>
+                <div className="flex items-center justify-between w-full mt-4">
+                    <span className="text-sm">قبلا ثبت نام کردید؟</span>
+                    <Link href={LOGIN} className="text-sm text-primary hover:text-brand">ورود</Link>
+                </div>
             </div>
         </div>
     )

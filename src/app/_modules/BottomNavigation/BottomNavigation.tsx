@@ -64,7 +64,7 @@ const BottomNavigation: FC<BottomNavigationProps> = ({userType}) => {
             isActive: isOrders,
             route: {
                 customer: '/customer/orders',
-                restaurant: '/restaurant/orders',
+                restaurant: '/restaurant/orders?type=active',
                 courier: '/courier/orders',
             }
         },
@@ -84,6 +84,7 @@ const BottomNavigation: FC<BottomNavigationProps> = ({userType}) => {
                             alt={item.name}
                             width={24}
                             height={24}
+                            className="w-[24px] h-[24px]"
                         />
                         <span className="text-xs mt-1">{item.name}</span>
                     </div>

@@ -3,7 +3,7 @@ import classJoin from '@utils/classJoin'
 
 export interface IBadgeProps {
   text?: string
-  color?: 'red' | 'gray'
+  color?: 'red' | 'gray' | 'green'
   bordered?: boolean
   className?: string
 }
@@ -27,7 +27,9 @@ const Badge: FC<IBadgeProps> = (props) => {
         bordered ? 'border-2' : '',
         color === 'red'
           ? 'bg-red text-white'
-          : 'bg-white-background text-gray-tertiary',
+          : color === 'gray'
+                ? 'bg-white-background text-gray-tertiary'
+                : 'bg-green text-white',
         isEmpty
           ? bordered
             ? 'w-[10px] h-[10px]'

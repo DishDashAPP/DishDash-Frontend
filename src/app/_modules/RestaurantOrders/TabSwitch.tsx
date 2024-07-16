@@ -25,7 +25,7 @@ const TabSwitch: FC = () => {
         <div
             className="rounded-xl border border-gray-card_border h-[56px] mt-6 flex p-1 relative items-center bg-gray-card_border w-full">
             <Link href={pathname + '?' + createQueryString('type', 'active')} className="w-full flex justify-center text-sm font-medium">سفارش‌های فعال</Link>
-            <Link href={pathname + '?' + createQueryString('type', 'inactive')} className="w-full flex justify-center text-sm font-medium">تاریخچه‌ی سفارش‌ها</Link>
+            <Link href={pathname + '?' + createQueryString('type', 'completed')} className="w-full flex justify-center text-sm font-medium">تاریخچه‌ی سفارش‌ها</Link>
             <span className={classJoin([
                 'elSwitch bg-gray-primary text-sm font-medium text-white shadow text-gray-800 flex items-center justify-center w-1/2 rounded-lg h-[48px] transition-all top-[4px] absolute',
                 isActive ? 'right-1' : 'left-1'

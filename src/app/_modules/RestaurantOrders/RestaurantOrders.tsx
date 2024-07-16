@@ -6,7 +6,6 @@ import {useSearchParams} from "next/navigation";
 import TabSwitch from "@modules/RestaurantOrders/TabSwitch";
 import OrderList from "@modules/RestaurantOrders/OrderList";
 
-// moch orders
 const orders = [
     {
         id: 1,

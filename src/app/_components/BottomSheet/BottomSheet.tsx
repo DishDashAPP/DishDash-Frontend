@@ -1,5 +1,3 @@
-// components/BottomSheet.tsx
-
 import React, { ReactNode } from 'react';
 import { Drawer } from 'vaul';
 

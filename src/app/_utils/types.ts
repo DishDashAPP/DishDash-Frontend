@@ -9,3 +9,11 @@ export type orderItem = {
         name: string
     }
 }
+export type menuItem = {
+    id: number,
+    title: string,
+    description: string,
+    price: number,
+    isAvailable: boolean,
+    category: string
+}

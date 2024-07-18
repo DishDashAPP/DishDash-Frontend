@@ -1,28 +1,21 @@
-'use client'
-
 import {FC} from "react";
-import UserProfile from "@modules/Restaurant/Profile/UserProfile";
 import {Controller, RegisterOptions, useForm} from "react-hook-form";
 import TextInput from "@components/TextInput/TextInput";
 import Button from "@components/Button/Button";
 
-const user = {
-    firstName: "محمدامین",
-    lastName: "لطفی",
-    username: "AminLotfi",
-    phone: "09304087303",
-    address: "شهرآرا، بزرگراه جلال آل احمد، خیابان امام منتظر، کوچه سی‌وسوم، پلاک 18، طبقه اول"
+type NewFoodItemProps = {
+    mode: 'add' | 'edit',
 }
 
 type Inputs = {
-    firstName: string,
-    lastName: string,
-    restaurantName: string,
-    phoneNumber: string,
-    address: string
+    title: string,
+    description: string,
+    price: string,
+    category: string
+    quantity: string,
 }
 
-type TFieldType = {
+type IFieldType = {
     name: keyof Inputs,
     label: string,
     rules?: RegisterOptions<Inputs, keyof Inputs>,
@@ -31,64 +24,59 @@ type TFieldType = {
     onChange?: (val?: string, onChange?: (val?: string) => void) => void
 }
 
-const fields: TFieldType[] = [
+const fields: IFieldType[] = [
     {
-        name: 'firstName',
-        label: 'نام',
+        name: 'title',
+        label: 'عنوان',
         rules: {
-            required: 'نام الزامی است.',
+            required: 'عنوان الزامی است.',
         }
     },
     {
-        name: 'lastName',
-        label: 'نام‌خانوادگی',
+        name: 'description',
+        label: 'توضیحات',
         rules: {
-            required: 'نام‌خانوادگی الزامی است.',
+            required: 'توضیحات الزامی است.',
         }
     },
     {
-        name: 'restaurantName',
-        label: 'نام رستوران',
-    },
-    {
-        name: 'phoneNumber',
-        label: 'شماره تماس',
+        name: 'price',
+        label: 'قیمت',
         rules: {
-            validate: (value: string) => {
-                if (!value.match(/^09[0-9]{9}$/)) {
-                    return 'شماره تماس باید با ۰۹ شروع شود و ۱۱ رقم باشد.'
-                }
-            },
+            required: 'قیمت الزامی است.',
         }
     },
     {
-        name: 'address',
-        label: 'نشانی',
+        name: 'category',
+        label: 'دسته‌بندی'
+    },
+    {
+        name: 'quantity',
+        label: 'موجودی',
         rules: {
-            required: 'آدرس الزامی است.',
-            maxLength: {
-                value: 255,
-                message: 'آدرس باید حداکثر ۲۵۵ کاراکتر باشد.'
-            }
+            required: 'موجودی الزامی است.',
         }
     }
 ]
 
-const RestaurantProfile: FC = () => {
+const NewFoodItem: FC<NewFoodItemProps> = ({mode}) => {
 
     const {
         control,
         handleSubmit,
         formState: {errors, isSubmitting, isValid},
-    } = useForm<Inputs>({mode: 'onChange', defaultValues: {firstName: '', lastName: '', restaurantName: '', phoneNumber: '', address: ''}});
+    } = useForm<Inputs>({mode: 'onChange', defaultValues: {title: '', description: '', price: '', category: '', quantity: ''}});
+
+    const title = mode === 'add' ? 'افزودن محصول جدید' : 'ویرایش محصول';
+    const buttonText = mode === 'add' ? 'افزودن محصول' : 'ویرایش محصول';
 
     const submit: (data: Inputs) => void = async (data) => {
         console.log(data);
     }
 
     return (
-        <div className="flex flex-col w-full">
-            <UserProfile user={user} className="mt-6"/>
+        <div>
+            <h2 className="text-base font-semibold mt-4 mb-6">{title}</h2>
             <form className="mt-12">
                 {fields.map((field) => (
                     <Controller
@@ -114,17 +102,15 @@ const RestaurantProfile: FC = () => {
                         )}
                     />
                 ))}
-            </form>
-            <div className="flex flex-col justify-end h-full pb-6">
                 <Button
                     className="mt-2 w-full"
                     disabled={!isValid || isSubmitting}
                     onClick={handleSubmit(submit)}>
-                    ثبت تغییرات
+                    {buttonText}
                 </Button>
-            </div>
+            </form>
         </div>
     )
 }
 
-export default RestaurantProfile;
+export default NewFoodItem;

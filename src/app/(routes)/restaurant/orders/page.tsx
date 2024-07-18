@@ -1,4 +1,4 @@
-import RestaurantOrders from "@modules/RestaurantOrders/RestaurantOrders";
+import RestaurantOrders from "@modules/Restaurant/Orders/RestaurantOrders";
 
 export default function OrdersPage() {
     return <RestaurantOrders />

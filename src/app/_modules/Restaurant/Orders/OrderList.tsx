@@ -2,7 +2,7 @@
 
 import {FC} from "react";
 import {orderItem, orderType} from "@utils/types";
-import OrderCard from "@modules/RestaurantOrders/OrderCard";
+import OrderCard from "@modules/Restaurant/Orders/OrderCard";
 
 type orderListProps = {
     orders: orderItem[],

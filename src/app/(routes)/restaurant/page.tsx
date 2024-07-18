@@ -1,4 +1,4 @@
-import RestaurantDashboard from "@modules/RestaurantDashboard/RestaurantDashboard";
+import RestaurantDashboard from "@modules/Restaurant/Dashboard/RestaurantDashboard";
 
 export default function RestaurantPage() {
     return <RestaurantDashboard />

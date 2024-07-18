@@ -3,8 +3,8 @@
 import {FC} from "react";
 import {orderType} from "@utils/types";
 import {useSearchParams} from "next/navigation";
-import TabSwitch from "@modules/RestaurantOrders/TabSwitch";
-import OrderList from "@modules/RestaurantOrders/OrderList";
+import TabSwitch from "@modules/Restaurant/Orders/TabSwitch";
+import OrderList from "@modules/Restaurant/Orders/OrderList";
 
 const orders = [
     {

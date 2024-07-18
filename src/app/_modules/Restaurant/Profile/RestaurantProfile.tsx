@@ -6,7 +6,6 @@ import {Controller, RegisterOptions, useForm} from "react-hook-form";
 import TextInput from "@components/TextInput/TextInput";
 import Button from "@components/Button/Button";
 
-// user data mock
 const user = {
     firstName: "محمدامین",
     lastName: "لطفی",

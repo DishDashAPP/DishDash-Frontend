@@ -6,6 +6,10 @@
   .container {
     @apply max-w-lg w-[95%] mx-auto;
   }
+
+  .error {
+    @apply text-center mt-10 text-2xl text-red font-medium;
+  }
 }
 
 /* ============ no-scrollbar ============ */

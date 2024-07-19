@@ -18,6 +18,7 @@ export type menuItem = {
     category: string
 }
 export type RestaurantType = {
+    id: number,
     imageSrc: string,
     name: string,
     rate: string,

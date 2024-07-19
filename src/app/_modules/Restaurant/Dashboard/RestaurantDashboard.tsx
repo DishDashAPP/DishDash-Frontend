@@ -19,12 +19,12 @@ const dashboardButtons: dashboardButton[] = [
     {
         title: 'سفارش‌گیری',
         icon: MENU,
-        link: '/restaurant/orders?type=active'
+        link: '/restaurants/orders?type=active'
     },
     {
         title: 'ویرایش منو',
         icon: SKILLET,
-        link: '/restaurant/menu'
+        link: '/restaurants/menu'
     }
 ]
 

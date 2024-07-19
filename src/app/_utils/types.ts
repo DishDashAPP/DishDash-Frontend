@@ -29,6 +29,13 @@ export type RestaurantType = {
     courierPrice: string,
     WaitingTime: string
 }
+export type FoodType = {
+    id: string,
+    imageSrc: string,
+    name: string,
+    description: string,
+    price: string
+}
 
 export type idType = {
     id: string

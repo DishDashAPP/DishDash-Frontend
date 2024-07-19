@@ -7,10 +7,11 @@ import {TChip} from "@utils/types";
 type TChips = {
     chips: TChip[]
     onCategoryChange?: (tChip: TChip) => any
+    canAddNewCategory: boolean
     className?: string
 }
 
-const Chips: FC<TChips> = ({chips, onCategoryChange, className}) => {
+const Chips: FC<TChips> = ({chips, onCategoryChange, canAddNewCategory = true, className}) => {
     const [category, setCategory] = useState<string>('all')
     const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
 
@@ -29,12 +30,16 @@ const Chips: FC<TChips> = ({chips, onCategoryChange, className}) => {
             'flex items-center overflow-x-auto w-full max-w-[448px]',
             className
         ])}>
-            <button className="flex items-center justify-center px-4 py-2 text-primary rounded-full whitespace-nowrap" onClick={handleAddCategory}>
+            {
+                canAddNewCategory &&
+              <button className="flex items-center justify-center px-4 py-2 text-primary rounded-full whitespace-nowrap"
+                      onClick={handleAddCategory}>
                 + دسته‌ی جدید
-            </button>
+              </button>
+            }
             <BottomSheet open={isBottomSheetOpen} onOpenChange={setBottomSheetOpen}>
                 <h2 className="text-base font-semibold mt-4 mb-6">دسته‌ی جدید</h2>
-                <AddNewCategory />
+                <AddNewCategory/>
             </BottomSheet>
             {chips.map((chip, index) => (
                 <button key={index} className={classJoin([

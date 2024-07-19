@@ -17,6 +17,10 @@ export type menuItem = {
     isAvailable: boolean,
     category: string
 }
+export type TChip = {
+    title: string
+    value: string
+}
 export type RestaurantType = {
     id: string,
     imageSrc: string,
@@ -26,8 +30,6 @@ export type RestaurantType = {
     WaitingTime: string
 }
 
-export type CustomersRestaurantPageProps = {
-    params: {
-        id: string
-    }
+export type idType = {
+    id: string
 }

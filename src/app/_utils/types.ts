@@ -1,6 +1,6 @@
-export type userType = 'customer' | 'restaurant' | 'courier';
-export type orderType = 'active' | 'completed';
-export type orderItem = {
+export type UserType = 'customer' | 'restaurant' | 'courier';
+export type OrderType = 'active' | 'completed';
+export type OrderItem = {
     id: number,
     price: number,
     status: string,
@@ -9,7 +9,7 @@ export type orderItem = {
         name: string
     }
 }
-export type menuItem = {
+export type MenuItem = {
     id: number,
     title: string,
     description: string,
@@ -37,10 +37,10 @@ export type FoodType = {
     price: string
 }
 
-export type restaurantIdType = {
+export type RestaurantIdType = {
     restaurantId: string
 }
-export type restaurantIdFoodIdType = {
+export type RestaurantIdFoodIdType = {
     restaurantId: string,
     foodId: string
 }

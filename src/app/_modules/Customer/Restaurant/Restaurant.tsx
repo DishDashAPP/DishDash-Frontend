@@ -1,7 +1,7 @@
 'use client'
 
 import {FC, useState} from "react";
-import {FoodType, restaurantIdType, RestaurantType, TChip} from "@utils/types";
+import {FoodType, RestaurantIdType, RestaurantType, TChip} from "@utils/types";
 import RestaurantHeader from "@modules/Customer/Restaurant/RestaurantHeader/RestaurantHeader";
 import Image from "next/image";
 import CommentsSummary from "@modules/Customer/Restaurant/CommentSummary/CommentsSummary";
@@ -9,7 +9,7 @@ import Chips from "@components/Chips/Chips";
 import FoodCard from "@modules/Customer/Restaurant/FoodCard/FoodCard";
 import Button from "@components/Button/Button";
 
-const Restaurant: FC<restaurantIdType> = ({restaurantId}) => {
+const Restaurant: FC<RestaurantIdType> = ({restaurantId}) => {
     const [category, setCategory] = useState<string>("همه");
     function onCategoryChange(category: TChip) {
         setCategory(category.title);

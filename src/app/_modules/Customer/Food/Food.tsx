@@ -1,11 +1,11 @@
 'use client'
 
 import {FC} from "react";
-import {FoodType, restaurantIdFoodIdType} from "@utils/types";
+import {FoodType, RestaurantIdFoodIdType} from "@utils/types";
 import AddFoodButton from "@components/AddFoodButton/AddFoodButton";
 import Image from "next/image";
 
-const Food: FC<restaurantIdFoodIdType> = ({restaurantId, foodId}) => {
+const Food: FC<RestaurantIdFoodIdType> = ({restaurantId, foodId}) => {
     const food: FoodType = {
             id: foodId,
             imageSrc: "/FoodDefault/food3.svg",

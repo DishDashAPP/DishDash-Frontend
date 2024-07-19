@@ -5,10 +5,10 @@ import Button from "@components/Button/Button";
 import Image from "next/image";
 import PLUS from "@public/PLUS.svg";
 import MINUS from "@public/MINUS.svg";
-import {restaurantIdFoodIdType} from "@utils/types";
+import {RestaurantIdFoodIdType} from "@utils/types";
 import classJoin from "@utils/classJoin";
 
-type AddFoodButtonProps = restaurantIdFoodIdType & {
+type AddFoodButtonProps = RestaurantIdFoodIdType & {
     simpleClassName?: string,
     addClassName?: string
 }

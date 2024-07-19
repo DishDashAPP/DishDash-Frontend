@@ -1,7 +1,7 @@
 'use client';
 
 import {FC} from 'react';
-import {userType} from '@utils/types';
+import {UserType} from '@utils/types';
 import LOGO from '@public/logo.svg';
 import Image from 'next/image';
 import ARROW_BACK from '@public/arrow-back.svg';
@@ -10,7 +10,7 @@ import {usePathname, useRouter} from 'next/navigation';
 import Link from 'next/link';
 
 type HeaderProps = {
-    userType: userType;
+    userType: UserType;
 };
 
 const Header: FC<HeaderProps> = ({userType}) => {

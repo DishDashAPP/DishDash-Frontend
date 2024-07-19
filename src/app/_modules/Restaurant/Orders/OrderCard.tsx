@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { orderItem } from '@utils/types';
+import { OrderItem } from '@utils/types';
 import { FC } from 'react';
 import Badge from '@components/Badge/Badge';
 import Button from '@components/Button/Button';
@@ -9,7 +9,7 @@ import BottomSheet from '@components/BottomSheet/BottomSheet';
 import OrderDetails from "@modules/Restaurant/Orders/OrderDetails";
 
 type OrderCardProps = {
-    order: orderItem;
+    order: OrderItem;
 };
 
 const OrderCard: FC<OrderCardProps> = ({ order }) => {

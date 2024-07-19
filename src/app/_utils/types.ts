@@ -18,11 +18,16 @@ export type menuItem = {
     category: string
 }
 export type RestaurantType = {
-    id: number,
+    id: string,
     imageSrc: string,
     name: string,
     rate: string,
-    onClickLink: string,
     courierPrice: string,
     WaitingTime: string
+}
+
+export type CustomersRestaurantPageProps = {
+    params: {
+        id: string
+    }
 }

@@ -1,13 +1,13 @@
 'use client'
 
 import {FC} from "react";
-import {idType} from "@utils/types";
+import {restaurantIdType} from "@utils/types";
 import CHAT from "@public/chat.svg";
 import LEFT_ARROW from "@public/left-arrow.svg";
 import Image from "next/image";
 import Link from "next/link";
 
-const CommentsSummary: FC<idType> = ({id}) => {
+const CommentsSummary: FC<restaurantIdType> = ({restaurantId}) => {
     return (
         <div className={"flex justify-between mt-6 text-sm text-primary"}>
             <div>

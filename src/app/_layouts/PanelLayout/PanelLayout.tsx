@@ -4,7 +4,7 @@ import BottomNavigation from "@modules/BottomNavigation/BottomNavigation";
 
 function PanelLayout({children}: { children: ReactNode }) {
     return (
-        <div className="mainLayout layoutMinHeight bg-white-background mx-auto">
+        <div className="mainLayout layoutMinHeight bg-white mx-auto">
             <Header userType="restaurant"/>
             <div className="mx-auto px-8 container flex flex-1 w-full pt-[56px] pb-[77px]">
                 {children}

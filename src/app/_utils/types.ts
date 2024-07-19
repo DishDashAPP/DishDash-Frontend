@@ -17,3 +17,11 @@ export type menuItem = {
     isAvailable: boolean,
     category: string
 }
+export type RestaurantType = {
+    imageSrc: string,
+    name: string,
+    rate: string,
+    onClickLink: string,
+    courierPrice: string,
+    WaitingTime: string
+}

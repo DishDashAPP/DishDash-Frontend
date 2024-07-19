@@ -3,7 +3,7 @@
 import {FC} from "react";
 import Image from "next/image";
 import Rate from "@components/Rate/Rate";
-import {RestaurantType} from "@modules/Customer/AllRestaurants/AllRestaurants";
+import {RestaurantType} from "@utils/types";
 
 export const RestaurantCard: FC<{restaurant: RestaurantType}> = ({restaurant}) => {
     return (

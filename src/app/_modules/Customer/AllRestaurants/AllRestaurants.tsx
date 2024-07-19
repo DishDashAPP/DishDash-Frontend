@@ -2,15 +2,7 @@
 
 import {FC} from "react";
 import RestaurantCard from "@modules/Customer/AllRestaurants/RestaurantCard";
-
-export type RestaurantType = {
-    imageSrc: string,
-    name: string,
-    rate: string,
-    onClickLink: string,
-    courierPrice: string,
-    WaitingTime: string
-}
+import {RestaurantType} from "@utils/types";
 
 export const AllRestaurant: FC = () => {
     const restaurantList: RestaurantType[] = [

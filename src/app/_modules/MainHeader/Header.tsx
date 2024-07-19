@@ -23,7 +23,7 @@ const Header: FC<HeaderProps> = ({userType}) => {
 
     const dashboardRoute = {
         customer: '/customer',
-        restaurant: '/restaurant',
+        restaurant: '/restaurants',
         courier: '/courier',
     }[userType];
 

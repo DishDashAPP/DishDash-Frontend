@@ -3,25 +3,29 @@
 import {FC} from "react";
 import Image from "next/image";
 import Rate from "@components/Rate/Rate";
-import {RestaurantType} from "@modules/Customer/AllRestaurants/AllRestaurants";
+import {RestaurantType} from "@utils/types";
+import {CUSTOMER_RESTAURANTS} from "@utils/links";
+import Link from "next/link";
 
-export const RestaurantCard: FC<{restaurant: RestaurantType}> = ({restaurant}) => {
+const RestaurantCard: FC<{ restaurant: RestaurantType }> = ({restaurant}) => {
     return (
-        <div className={"cursor-pointer mt-8 mb-4"} onClick={() => restaurant.onClickLink}>
-            <Image src={restaurant.imageSrc} alt={restaurant.name} width={6000} height={5000} />
-            <div className={"flex justify-between items-center mt-2"}>
-                <div className={"text-sm font-medium"}>
-                    {restaurant.name}
-                    <div className={"text-gray-secondary text-xs font-normal mt-1"}>
-                        <span>پیک رستوران </span>
-                        <span>{restaurant.courierPrice} تومان</span>
-                        <span> تا </span>
-                        <span>{restaurant.WaitingTime} دقیقه</span>
+        <Link href={CUSTOMER_RESTAURANTS + "/" + restaurant.id}>
+            <div className={"cursor-pointer mt-8 mb-4"}>
+                <Image src={restaurant.imageSrc} alt={restaurant.name} width={5000} height={5000} className={"rounded"}/>
+                <div className={"flex justify-between items-center mt-2"}>
+                    <div className={"text-sm font-medium"}>
+                        {restaurant.name}
+                        <div className={"text-gray-secondary text-xs font-normal mt-1"}>
+                            <span>پیک رستوران </span>
+                            <span>{restaurant.courierPrice} تومان</span>
+                            <span> تا </span>
+                            <span>{restaurant.WaitingTime} دقیقه</span>
+                        </div>
                     </div>
+                    <Rate rate={restaurant.rate}/>
                 </div>
-                <Rate rate={restaurant.rate} />
             </div>
-        </div>
+        </Link>
     )
 }
 

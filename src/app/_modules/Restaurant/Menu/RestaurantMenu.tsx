@@ -7,8 +7,9 @@ import ADD from "@public/add.svg"
 import Image from "next/image";
 import NewFoodItem from "@modules/Restaurant/Menu/NewFoodItem";
 import BottomSheet from "@components/BottomSheet/BottomSheet";
+import {TChip} from "@utils/types";
 
-const categories = [
+const categories: TChip[] = [
     {
         title: 'همه',
         value: 'all'
@@ -75,18 +76,12 @@ const menuItems = [
 ]
 
 const RestaurantMenu: FC = () => {
-
-    const [category, setCategory] = useState<string>('all')
     const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
-
-    const handleCategory = (value: string) => () => {
-        setCategory(value)
-    }
 
     return (
         <div className="flex flex-col items-center w-full">
             <h1 className="text-lg font-medium my-6">محصولات</h1>
-            <Chips chips={categories} active={category} onClick={handleCategory} className="mb-6"/>
+            <Chips chips={categories} className="mb-6"/>
             <MenuItems menuItems={menuItems}/>
             <button
                 className="flex items-center justify-center bg-primary rounded-full w-[64px] h-[64px] fixed left-[32px] bottom-[95px] z-50"

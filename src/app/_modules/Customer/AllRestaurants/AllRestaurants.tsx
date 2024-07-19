@@ -2,87 +2,67 @@
 
 import {FC} from "react";
 import RestaurantCard from "@modules/Customer/AllRestaurants/RestaurantCard";
+import {RestaurantType} from "@utils/types";
 
-export type RestaurantType = {
-    imageSrc: string,
-    name: string,
-    rate: string,
-    onClickLink: string,
-    courierPrice: string,
-    WaitingTime: string
-}
-
-export const AllRestaurant: FC = () => {
+const AllRestaurant: FC = () => {
     const restaurantList: RestaurantType[] = [
         {
+            id: "1",
             imageSrc: "/RestaurantDefault/restaurant1.svg",
             name: "اسم رستوران",
             rate: "۴.۵",
-            onClickLink: "/restaurant/1",
             courierPrice: "۱۰۰۰۰",
             WaitingTime: "۳۰"
         },
         {
+            id: "2",
             imageSrc: "/RestaurantDefault/restaurant2.svg",
             name: "اسم رستوران",
             rate: "۴.۵",
-            onClickLink: "/restaurant/2",
             courierPrice: "۱۰۰۰۰",
             WaitingTime: "۳۰"
         },
         {
+            id: "3",
             imageSrc: "/RestaurantDefault/restaurant3.svg",
             name: "اسم رستوران",
             rate: "۴.۵",
-            onClickLink: "/restaurant/3",
             courierPrice: "۱۰۰۰۰",
             WaitingTime: "۳۰"
         },
         {
+            id: "4",
             imageSrc: "/RestaurantDefault/restaurant4.svg",
             name: "اسم رستوران",
             rate: "۴.۵",
-            onClickLink: "/restaurant/4",
             courierPrice: "۱۰۰۰۰",
             WaitingTime: "۳۰"
         },
         {
+            id: "5",
             imageSrc: "/RestaurantDefault/restaurant4.svg",
             name: "اسم رستوران",
             rate: "۴.۵",
-            onClickLink: "/restaurant/5",
             courierPrice: "۱۰۰۰۰",
             WaitingTime: "۳۰"
         },
         {
+            id: "6",
             imageSrc: "/RestaurantDefault/restaurant4.svg",
             name: "اسم رستوران",
             rate: "۴.۵",
-            onClickLink: "/restaurant/6",
-            courierPrice: "۱۰۰۰۰",
-            WaitingTime: "۳۰"
-        },
-        {
-            imageSrc: "/RestaurantDefault/restaurant4.svg",
-            name: "اسم رستوران",
-            rate: "۴.۵",
-            onClickLink: "/restaurant/7",
-            courierPrice: "۱۰۰۰۰",
-            WaitingTime: "۳۰"
-        },
-        {
-            imageSrc: "/RestaurantDefault/restaurant4.svg",
-            name: "اسم رستوران",
-            rate: "۴.۵",
-            onClickLink: "/restaurant/8",
             courierPrice: "۱۰۰۰۰",
             WaitingTime: "۳۰"
         },
     ]
 
     return (
-        <div className={"mt-6"}>
+        <div className={"mt-6 w-full px-8"}>
             <span className={"text-xl font-medium"}>رستوران‌ها</span>
+            {
+                restaurantList.length === 0 &&
+                    <div className={"error"}>رستورانی وجود ندارد</div>
+            }
             <div className={"w-full mt-10"}>
                 {
                     restaurantList.map((restaurant, index) => (

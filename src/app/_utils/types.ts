@@ -37,6 +37,10 @@ export type FoodType = {
     price: string
 }
 
-export type idType = {
-    id: string
+export type restaurantIdType = {
+    restaurantId: string
+}
+export type restaurantIdFoodIdType = {
+    restaurantId: string,
+    foodId: string
 }

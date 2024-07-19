@@ -1,7 +1,7 @@
 'use client'
 
 import {FC, useState} from "react";
-import {FoodType, idType, RestaurantType, TChip} from "@utils/types";
+import {FoodType, restaurantIdType, RestaurantType, TChip} from "@utils/types";
 import RestaurantHeader from "@modules/Customer/Restaurant/RestaurantHeader/RestaurantHeader";
 import Image from "next/image";
 import CommentsSummary from "@modules/Customer/Restaurant/CommentSummary/CommentsSummary";
@@ -9,14 +9,14 @@ import Chips from "@components/Chips/Chips";
 import FoodCard from "@modules/Customer/Restaurant/FoodCard/FoodCard";
 import Button from "@components/Button/Button";
 
-const Restaurant: FC<idType> = ({id}) => {
+const Restaurant: FC<restaurantIdType> = ({restaurantId}) => {
     const [category, setCategory] = useState<string>("همه");
     function onCategoryChange(category: TChip) {
         setCategory(category.title);
     }
 
     const restaurant: RestaurantType = {
-        id: id,
+        id: restaurantId,
         imageSrc: "/RestaurantDefault/restaurant1.svg",
         name: "اسم رستوران",
         rate: "۴.۵",
@@ -93,7 +93,7 @@ const Restaurant: FC<idType> = ({id}) => {
                 <div className={"flex flex-col px-8"}>
                     <div className={"font-medium text-lg mt-2"}>{restaurant.name}</div>
                     <RestaurantHeader restaurant={restaurant}/>
-                    <CommentsSummary id={id}/>
+                    <CommentsSummary restaurantId={restaurantId}/>
                 </div>
                 <div className={"border-t border-gray-line mt-2"}/>
                 <div className={"px-8"}>
@@ -105,7 +105,7 @@ const Restaurant: FC<idType> = ({id}) => {
             <div className={"px-8"}>
                 {
                     foods.map((food, index) =>
-                        <FoodCard key={index} restaurantId={id} food={food}/>
+                        <FoodCard key={index} restaurantId={restaurantId} food={food}/>
                     )
                 }
             </div>

@@ -6,7 +6,7 @@ import RestaurantHeader from "@modules/Customer/Restaurant/RestaurantHeader/Rest
 import Image from "next/image";
 import CommentsSummary from "@modules/Customer/Restaurant/CommentSummary/CommentsSummary";
 import Chips from "@components/Chips/Chips";
-import FoodCard from "@modules/Customer/Restaurant/FoodCard/FoodCard";
+import FoodCard1 from "@modules/Customer/Food/FoodCard/FoodCard1";
 import Button from "@components/Button/Button";
 
 const Restaurant: FC<RestaurantIdType> = ({restaurantId}) => {
@@ -105,7 +105,7 @@ const Restaurant: FC<RestaurantIdType> = ({restaurantId}) => {
             <div className={"px-8"}>
                 {
                     foods.map((food, index) =>
-                        <FoodCard key={index} restaurantId={restaurantId} food={food}/>
+                        <FoodCard1 key={index} restaurantId={restaurantId} food={food}/>
                     )
                 }
             </div>

@@ -63,6 +63,10 @@ export type RestaurantIdFoodIdType = {
     restaurantId: string,
     foodId: string
 }
+export type RestaurantIdFoodType = {
+    restaurantId: string,
+    food: FoodType
+}
 export type ShoppingCartIdType = {
     shoppingCartId: string
 }

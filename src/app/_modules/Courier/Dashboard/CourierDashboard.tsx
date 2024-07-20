@@ -15,7 +15,7 @@ type dashboardButton = {
 const dashboardButtons: dashboardButton[] = [
     {
         title: 'درخواست فعال',
-        link: '/courier/active-request'
+        link: '/courier/orders'
     }
 ]
 

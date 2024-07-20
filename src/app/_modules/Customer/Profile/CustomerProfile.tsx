@@ -82,7 +82,7 @@ const CustomerProfile: FC = () => {
     }
 
     return (
-        <div className="flex flex-col w-full">
+        <div className={"px-8 flex flex-col w-full"}>
             <UserProfile user={user} className="mt-6"/>
             <form className="mt-12">
                 {fields.map((field) => (

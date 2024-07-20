@@ -5,11 +5,11 @@ import BottomNavigation from "@modules/BottomNavigation/BottomNavigation";
 function PanelLayout2({children}: { children: ReactNode }) {
     return (
         <div className="mainLayout layoutMinHeight bg-white mx-auto">
-            <Header userType="restaurant"/>
+            <Header userType="customer"/>
             <div className="mx-auto container flex flex-1 w-full pt-[56px] pb-[77px]">
                 {children}
             </div>
-            <BottomNavigation userType="restaurant"/>
+            <BottomNavigation userType="customer"/>
         </div>
     )
 }

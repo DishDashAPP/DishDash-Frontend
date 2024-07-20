@@ -1,7 +1,7 @@
 'use client'
 
 import {FC} from "react";
-import RestaurantCard from "@modules/Customer/AllRestaurants/RestaurantCard";
+import RestaurantCard from "@modules/Customer/AllRestaurants/RestaurantCard/RestaurantCard";
 import {RestaurantType} from "@utils/types";
 
 const AllRestaurant: FC = () => {

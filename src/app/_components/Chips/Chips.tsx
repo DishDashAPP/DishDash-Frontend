@@ -7,7 +7,7 @@ import {TChip} from "@utils/types";
 type TChips = {
     chips: TChip[]
     onCategoryChange?: (tChip: TChip) => any
-    canAddNewCategory: boolean
+    canAddNewCategory?: boolean
     className?: string
 }
 

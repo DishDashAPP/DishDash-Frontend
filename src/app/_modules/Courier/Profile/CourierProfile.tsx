@@ -11,6 +11,7 @@ const user = {
     lastName: "عرب‌زاده",
     username: "A.H.Arabzadeh",
     phone: "09304087303",
+    address: "شهرآرا، بزرگراه جلال آل احمد، خیابان امام منتظر، کوچه سی‌وسوم، پلاک 18، طبقه اول"
 }
 
 type Inputs = {
@@ -62,7 +63,7 @@ const CourierProfile: FC = () => {
         control,
         handleSubmit,
         formState: {errors, isSubmitting, isValid},
-    } = useForm<Inputs>({mode: 'onChange', defaultValues: {firstName: '', lastName: '', restaurantName: '', phoneNumber: '', address: ''}});
+    } = useForm<Inputs>({mode: 'onChange', defaultValues: {firstName: '', lastName: '', phoneNumber: ''}});
 
     const submit: (data: Inputs) => void = async (data) => {
         console.log(data);

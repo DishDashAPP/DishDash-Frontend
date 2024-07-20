@@ -56,7 +56,7 @@ const ShoppingCart: FC<ShoppingCartIdType> = ({shoppingCartId}) => {
                 <div className={"px-8 text-base font-medium mt-6"}>سبد خرید رستوران {shoppingCart.restaurantName}</div>
                 <div className={"mt-3"}>
                     {shoppingCart.foods.map((food, index) =>
-                        <FoodCard2 restaurantId={shoppingCart.restaurantId} food={food}/>
+                        <FoodCard2 key={index} restaurantId={shoppingCart.restaurantId} food={food}/>
                     )}
                 </div>
 

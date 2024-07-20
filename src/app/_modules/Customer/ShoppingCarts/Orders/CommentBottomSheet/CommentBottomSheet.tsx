@@ -11,7 +11,7 @@ const CommentBottomSheet: FC = () => {
         control,
         handleSubmit,
         formState: {errors, isSubmitting, isValid},
-    } = useForm<Inputs>({
+    } = useForm({
         mode: 'onChange',
         defaultValues: {
             comment: '',
@@ -20,7 +20,7 @@ const CommentBottomSheet: FC = () => {
         }
     });
 
-    const submit: (data: Inputs) => void = async (data) => {
+    const submit: (data: any) => void = async (data) => {
         console.log(data);
     }
 

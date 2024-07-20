@@ -4,10 +4,11 @@ import {ReactNode} from "react";
 import Header from "@modules/MainHeader/Header";
 import BottomNavigation from "@modules/BottomNavigation/BottomNavigation";
 import {usePathname} from "next/navigation";
+import {UserType} from "@utils/types";
 
 function PanelLayout({children}: { children: ReactNode }) {
     const pathname = usePathname();
-    const currentUserType = pathname.split('/')[1];
+    const currentUserType = pathname.split('/')[1] as UserType;
 
     return (
         <div className="mainLayout layoutMinHeight bg-white mx-auto">

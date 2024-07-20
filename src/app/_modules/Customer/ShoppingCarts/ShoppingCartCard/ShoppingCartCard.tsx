@@ -1,7 +1,7 @@
 'use client'
 
 import {FC, useState} from "react";
-import {ShoppingCartType} from "@utils/types";
+import {CustomerOrderType, ShoppingCartType} from "@utils/types";
 import Rate from "@components/Rate/Rate";
 import Image from "next/image";
 import Button from "@components/Button/Button";
@@ -12,14 +12,14 @@ import BottomSheet from "@components/BottomSheet/BottomSheet";
 import CommentBottomSheet from "@modules/Customer/ShoppingCarts/Orders/CommentBottomSheet/CommentBottomSheet";
 
 type ShoppingCartCardProps = {
-    shoppingCart: ShoppingCartType;
+    shoppingCart: CustomerOrderType;
     isHistory?: boolean;
 }
 
 const ShoppingCartCard: FC<ShoppingCartCardProps> = ({shoppingCart, isHistory = false}) => {
     const [isBottomSheetOpen, setIsBottomSheetOpen] = useState<boolean>(false);
 
-    const handleComment = (e) => {
+    const handleComment = (e: any) => {
         e.preventDefault();
         setIsBottomSheetOpen(true);
     }

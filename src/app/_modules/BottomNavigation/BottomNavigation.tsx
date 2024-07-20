@@ -29,7 +29,7 @@ const BottomNavigation: FC<BottomNavigationProps> = ({userType}) => {
 
     const isDashboard = pathname === {
         customer: '/customer',
-        restaurant: '/restaurants',
+        restaurant: '/restaurant',
         courier: '/courier',
     }[userType];
 
@@ -44,7 +44,7 @@ const BottomNavigation: FC<BottomNavigationProps> = ({userType}) => {
             isActive: isProfile,
             route: {
                 customer: '/customer/profile',
-                restaurant: '/restaurants/profile',
+                restaurant: '/restaurant/profile',
                 courier: '/courier/profile',
             }
         },
@@ -54,7 +54,7 @@ const BottomNavigation: FC<BottomNavigationProps> = ({userType}) => {
             isActive: isDashboard,
             route: {
                 customer: '/customer',
-                restaurant: '/restaurants',
+                restaurant: '/restaurant',
                 courier: '/courier',
             }
         },
@@ -64,7 +64,7 @@ const BottomNavigation: FC<BottomNavigationProps> = ({userType}) => {
             isActive: isOrders,
             route: {
                 customer: '/customer/orders',
-                restaurant: '/restaurants/orders?type=active',
+                restaurant: '/restaurant/orders?type=active',
                 courier: '/courier/orders',
             }
         },

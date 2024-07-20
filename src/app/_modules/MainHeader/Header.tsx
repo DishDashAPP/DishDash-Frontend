@@ -8,6 +8,7 @@ import ARROW_BACK from '@public/arrow-back.svg';
 import SHOPPING_CART from '@public/shopping-cart.svg';
 import {usePathname, useRouter} from 'next/navigation';
 import Link from 'next/link';
+import {SHOPPING_CARTS} from "@utils/links";
 
 type HeaderProps = {
     userType: UserType;
@@ -46,7 +47,7 @@ const Header: FC<HeaderProps> = ({userType}) => {
             </div>
             <div className="flex items-center">
                 {isCustomer && (
-                    <Link href="/" passHref>
+                    <Link href={SHOPPING_CARTS} passHref>
                         <Image
                             src={SHOPPING_CART}
                             width={24}

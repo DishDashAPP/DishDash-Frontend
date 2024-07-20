@@ -43,6 +43,18 @@ export type CommentType = {
     rate: number,
     comment: string
 }
+export type ShoppingCartType = {
+    id: string,
+    restaurantId: string,
+    restaurantName: string,
+    restaurantRate: string,
+    foods: (FoodType & {
+        count: number
+    })[],
+    total: string,
+    deliveryPrice: string,
+    finalPrice: string
+}
 
 export type RestaurantIdType = {
     restaurantId: string

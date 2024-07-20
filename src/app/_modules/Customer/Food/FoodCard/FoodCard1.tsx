@@ -1,18 +1,13 @@
 'use client'
 
 import {FC} from "react";
-import {FoodType} from "@utils/types";
+import {FoodType, RestaurantIdFoodType} from "@utils/types";
 import Image from "next/image";
 import AddFoodButton from "@components/AddFoodButton/AddFoodButton";
 import Link from "next/link";
 import {CUSTOMER_RESTAURANTS} from "@utils/links";
 
-type FoodCardProps = {
-    restaurantId: string,
-    food: FoodType
-}
-
-const FoodCard: FC<FoodCardProps> = ({restaurantId, food}) => {
+const FoodCard1: FC<RestaurantIdFoodType> = ({restaurantId, food}) => {
     return (
         <Link href={CUSTOMER_RESTAURANTS + "/" + restaurantId + "/" + food.id} className={"flex justify-between items-start mt-8 mb-4 cursor-pointer"}>
             <div>
@@ -31,4 +26,4 @@ const FoodCard: FC<FoodCardProps> = ({restaurantId, food}) => {
     )
 }
 
-export default FoodCard;
+export default FoodCard1;

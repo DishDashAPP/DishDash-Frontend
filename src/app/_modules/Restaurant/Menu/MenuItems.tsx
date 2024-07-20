@@ -1,9 +1,9 @@
-import {menuItem} from "@utils/types";
+import {MenuItem} from "@utils/types";
 import {FC} from "react";
 import MenuCard from "@modules/Restaurant/Menu/MenuCard";
 
 type MenuItemsProps = {
-    menuItems: menuItem[]
+    menuItems: MenuItem[]
 }
 
 const MenuItems: FC<MenuItemsProps> = ({menuItems}) => {

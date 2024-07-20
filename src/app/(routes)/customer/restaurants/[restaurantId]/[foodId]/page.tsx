@@ -1,9 +1,9 @@
 import {FC} from "react";
-import {restaurantIdFoodIdType} from "@utils/types";
+import {RestaurantIdFoodIdType} from "@utils/types";
 import Food from "@modules/Customer/Food/Food";
 
 type FoodProps = {
-    params: restaurantIdFoodIdType
+    params: RestaurantIdFoodIdType
 }
 
 const FoodPage: FC<FoodProps> = ({params}) => {

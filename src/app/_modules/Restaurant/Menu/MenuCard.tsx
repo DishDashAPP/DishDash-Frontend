@@ -1,4 +1,4 @@
-import {menuItem} from "@utils/types";
+import {MenuItem} from "@utils/types";
 import {FC, useState} from "react";
 import Image from "next/image";
 import DELETE from "@public/delete.svg"
@@ -9,7 +9,7 @@ import EDIT from "@public/edit.svg"
 import BottomSheet from "@components/BottomSheet/BottomSheet";
 import NewFoodItem from "@modules/Restaurant/Menu/NewFoodItem";
 
-const MenuCard: FC<menuItem> = (props) => {
+const MenuCard: FC<MenuItem> = (props) => {
     const {id, title, description, price, isAvailable, category} = props;
 
     const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);

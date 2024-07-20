@@ -1,19 +1,19 @@
 'use client'
 
 import {FC} from "react";
-import {orderItem, orderType} from "@utils/types";
+import {OrderItem, OrderType} from "@utils/types";
 import OrderCard from "@modules/Restaurant/Orders/OrderCard";
 
 type orderListProps = {
-    orders: orderItem[],
-    filter: orderType
+    orders: OrderItem[],
+    filter: OrderType
 }
 
 const OrderList: FC<orderListProps> = ({orders, filter}) => {
 
     const isActiveOrderFilter: boolean = filter === 'active'
 
-    const filteredOrders: orderItem[] = orders.filter(order => isActiveOrderFilter ? order.status === 'preparing' : order.status !== 'preparing')
+    const filteredOrders: OrderItem[] = orders.filter(order => isActiveOrderFilter ? order.status === 'preparing' : order.status !== 'preparing')
 
     return (
         <div className="flex flex-col gap-y-4 w-full mt-6">

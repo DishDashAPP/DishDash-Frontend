@@ -1,6 +1,6 @@
 'use client'
 
-import {userType} from "@utils/types";
+import {UserType} from "@utils/types";
 import {FC} from "react";
 import {usePathname} from "next/navigation";
 import Image, {StaticImageData} from "next/image";
@@ -11,7 +11,7 @@ import Link from "next/link";
 import classJoin from "@utils/classJoin";
 
 type BottomNavigationProps = {
-    userType: userType
+    userType: UserType
 }
 
 type TNavigationItem = {

@@ -36,6 +36,13 @@ export type FoodType = {
     description: string,
     price: string
 }
+export type CommentType = {
+    id: string,
+    imageSrc: string,
+    name: string,
+    rate: number,
+    comment: string
+}
 
 export type RestaurantIdType = {
     restaurantId: string

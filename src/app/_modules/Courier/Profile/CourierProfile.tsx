@@ -1,7 +1,7 @@
 'use client'
 
 import {FC} from "react";
-import UserProfile from "@modules/Restaurant/Profile/UserProfile";
+import UserProfile from "@components/UserProfile/UserProfile";
 import {Controller, RegisterOptions, useForm} from "react-hook-form";
 import TextInput from "@components/TextInput/TextInput";
 import Button from "@components/Button/Button";

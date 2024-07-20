@@ -17,7 +17,6 @@ const user = {
 type Inputs = {
     firstName: string,
     lastName: string,
-    restaurantName: string,
     phoneNumber: string,
     address: string
 }
@@ -47,10 +46,6 @@ const fields: TFieldType[] = [
         }
     },
     {
-        name: 'restaurantName',
-        label: 'نام رستوران',
-    },
-    {
         name: 'phoneNumber',
         label: 'شماره تماس',
         rules: {
@@ -74,20 +69,20 @@ const fields: TFieldType[] = [
     }
 ]
 
-const RestaurantProfile: FC = () => {
+const CustomerProfile: FC = () => {
 
     const {
         control,
         handleSubmit,
         formState: {errors, isSubmitting, isValid},
-    } = useForm<Inputs>({mode: 'onChange', defaultValues: {firstName: '', lastName: '', restaurantName: '', phoneNumber: '', address: ''}});
+    } = useForm<Inputs>({mode: 'onChange', defaultValues: {firstName: '', lastName: '', phoneNumber: '', address: ''}});
 
     const submit: (data: Inputs) => void = async (data) => {
         console.log(data);
     }
 
     return (
-        <div className="flex flex-col w-full">
+        <div className={"px-8 flex flex-col w-full"}>
             <UserProfile user={user} className="mt-6"/>
             <form className="mt-12">
                 {fields.map((field) => (
@@ -127,4 +122,4 @@ const RestaurantProfile: FC = () => {
     )
 }
 
-export default RestaurantProfile;
+export default CustomerProfile;

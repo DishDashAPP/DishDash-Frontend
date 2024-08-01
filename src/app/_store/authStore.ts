@@ -26,12 +26,14 @@ const useAuthStore = create<AuthState>()(
       },
       logout: () => {
         localStorage.removeItem("auth-storage");
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
         set({ token: null, role: null, isLoggedIn: false });
       },
     }),
     {
-      name: "auth-storage", // name of the storage item
-      getStorage: () => localStorage, // use localStorage
+      name: "auth-storage",
+      getStorage: () => localStorage,
     },
   ),
 );

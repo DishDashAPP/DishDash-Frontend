@@ -12,9 +12,9 @@ export type UserProfileProps = {
   user: {
     firstName: string;
     lastName: string;
-    restaurantName: string;
+    restaurantName?: string;
     phoneNumber: string;
-    address: string;
+    address?: string;
   };
   className?: string;
 };

@@ -5,9 +5,11 @@ import {Controller, RegisterOptions, useForm} from "react-hook-form";
 import TextInput from "@components/TextInput/TextInput";
 import Button from "@components/Button/Button";
 import Link from "next/link";
-import {LOGIN} from "@utils/links";
+import {COURIER, CUSTOMER, LOGIN, RESTAURANT} from "@utils/links";
 import {UserType} from "@utils/types";
 import {loginReq, signupReq} from "@api/services/authService";
+import useAuthStore from "@store/authStore";
+import {useRouter} from "next/navigation";
 
 type TSingUpFormProps = {
     type: UserType
@@ -63,6 +65,9 @@ const fields: TFieldType[] = [
 
 const SignupForm: FC<TSingUpFormProps> = ({ type }) => {
 
+    const router = useRouter();
+    const { setToken, setRole } = useAuthStore()
+
     const {
         control,
         handleSubmit,
@@ -74,7 +79,21 @@ const SignupForm: FC<TSingUpFormProps> = ({ type }) => {
         if (res.isSuccess) {
             const res = await loginReq(data.username, data.password)
             if (res.isSuccess) {
-                console.log('User logged in successfully')
+                const {token, role} = res.data
+                localStorage.setItem('token', token);
+                localStorage.setItem('role', role);
+                setToken(token);
+                setRole(role);
+
+                if (role === 'CUSTOMER') {
+                    router.push(CUSTOMER)
+                } else if (role === 'RESTAURANT_OWNER') {
+                    router.push(RESTAURANT)
+                } else if (role === 'DELIVERY_PERSON') {
+                    router.push(COURIER)
+                } else {
+                    console.error('Unknown role:', role)
+                }
             }
         }
     }

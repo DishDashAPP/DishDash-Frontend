@@ -14,3 +14,7 @@ export async function signupReq(username:string, password: string, role: UserTyp
 export async function loginReq(username: string, password: string) {
     return sendRequest<TLoginRes>(AUTH.LOGIN, "POST", { username, password });
 }
+
+export async function logoutReq() {
+    return sendRequest(AUTH.LOGOUT, "POST");
+}

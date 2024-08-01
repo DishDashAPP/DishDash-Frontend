@@ -23,13 +23,13 @@ const Header: FC<HeaderProps> = ({userType}) => {
     };
 
     const dashboardRoute = {
-        customer: '/customer',
-        restaurant: '/restaurants',
-        courier: '/courier',
+        CUSTOMER: '/customer',
+        RESTAURANT_OWNER: '/restaurants',
+        DELIVERY_PERSON: '/courier',
     }[userType];
 
     const isDashboard = pathname === dashboardRoute;
-    const isCustomer = userType === 'customer';
+    const isCustomer = userType === 'CUSTOMER';
 
     return (
         <div className="flex items-center justify-between p-4 bg-white shadow fixed inset-x-0 top-0 mx-auto w-full max-w-lg z-10">

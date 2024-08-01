@@ -11,15 +11,15 @@ import {UserType} from "@utils/types";
 const tabs: {label: string, value: UserType}[] = [
     {
         label: 'مشتری',
-        value: 'customer',
+        value: 'CUSTOMER',
     },
     {
         label: 'رستوران',
-        value: 'restaurant',
+        value: 'RESTAURANT_OWNER',
     },
     {
         label: 'پیک',
-        value: 'courier',
+        value: 'DELIVERY_PERSON',
     }
 ]
 

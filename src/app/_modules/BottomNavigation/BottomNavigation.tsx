@@ -19,18 +19,18 @@ type TNavigationItem = {
     icon: StaticImageData;
     isActive?: boolean;
     route: {
-        customer: string;
-        restaurant: string;
-        courier: string;
+        CUSTOMER: string;
+        RESTAURANT_OWNER: string;
+        DELIVERY_PERSON: string;
     }
 }
 const BottomNavigation: FC<BottomNavigationProps> = ({userType}) => {
     const pathname = usePathname();
 
     const isDashboard = pathname === {
-        customer: '/customer',
-        restaurant: '/restaurant',
-        courier: '/courier',
+        CUSTOMER: '/customer',
+        RESTAURANT_OWNER: '/restaurant',
+        DELIVERY_PERSON: '/courier',
     }[userType];
 
     const isProfile = pathname.includes('profile');
@@ -43,9 +43,9 @@ const BottomNavigation: FC<BottomNavigationProps> = ({userType}) => {
             icon: PERSON,
             isActive: isProfile,
             route: {
-                customer: '/customer/profile',
-                restaurant: '/restaurant/profile',
-                courier: '/courier/profile',
+                CUSTOMER: '/customer/profile',
+                RESTAURANT_OWNER: '/restaurant/profile',
+                DELIVERY_PERSON: '/courier/profile',
             }
         },
         {
@@ -53,9 +53,9 @@ const BottomNavigation: FC<BottomNavigationProps> = ({userType}) => {
             icon: HOME,
             isActive: isDashboard,
             route: {
-                customer: '/customer',
-                restaurant: '/restaurant',
-                courier: '/courier',
+                CUSTOMER: '/customer',
+                RESTAURANT_OWNER: '/restaurant',
+                DELIVERY_PERSON: '/courier',
             }
         },
         {
@@ -63,9 +63,9 @@ const BottomNavigation: FC<BottomNavigationProps> = ({userType}) => {
             icon: LIST,
             isActive: isOrders,
             route: {
-                customer: '/customer/orders',
-                restaurant: '/restaurant/orders?type=active',
-                courier: '/courier/orders',
+                CUSTOMER: '/customer/orders',
+                RESTAURANT_OWNER: '/restaurant/orders?type=active',
+                DELIVERY_PERSON: '/courier/orders',
             }
         },
     ];

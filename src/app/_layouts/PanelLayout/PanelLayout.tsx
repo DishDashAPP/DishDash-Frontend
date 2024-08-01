@@ -16,7 +16,7 @@ function PanelLayout({children}: { children: ReactNode }) {
             <Header userType={currentUserType}/>
             <div className={classJoin([
                 "mx-auto container flex flex-1 w-full pt-[56px] pb-[77px]",
-                currentUserType == "customer" ? "" : "px-8"
+                currentUserType == "CUSTOMER" ? "" : "px-8"
             ])}>
                 {children}
             </div>

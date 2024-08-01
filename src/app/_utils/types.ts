@@ -1,4 +1,4 @@
-export type UserType = 'customer' | 'restaurant' | 'courier';
+export type UserType = 'CUSTOMER' | 'RESTAURANT_OWNER' | 'DELIVERY_PERSON';
 export type OrderType = 'active' | 'completed';
 export type OrderItem = {
     id: number,

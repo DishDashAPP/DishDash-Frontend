@@ -7,22 +7,39 @@ import {usePathname} from "next/navigation";
 import {UserType} from "@utils/types";
 import classJoin from "@utils/classJoin";
 
-function PanelLayout({children}: { children: ReactNode }) {
+interface PanelLayoutProps {
+    children: ReactNode;
+}
+
+const PanelLayout = ({children}: PanelLayoutProps) => {
     const pathname = usePathname();
-    const currentUserType = pathname.split('/')[1] as UserType;
+    const currentUserType = pathname.split('/')[1].toUpperCase();
+
+    const userType: UserType = (() => {
+        switch (currentUserType) {
+            case "CUSTOMER":
+                return 'CUSTOMER';
+            case "RESTAURANT":
+                return 'RESTAURANT_OWNER';
+            case "COURIER":
+                return 'DELIVERY_PERSON';
+            default:
+                return '' as UserType;
+        }
+    })();
 
     return (
         <div className="mainLayout layoutMinHeight bg-white mx-auto">
-            <Header userType={currentUserType}/>
+            <Header userType={userType}/>
             <div className={classJoin([
                 "mx-auto container flex flex-1 w-full pt-[56px] pb-[77px]",
-                currentUserType == "CUSTOMER" ? "" : "px-8"
+                userType === "CUSTOMER" ? "" : "px-8"
             ])}>
                 {children}
             </div>
-            <BottomNavigation userType={currentUserType}/>
+            <BottomNavigation userType={userType}/>
         </div>
-    )
+    );
 }
 
-export default PanelLayout
+export default PanelLayout;

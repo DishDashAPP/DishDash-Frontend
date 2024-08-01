@@ -54,7 +54,7 @@ const RestaurantDashboard: FC = () => {
                 ))}
                 <Button variant="outline" onClick={handleLogout}>
                     <div className="flex items-center justify-center">
-                        <Image src={LOGOUT} alt="logput" className="ml-1"/>
+                        <Image src={LOGOUT} alt="logout" className="ml-1"/>
                         خروج
                     </div>
                 </Button>

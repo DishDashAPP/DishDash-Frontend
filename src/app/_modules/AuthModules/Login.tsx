@@ -68,8 +68,6 @@ const Login: FC = (props) => {
     const res = await loginReq(data.username, data.password);
     if (res.isSuccess) {
       const { token, role } = res.data;
-      localStorage.setItem("token", token);
-      localStorage.setItem("role", role);
       setToken(token);
       setRole(role);
 

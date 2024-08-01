@@ -96,7 +96,7 @@ const Restaurant: FC<RestaurantIdType> = ({restaurantId}) => {
                     <CommentsSummary restaurantId={restaurantId}/>
                 </div>
                 <div className={"border-t border-gray-line mt-2"}/>
-                <div className={"px-8"}>
+                <div className={"px-8 max-w-[430px]"}>
                     <Chips chips={tChips} canAddNewCategory={false} className={"mt-4"} onCategoryChange={onCategoryChange}/>
                     <div className={"font-medium text-lg mt-2 mb-3"}>{category}</div>
                 </div>

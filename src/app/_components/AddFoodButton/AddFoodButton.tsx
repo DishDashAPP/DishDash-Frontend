@@ -22,7 +22,7 @@ const AddFoodButton: FC<AddFoodButtonProps> = ({restaurantId, foodId, simpleClas
     }
 
     return (
-        <div className={"z-10"}>
+        <div>
             {foodNumber === 0 ?
                 <Button variant={"outline"} onClick={(e) => onButtonClick(e, 1)}
                         className={classJoin(["border-primary text-primary py-1 !rounded-lg mt-3 w-full", simpleClassName])}>

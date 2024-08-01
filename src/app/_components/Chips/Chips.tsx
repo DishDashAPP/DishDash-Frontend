@@ -6,7 +6,7 @@ import { TChip } from "@utils/types";
 
 type TChips = {
   chips: TChip[];
-  onCategoryChange?: (tChip: TChip) => any;
+  onCategoryChange: (tChip: TChip) => any;
   canAddNewCategory?: boolean;
   className?: string;
 };
@@ -17,7 +17,10 @@ const Chips: FC<TChips> = ({
   canAddNewCategory = true,
   className,
 }) => {
-  const [category, setCategory] = useState<string>("all");
+  const [category, setCategory] = useState<TChip>({
+    id: 0,
+    name: "همه",
+  });
   const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
 
   const handleAddCategory = () => {
@@ -25,7 +28,7 @@ const Chips: FC<TChips> = ({
   };
 
   const handleCategoryChange = (tChip: TChip) => {
-    setCategory(tChip.value);
+    setCategory(tChip);
     if (onCategoryChange) onCategoryChange(tChip);
   };
 
@@ -56,11 +59,11 @@ const Chips: FC<TChips> = ({
           key={index}
           className={classJoin([
             "flex items-center justify-center px-4 py-2 bg-gray-200 text-gray-800 rounded-full mr-2 whitespace-nowrap",
-            category === chip.value && "bg-gray-primary text-white",
+            category.id === chip.id && "bg-gray-primary text-white",
           ])}
           onClick={() => handleCategoryChange(chip)}
         >
-          {chip.title}
+          {chip.name}
         </button>
       ))}
     </div>

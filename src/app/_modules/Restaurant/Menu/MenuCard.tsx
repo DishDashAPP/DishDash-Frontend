@@ -10,7 +10,7 @@ import BottomSheet from "@components/BottomSheet/BottomSheet";
 import NewFoodItem from "@modules/Restaurant/Menu/NewFoodItem";
 
 const MenuCard: FC<MenuItem> = (props) => {
-  const { id, title, description, price, isAvailable, category } = props;
+  const { id, name, description, price, stock, category_id } = props;
 
   const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
 
@@ -22,7 +22,7 @@ const MenuCard: FC<MenuItem> = (props) => {
             <Image src={FAST_FOOD} alt="fast food" />
           </div>
           <div className="flex flex-col justify-start mr-4 ml-2">
-            <span className="text-sm font-medium">{title}</span>
+            <span className="text-sm font-medium">{name}</span>
             <p className="text-xs mt-2">{description}</p>
           </div>
         </div>
@@ -38,7 +38,7 @@ const MenuCard: FC<MenuItem> = (props) => {
       </div>
       <div className="flex items-center justify-between mt-2">
         <div className="flex items-center">
-          <span className="text-sm font-medium">{price}</span>
+          <span className="text-sm font-medium">{price.amount}</span>
           <span className="text-xs mr-1">تومان</span>
         </div>
         <Badge text="موجود" color="green" />

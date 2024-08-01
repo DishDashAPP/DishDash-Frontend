@@ -32,15 +32,15 @@ export type Price = {
 };
 export type MenuItem = {
   id: number;
-  title: string;
+  name: string;
   description: string;
-  price: number;
-  isAvailable: boolean;
-  category: string;
+  stock: number;
+  price: Price;
+  category_id: number;
 };
 export type TChip = {
-  title: string;
-  value: string;
+  id: number;
+  name: string;
 };
 export type RestaurantType = {
   id: string;

@@ -66,7 +66,7 @@ const fields: TFieldType[] = [
 const SignupForm: FC<TSingUpFormProps> = ({ type }) => {
 
     const router = useRouter();
-    const { setToken, setRole } = useAuthStore()
+    const { setToken, setRole } = useAuthStore();
 
     const {
         control,

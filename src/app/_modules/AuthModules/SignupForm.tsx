@@ -44,8 +44,8 @@ const fields: TFieldType[] = [
     rules: {
       required: "گذرواژه الزامی است.",
       minLength: {
-        value: 6,
-        message: "گذرواژه باید حداقل ۶ کاراکتر باشد.",
+        value: 5,
+        message: "گذرواژه باید حداقل ۵ کاراکتر باشد.",
       },
       maxLength: {
         value: 20,

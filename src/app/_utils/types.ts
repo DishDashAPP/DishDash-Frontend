@@ -1,5 +1,13 @@
 export type UserType = 'CUSTOMER' | 'RESTAURANT_OWNER' | 'DELIVERY_PERSON';
 export type OrderType = 'active' | 'completed';
+export type User = {
+    id: number,
+    address?: string,
+    first_name: string,
+    last_name: string,
+    phone_number: string,
+    restaurant_name?: string
+}
 export type OrderItem = {
     id: number,
     price: number,

@@ -10,6 +10,7 @@ import COOKING from "@public/cooking.svg";
 import { useRouter } from "next/navigation";
 import useAuthStore from "@store/authStore";
 import { LOGIN, RESTAURANT_MENU, RESTAURANT_ORDERS } from "@utils/links";
+import { logoutReq } from "@api/services/authService";
 
 type dashboardButton = {
   title: string;
@@ -38,9 +39,12 @@ const RestaurantDashboard: FC = () => {
     router.push(link);
   };
 
-  const handleLogout = () => {
-    logout();
-    router.push(LOGIN);
+  const handleLogout = async () => {
+    const res = await logoutReq();
+    if (res.isSuccess) {
+      logout();
+      router.push(LOGIN);
+    }
   };
 
   return (

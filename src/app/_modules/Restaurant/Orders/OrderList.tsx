@@ -1,27 +1,54 @@
-'use client'
+"use client";
 
-import {FC} from "react";
-import {OrderItem, OrderType} from "@utils/types";
+import { FC, useEffect, useState } from "react";
+import { Order, OrderType } from "@utils/types";
 import OrderCard from "@modules/Restaurant/Orders/OrderCard";
+import { useSearchParams } from "next/navigation";
+import {
+  getRestaurantActiveOrdersReq,
+  getRestaurantOrderHistoryReq,
+} from "@api/services/restaurantService";
 
-type orderListProps = {
-    orders: OrderItem[],
-    filter: OrderType
-}
+const OrderList: FC = () => {
+  const searchParams = useSearchParams();
+  const orderType: OrderType = searchParams.get("type") as OrderType;
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
 
-const OrderList: FC<orderListProps> = ({orders, filter}) => {
+  useEffect(() => {
+    const fetchOrders = async () => {
+      setLoading(true);
+      let response;
+      if (orderType === "active") {
+        response = await getRestaurantActiveOrdersReq();
+      } else {
+        response = await getRestaurantOrderHistoryReq();
+      }
 
-    const isActiveOrderFilter: boolean = filter === 'active'
+      if (response.isSuccess) {
+        setOrders(response.data);
+      }
+      setLoading(false);
+    };
 
-    const filteredOrders: OrderItem[] = orders.filter(order => isActiveOrderFilter ? order.status === 'preparing' : order.status !== 'preparing')
+    fetchOrders();
+  }, [orderType]);
 
+  if (loading) {
     return (
-        <div className="flex flex-col gap-y-4 w-full mt-6">
-            {filteredOrders.map((order, index) => (
-                <OrderCard order={order} key={index}/>
-            ))}
-        </div>
-    )
-}
+      <div className="my-8 text-base animate-pulse">
+        در حال دریافت اطلاعات...
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-y-4 w-full mt-6">
+      {orders.map((order, index) => (
+        <OrderCard order={order as Order} key={index} />
+      ))}
+    </div>
+  );
+};
 
 export default OrderList;

@@ -1,6 +1,6 @@
 export type UserType = "CUSTOMER" | "RESTAURANT_OWNER" | "DELIVERY_PERSON";
-export type OrderType = "active" | "completed";
 export type OrderStatus = "PREPARING" | "DELIVERED" | "NOT_PAID" | "DELIVERING";
+export type OrderType = "active" | "completed";
 export type User = {
   id: number;
   address?: string;
@@ -9,14 +9,26 @@ export type User = {
   phone_number: string;
   restaurant_name?: string;
 };
-export type OrderItem = {
+export type Order = {
   id: number;
-  price: number;
-  status: string;
+  customer: User;
+  deliveryPerson: User;
+  restaurantOwnerId: number;
+  orderItems: OrderItem[];
+  status: OrderStatus;
   createdAt: string;
-  user: {
-    name: string;
-  };
+  totalPrice: Price;
+};
+export type OrderItem = {
+  price: Price;
+  quantity: number;
+  order_id: number;
+  food_id: number;
+  food_name: string;
+};
+export type Price = {
+  amount: number;
+  unit: string;
 };
 export type MenuItem = {
   id: number;

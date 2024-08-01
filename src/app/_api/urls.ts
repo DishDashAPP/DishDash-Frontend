@@ -4,7 +4,6 @@ export const BASE_URL = 'http://91.107.129.255:8083/v1'
 export const AUTH = {
     LOGIN: '/auth/login',
     REGISTER: '/auth/register',
-    VALIDATE: '/auth/validate',
     LOGOUT: '/auth/logout',
 };
 

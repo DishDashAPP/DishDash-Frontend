@@ -7,7 +7,7 @@ import Button from "@components/Button/Button";
 import Link from "next/link";
 import {LOGIN} from "@utils/links";
 import {UserType} from "@utils/types";
-import {loginReq, signupReq} from "@api/authService";
+import {loginReq, signupReq} from "@api/services/authService";
 
 type TSingUpFormProps = {
     type: UserType

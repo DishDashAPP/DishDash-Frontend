@@ -19,6 +19,7 @@ const RestaurantMenu: FC = () => {
   const [categories, setCategories] = useState<TChip[]>([]);
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [filteredItems, setFilteredItems] = useState<MenuItem[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<TChip | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,11 +39,26 @@ const RestaurantMenu: FC = () => {
   }, []);
 
   const handleCategoryChange = (category: TChip) => {
+    setSelectedCategory(category);
     if (category.id === 0) {
       setFilteredItems(menuItems);
     } else {
       setFilteredItems(
         menuItems.filter((item) => item.category_id === category.id),
+      );
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    const updatedFoodsRes = await getAllFoodsReq();
+    if (updatedFoodsRes.isSuccess) {
+      setMenuItems(updatedFoodsRes.data);
+      setFilteredItems(
+        selectedCategory?.id === 0
+          ? updatedFoodsRes.data
+          : updatedFoodsRes.data.filter(
+              (item) => item.category_id === selectedCategory?.id,
+            ),
       );
     }
   };
@@ -61,7 +77,7 @@ const RestaurantMenu: FC = () => {
             onCategoryChange={handleCategoryChange}
             className="mb-6"
           />
-          <MenuItems menuItems={filteredItems} />
+          <MenuItems menuItems={filteredItems} onDelete={handleDelete} />
           <button
             className="flex items-center justify-center bg-primary rounded-full w-[64px] h-[64px] fixed left-[32px] bottom-[95px] z-50"
             onClick={() => setBottomSheetOpen(true)}

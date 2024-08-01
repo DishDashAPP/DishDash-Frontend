@@ -8,11 +8,25 @@ import Button from "@components/Button/Button";
 import EDIT from "@public/edit.svg";
 import BottomSheet from "@components/BottomSheet/BottomSheet";
 import NewFoodItem from "@modules/Restaurant/Menu/NewFoodItem";
+import { deleteFoodReq } from "@api/services/restaurantService";
 
-const MenuCard: FC<MenuItem> = (props) => {
-  const { id, name, description, price, stock, category_id } = props;
+interface MenuCardProps extends MenuItem {
+  onDelete: (id: number) => void;
+}
+
+const MenuCard: FC<MenuCardProps> = (props) => {
+  const { id, name, description, price, stock, category_id, onDelete } = props;
 
   const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
+
+  const handleDelete = async () => {
+    const response = await deleteFoodReq(id.toString());
+    if (response.isSuccess) {
+      onDelete(id);
+    } else {
+      console.error("Failed to delete food item:", response.message);
+    }
+  };
 
   return (
     <div className="flex flex-col border border-gray-border rounded-lg p-4">
@@ -26,7 +40,7 @@ const MenuCard: FC<MenuItem> = (props) => {
             <p className="text-xs mt-2">{description}</p>
           </div>
         </div>
-        <div>
+        <div onClick={handleDelete}>
           <Image
             src={DELETE}
             alt="delete"

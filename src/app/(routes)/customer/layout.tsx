@@ -1,1 +1,1 @@
-export { default } from '@layouts/PanelLayout/PanelLayout2'
+export { default } from '@layouts/PanelLayout/PanelLayout'

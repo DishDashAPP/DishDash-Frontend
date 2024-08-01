@@ -6,9 +6,11 @@ import TextInput from "@components/TextInput/TextInput";
 import Button from "@components/Button/Button";
 import Link from "next/link";
 import {LOGIN} from "@utils/links";
+import {UserType} from "@utils/types";
+import {loginReq, signupReq} from "@api/authService";
 
 type TSingUpFormProps = {
-    type: 'customer' | 'restaurant' | 'courier'
+    type: UserType
 }
 
 type Inputs = {
@@ -68,13 +70,19 @@ const SignupForm: FC<TSingUpFormProps> = ({ type }) => {
     } = useForm<Inputs>({mode: 'onChange', defaultValues: {username: '', password: ''}});
 
     const submit: (data: Inputs) => void = async (data) => {
-        console.log(data);
+        const res = await signupReq(data.username, data.password, type)
+        if (res.isSuccess) {
+            const res = await loginReq(data.username, data.password)
+            if (res.isSuccess) {
+                console.log('User logged in successfully')
+            }
+        }
     }
 
     const formTitle: string = {
-        customer: 'ثبت نام مشتری',
-        restaurant: 'ثبت نام رستوران',
-        courier: 'ثبت نام پیک'
+        CUSTOMER: 'ثبت نام مشتری',
+        RESTAURANT_OWNER: 'ثبت نام رستوران',
+        DELIVERY_PERSON: 'ثبت نام پیک'
     }[type]
 
     return (
@@ -111,7 +119,7 @@ const SignupForm: FC<TSingUpFormProps> = ({ type }) => {
                         className="mt-2 w-full"
                         disabled={!isValid || isSubmitting}
                         onClick={handleSubmit(submit)}>
-                        ورود
+                        ثبت‌نام
                     </Button>
                 </form>
                 <div className="flex items-center justify-between w-full mt-4">

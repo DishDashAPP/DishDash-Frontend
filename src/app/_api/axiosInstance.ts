@@ -14,7 +14,8 @@ axiosInstance.interceptors.request.use(async (config) => {
 axiosInstance.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error?.response?.status === 403) {
+        const statusCode = error?.response?.status;
+        if (statusCode === 401 || statusCode === 403) {
             localStorage.removeItem("token");
             window.location.href = "/login";
         }

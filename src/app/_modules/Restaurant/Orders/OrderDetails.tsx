@@ -41,7 +41,7 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order, onUpdate }) => {
 
     return (
         <div>
-            <div ref={orderRef} className="flex flex-col gap-y-4">
+            <div ref={orderRef} className="flex flex-col gap-y-4 max-h-[65vh] overflow-y-auto">
                 {order.order_items.map((foodItem, index) => (
                     <div key={index} className="flex justify-between items-center">
                         <span className="text-sm">{foodItem.name}</span>

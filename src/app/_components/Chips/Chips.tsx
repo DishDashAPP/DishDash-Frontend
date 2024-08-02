@@ -8,6 +8,7 @@ type TChips = {
   chips: TChip[];
   onCategoryChange: (tChip: TChip) => any;
   canAddNewCategory?: boolean;
+  updateCategories?: () => void;
   className?: string;
 };
 
@@ -15,6 +16,7 @@ const Chips: FC<TChips> = ({
   chips,
   onCategoryChange,
   canAddNewCategory = true,
+  updateCategories,
   className,
 }) => {
   const [category, setCategory] = useState<TChip>({
@@ -52,7 +54,10 @@ const Chips: FC<TChips> = ({
         onClose={() => setBottomSheetOpen(false)}
       >
         <h2 className="text-base font-semibold mt-4 mb-6">دسته‌ی جدید</h2>
-        <AddNewCategory />
+        <AddNewCategory
+          onAddCategory={updateCategories}
+          onClosed={() => setBottomSheetOpen(false)}
+        />
       </BottomSheet>
       {chips.map((chip, index) => (
         <button

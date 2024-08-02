@@ -38,6 +38,10 @@ const MenuCard: FC<MenuCardProps> = (props) => {
     }
   };
 
+  const isAvailable = stock > 0;
+  const badgeColor = isAvailable ? "green" : "red";
+  const badgeText = isAvailable ? "موجود" : "ناموجود";
+
   return (
     <div className="flex flex-col border border-gray-border rounded-lg p-4">
       <div className="flex items-start justify-between">
@@ -65,7 +69,7 @@ const MenuCard: FC<MenuCardProps> = (props) => {
           <span className="text-sm font-medium">{price.amount}</span>
           <span className="text-xs mr-1">تومان</span>
         </div>
-        <Badge text="موجود" color="green" />
+        <Badge text={badgeText} color={badgeColor} />
       </div>
       <Button
         variant="secondary"

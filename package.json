@@ -17,6 +17,7 @@
     "@mui/material": "^5.16.4",
     "@reactuses/core": "^5.0.15",
     "axios": "^1.7.2",
+    "html-to-image": "^1.11.11",
     "next": "14.2.3",
     "random-avatar-generator": "^2.0.0",
     "react": "^18",

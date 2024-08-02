@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import classJoin from '@utils/classJoin'
+import classJoin from '../../_utils/classJoin'
 
 export interface IButtonProps {
     /**

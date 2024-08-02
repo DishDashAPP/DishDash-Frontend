@@ -1,5 +1,5 @@
-import { ChangeEvent, createElement, forwardRef, InputHTMLAttributes, MouseEventHandler, ReactNode } from 'react'
-import classJoin from '@utils/classJoin'
+import { ChangeEvent, createElement, forwardRef, InputHTMLAttributes, ReactNode } from 'react'
+import classJoin from '../../_utils/classJoin'
 
 export interface ITextInputProps extends Omit<InputHTMLAttributes<Element>, 'onChange'> {
     label: ReactNode | string

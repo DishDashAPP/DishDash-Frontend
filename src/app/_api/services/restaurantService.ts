@@ -31,7 +31,7 @@ export async function getRestaurantOrderHistoryReq() {
 }
 
 export async function updateRestaurantOrderStatusReq(orderId: string, status: string) {
-    return sendRequest(RESTAURANT_OWNER_ORDER.UPDATE_ORDER_STATUS(orderId, status), 'POST')
+    return sendRequest(RESTAURANT_OWNER_ORDER.UPDATE_ORDER_STATUS(orderId, status), 'PUT')
 }
 
 export async function getRestaurantProfileReq() {

@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react'
 import { Controller, RegisterOptions, useForm } from 'react-hook-form'
 import TextInput from '@components/TextInput/TextInput'
 import Button from '@components/Button/Button'
-import { createFoodReq, editFoodReq, getAllCategoriesReq } from '@api/services/restaurantService' // Adjust the import path accordingly
+import { createFoodReq, editFoodReq, getAllCategoriesReq } from '@api/services/restaurantService'
 import { MenuItem, TChip } from '@utils/types'
 import Dropdown from '@components/Dropdown/Dropdown'
 import { toEnglishDigits } from '@utils/toEnglishDigits'

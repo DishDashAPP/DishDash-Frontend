@@ -1,4 +1,4 @@
-import { Times } from '@utils/constants'
+import { Times } from './constants'
 
 export type PredefinedDateTimeFormats =
     | 'fullNumericDateTime'

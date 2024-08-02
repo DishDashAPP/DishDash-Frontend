@@ -1,18 +1,19 @@
-'use client'
-
 import { useState } from 'react'
-import { Order, OrderItem } from '@utils/types'
+import { Order } from '@utils/types'
 import { FC } from 'react'
 import Badge from '@components/Badge/Badge'
 import Button from '@components/Button/Button'
 import BottomSheet from '@components/BottomSheet/BottomSheet'
 import OrderDetails from '@modules/Restaurant/Orders/OrderDetails'
+import { formatDateTime } from '@utils/date'
+import { priceWithCommas } from '@utils/maskPrice'
 
 type OrderCardProps = {
     order: Order
+    onUpdate: () => void
 }
 
-const OrderCard: FC<OrderCardProps> = ({ order }) => {
+const OrderCard: FC<OrderCardProps> = ({ order, onUpdate }) => {
     const [isBottomSheetOpen, setBottomSheetOpen] = useState(false)
 
     const badgeText = {
@@ -24,18 +25,23 @@ const OrderCard: FC<OrderCardProps> = ({ order }) => {
 
     const isActiveOrder = order.status === 'PREPARING'
 
+    const handleUpdate = () => {
+        onUpdate?.()
+        setBottomSheetOpen(false)
+    }
+
     return (
         <div className="flex flex-col rounded-lg border border-gray-border p-4 w-full">
             <div className="flex items-center justify-between">
-                <span>{order.customer.first_name}</span>
+                <span>{order.customer_dto.first_name}</span>
                 <Badge text={badgeText} color={isActiveOrder ? 'green' : 'red'} />
             </div>
             <div className="flex items-center justify-between my-4">
                 <div>
-                    <span>{order.totalPrice.amount}</span>
+                    <span>{priceWithCommas(order.create_price.amount)}</span>
                     <span> تومان</span>
                 </div>
-                <span>{order.createdAt}</span>
+                <span>{formatDateTime(order.create_time, 'fullDateTime')}</span>
             </div>
             <Button variant="secondary" className="py-3 text-base" onClick={() => setBottomSheetOpen(true)}>
                 {isActiveOrder ? 'جزئیات سفارش' : 'مشاهده‌ی فاکتور'}
@@ -43,7 +49,7 @@ const OrderCard: FC<OrderCardProps> = ({ order }) => {
 
             <BottomSheet isOpen={isBottomSheetOpen} onClose={() => setBottomSheetOpen(false)}>
                 <h2 className="text-base font-semibold mt-4 mb-6">{isActiveOrder ? 'جزئیات سفارش' : 'فاکتور'}</h2>
-                <OrderDetails order={order} />
+                <OrderDetails order={order} onUpdate={handleUpdate} />
             </BottomSheet>
         </div>
     )

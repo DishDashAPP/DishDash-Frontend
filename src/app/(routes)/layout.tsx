@@ -1,9 +1,9 @@
-import {ReactNode} from 'react'
-import type {Metadata, Viewport} from 'next'
+import { ReactNode } from 'react'
+import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import '@styles/tailwind.css'
 import classJoin from '@utils/classJoin'
-import {Toaster} from "sonner";
+import { Toaster } from 'sonner'
 
 const danaFont = localFont({
     src: '../_assets/DanaVF.woff2',
@@ -38,10 +38,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="fa" className={classJoin([danaFont.variable])}>
-        <Toaster richColors closeButton position={'bottom-right'} dir={"rtl"}/>
-        <body dir="rtl" className="text-sm text-gray-primary">
-        {children}
-        </body>
+            <Toaster richColors closeButton position={'bottom-right'} dir={'rtl'} />
+            <body dir="rtl" className="text-sm text-gray-primary">
+                {children}
+            </body>
         </html>
     )
 }

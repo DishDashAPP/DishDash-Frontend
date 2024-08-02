@@ -1,14 +1,14 @@
 export type RestaurantsResponseType = {
-    id: string,
-    username: string,
-    address: string,
-    first_name: string,
-    last_name: string,
-    phone_number: string,
-    restaurant_name: string,
+    id: string
+    username: string
+    address: string
+    first_name: string
+    last_name: string
+    phone_number: string
+    restaurant_name: string
     restaurant_comments: {
-        avg: number,
-        number_of_rate: number,
+        avg: number
+        number_of_rate: number
         number_of_review: number
     }
 }

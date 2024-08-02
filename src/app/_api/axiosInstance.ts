@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { BASE_URL as baseURL } from './urls'
-import {toast} from "sonner";
+import { toast } from 'sonner'
 
 const axiosInstance = axios.create({ baseURL })
 
@@ -41,38 +41,37 @@ export async function sendRequest<T>(
     requestData?: any,
     signal?: AbortSignal
 ): Promise<TApiResponse<T>> {
-    const toastId = toast.loading("در حال ارسال درخواست ...")
+    const toastId = toast.loading('در حال ارسال درخواست ...')
 
     return axiosInstance
         .request({
             method,
             url,
             data: requestData,
-            ...(signal ? {signal} : {}),
+            ...(signal ? { signal } : {}),
         })
         .then((response) => {
-
-            toast.success("درخواست با موفقیت انجام شد.", {
-                id: toastId
+            toast.success('درخواست با موفقیت انجام شد.', {
+                id: toastId,
             })
 
             return {
                 isSuccess: true,
                 data: response.data as T,
                 status: response.status,
-            };
+            }
         })
         .catch((error) => {
-            const response = error?.response?.data || {};
-            const message = response.message || "خطایی رخ داده است."
+            const response = error?.response?.data || {}
+            const message = response.message || 'خطایی رخ داده است.'
 
             toast.error(message, {
-                id: toastId
+                id: toastId,
             })
 
             return {
                 isSuccess: false,
                 ...response,
-            };
-        });
+            }
+        })
 }

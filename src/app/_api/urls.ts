@@ -39,16 +39,13 @@ export const DELIVERY_PERSON_ORDER = {
 
 // REVIEW
 export const REVIEW = {
-    SET_ORDER_REVIEW: (orderId: string, comment: string) =>
-        `/review/order?orderId=${orderId}&comment=${comment}`,
+    SET_ORDER_REVIEW: (orderId: string, comment: string) => `/review/order?orderId=${orderId}&comment=${comment}`,
 }
 
 // RATE
 export const RATE = {
-    SET_ORDER_RATE: (orderId: string, point: number) =>
-        `/rate/order?orderId=${orderId}&point=${point}`,
-    SET_DELIVERY_PERSON_RATE: (orderId: string, point: number) =>
-        `/rate/delivery?orderId=${orderId}&point=${point}`,
+    SET_ORDER_RATE: (orderId: string, point: number) => `/rate/order?orderId=${orderId}&point=${point}`,
+    SET_DELIVERY_PERSON_RATE: (orderId: string, point: number) => `/rate/delivery?orderId=${orderId}&point=${point}`,
 }
 
 // DELIVERY

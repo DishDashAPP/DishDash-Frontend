@@ -1,26 +1,7 @@
 import { CATEGORY, FOOD, RESTAURANT_OWNER, RESTAURANT_OWNER_ORDER } from '@api/urls'
 import { sendRequest } from '@api/axiosInstance'
 import { MenuItem, Order, Price, TChip, User } from '@utils/types'
-
-type TRestaurantOwnerProfile = {
-    first_name: string
-    last_name: string
-    phone_number: string
-    restaurant_name: string
-    address: string
-}
-
-type TCategory = {
-    name: string
-}
-
-type TFood = {
-    name: string
-    description: string
-    stock: number
-    price: Price
-    category_id: number
-}
+import { TCategory, TFood, TRestaurantOwnerProfile } from '@utils/apiTypes'
 
 export async function getRestaurantActiveOrdersReq() {
     return sendRequest<Order[]>(RESTAURANT_OWNER_ORDER.GET_ACTIVE_ORDERS, 'GET')

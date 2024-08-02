@@ -1,11 +1,7 @@
 import { sendRequest } from '@api/axiosInstance'
 import { AUTH } from '@api/urls'
 import { UserType } from '@utils/types'
-
-type TLoginRes = {
-    token: string
-    role: UserType
-}
+import { TLoginRes } from '@utils/apiTypes'
 
 export async function signupReq(username: string, password: string, role: UserType) {
     return sendRequest(AUTH.REGISTER, 'POST', { username, password, role })

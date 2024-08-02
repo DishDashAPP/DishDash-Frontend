@@ -1,12 +1,7 @@
 import { sendRequest } from '@api/axiosInstance'
 import { OrderStatus, User } from '@utils/types'
 import { DELIVERY_PERSON, DELIVERY_PERSON_ORDER } from '@api/urls'
-
-type TDeliveryPersonProfile = {
-    first_name: string
-    last_name: string
-    phone_number: string
-}
+import { TDeliveryPersonProfile } from '@utils/apiTypes'
 
 export async function getDeliveryPersonProfileReq() {
     return sendRequest<User>(DELIVERY_PERSON.GET, 'GET')

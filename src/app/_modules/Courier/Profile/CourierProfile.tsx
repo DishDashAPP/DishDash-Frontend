@@ -6,6 +6,7 @@ import { Controller, RegisterOptions, useForm } from 'react-hook-form'
 import TextInput from '@components/TextInput/TextInput'
 import Button from '@components/Button/Button'
 import { getDeliveryPersonProfileReq, updateDeliveryPersonProfileReq } from '@api/services/deliveryPersonService'
+import { toEnglishDigits } from '@utils/toEnglishDigits'
 
 type Inputs = {
     firstName: string
@@ -42,7 +43,7 @@ const fields: TFieldType[] = [
         label: 'شماره تماس',
         rules: {
             validate: (value: string) => {
-                if (!value.match(/^09[0-9]{9}$/)) {
+                if (!toEnglishDigits(value)?.match(/^09[0-9]{9}$/)) {
                     return 'شماره تماس باید با ۰۹ شروع شود و ۱۱ رقم باشد.'
                 }
             },
@@ -89,7 +90,7 @@ const CourierProfile: FC = () => {
         const res = await updateDeliveryPersonProfileReq({
             first_name: data.firstName,
             last_name: data.lastName,
-            phone_number: data.phoneNumber,
+            phone_number: toEnglishDigits(data.phoneNumber),
         })
         if (res.isSuccess) {
             console.log('Profile updated successfully', res.data)

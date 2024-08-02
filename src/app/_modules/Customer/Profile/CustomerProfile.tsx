@@ -6,6 +6,7 @@ import { Controller, RegisterOptions, useForm } from 'react-hook-form'
 import TextInput from '@components/TextInput/TextInput'
 import Button from '@components/Button/Button'
 import { getCustomerProfileReq, updateCustomerProfileReq } from '@api/services/customerService'
+import { toEnglishDigits } from '@utils/toEnglishDigits'
 
 type Inputs = {
     firstName: string
@@ -43,7 +44,7 @@ const fields: TFieldType[] = [
         label: 'شماره تماس',
         rules: {
             validate: (value: string) => {
-                if (!value.match(/^09[0-9]{9}$/)) {
+                if (!toEnglishDigits(value)?.match(/^09[0-9]{9}$/)) {
                     return 'شماره تماس باید با ۰۹ شروع شود و ۱۱ رقم باشد.'
                 }
             },
@@ -110,7 +111,7 @@ const CustomerProfile: FC = () => {
         const res = await updateCustomerProfileReq({
             first_name: data.firstName,
             last_name: data.lastName,
-            phone_number: data.phoneNumber,
+            phone_number: toEnglishDigits(data.phoneNumber),
             address: data.address,
         })
         if (res.isSuccess) {

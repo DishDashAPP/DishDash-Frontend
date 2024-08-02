@@ -75,6 +75,7 @@ const RestaurantProfile: FC = () => {
         phoneNumber: '',
         address: '',
     })
+
     const {
         control,
         handleSubmit,

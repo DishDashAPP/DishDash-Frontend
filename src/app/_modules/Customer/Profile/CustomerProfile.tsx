@@ -1,17 +1,11 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import UserProfile from '@components/UserProfile/UserProfile'
 import { Controller, RegisterOptions, useForm } from 'react-hook-form'
 import TextInput from '@components/TextInput/TextInput'
 import Button from '@components/Button/Button'
-
-const user = {
-    firstName: 'محمدامین',
-    lastName: 'لطفی',
-    phoneNumber: '09304087303',
-    address: 'شهرآرا، بزرگراه جلال آل احمد، خیابان امام منتظر، کوچه سی‌وسوم، پلاک 18، طبقه اول',
-}
+import { getCustomerProfileReq, updateCustomerProfileReq } from '@api/services/customerService'
 
 type Inputs = {
     firstName: string
@@ -69,10 +63,18 @@ const fields: TFieldType[] = [
 ]
 
 const CustomerProfile: FC = () => {
+    const [user, setUser] = useState<Inputs>({
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        address: '',
+    })
+
     const {
         control,
         handleSubmit,
         formState: { errors, isSubmitting, isValid },
+        setValue,
     } = useForm<Inputs>({
         mode: 'onChange',
         defaultValues: {
@@ -83,8 +85,38 @@ const CustomerProfile: FC = () => {
         },
     })
 
-    const submit: (data: Inputs) => void = async (data) => {
-        console.log(data)
+    const fetchProfile = async () => {
+        const res = await getCustomerProfileReq()
+        if (res.isSuccess) {
+            const { first_name, last_name, restaurant_name, phone_number, address } = res.data
+            setValue('firstName', first_name)
+            setValue('lastName', last_name)
+            setValue('phoneNumber', phone_number)
+            setValue('address', address || '')
+            setUser({
+                firstName: first_name,
+                lastName: last_name,
+                phoneNumber: phone_number,
+                address: address || '',
+            })
+        }
+    }
+
+    useEffect(() => {
+        fetchProfile()
+    }, [setValue])
+
+    const submit = async (data: Inputs) => {
+        const res = await updateCustomerProfileReq({
+            first_name: data.firstName,
+            last_name: data.lastName,
+            phone_number: data.phoneNumber,
+            address: data.address,
+        })
+        if (res.isSuccess) {
+            console.log('Profile updated successfully', res.data)
+            await fetchProfile()
+        }
     }
 
     return (

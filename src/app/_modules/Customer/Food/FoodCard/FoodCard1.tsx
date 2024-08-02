@@ -3,7 +3,6 @@
 import { FC } from 'react'
 import { FoodType, RestaurantIdFoodType } from '@utils/types'
 import Image from 'next/image'
-import AddFoodButton from '@components/AddFoodButton/AddFoodButton'
 import Link from 'next/link'
 import { CUSTOMER_RESTAURANTS } from '@utils/links'
 
@@ -23,7 +22,7 @@ const FoodCard1: FC<RestaurantIdFoodType> = ({ restaurantId, food }) => {
             </div>
             <div className={'flex flex-col'}>
                 <Image src={food.imageSrc} alt={food.name} width={90} height={90} className={'rounded-lg'} />
-                <AddFoodButton restaurantId={restaurantId} foodId={food.id} />
+                {/*<AddFoodButton restaurantId={restaurantId} foodId={food.id} />*/}
             </div>
         </Link>
     )

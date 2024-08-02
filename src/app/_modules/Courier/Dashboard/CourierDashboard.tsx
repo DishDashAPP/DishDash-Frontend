@@ -6,7 +6,9 @@ import Image from 'next/image'
 import LOGOUT from '@public/logout.svg'
 import COURIER_BIKE from '@public/courier-bike.svg'
 import { useRouter } from 'next/navigation'
-import { COURIER_CURRENT_ORDER } from '@utils/links'
+import { COURIER_CURRENT_ORDER, LOGIN } from '@utils/links'
+import { logoutReq } from '@api/services/authService'
+import useAuthStore from '@store/authStore'
 
 type dashboardButton = {
     title: string
@@ -21,14 +23,19 @@ const dashboardButtons: dashboardButton[] = [
 ]
 
 const CourierDashboard: FC = () => {
+    const { logout } = useAuthStore()
     const router = useRouter()
 
     const handleLink = (link: string) => () => {
         router.push(link)
     }
 
-    const handleLogout = () => {
-        console.log('logout')
+    const handleLogout = async () => {
+        const res = await logoutReq()
+        if (res.isSuccess) {
+            logout()
+            router.push(LOGIN)
+        }
     }
 
     return (

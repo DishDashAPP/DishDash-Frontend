@@ -58,6 +58,7 @@ export type MenuType = {
     foods: FoodType[]
 }
 export type FoodType = {
+    id: string
     imageSrc: string
     name: string
     description: string

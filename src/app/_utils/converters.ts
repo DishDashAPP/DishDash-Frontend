@@ -51,6 +51,7 @@ export function convertRestaurantMenuResponse(restaurantMenuResponse: Restaurant
             name: category.name,
         })),
         foods: restaurantMenuResponse.foods.map((food) => ({
+            id: '1',
             imageSrc: `/FoodDefault/food${getIntHash(food.name, 1, 4)}.svg`,
             name: food.name,
             description: food.description,

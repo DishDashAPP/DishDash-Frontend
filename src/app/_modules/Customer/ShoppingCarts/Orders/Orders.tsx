@@ -19,6 +19,7 @@ const Orders: FC = () => {
                     description: 'سس گوجه، گوشت چرخ‌کرده، پنیر موزارلا،‌ فلفل قرمز',
                     price: '۲۵۰',
                     count: 2,
+                    category_id: 0,
                 },
                 {
                     id: '2',
@@ -27,6 +28,7 @@ const Orders: FC = () => {
                     description: 'سس پستو، مرغ گریل، پنیر موزارلا،‌ پنیر پارمسان',
                     price: '۲۵۰',
                     count: 3,
+                    category_id: 0,
                 },
             ],
         },
@@ -43,6 +45,7 @@ const Orders: FC = () => {
                     description: 'سس گوجه، گوشت چرخ‌کرده، پنیر موزارلا،‌ فلفل قرمز',
                     price: '۲۵۰',
                     count: 2,
+                    category_id: 0,
                 },
                 {
                     id: '2',
@@ -51,6 +54,7 @@ const Orders: FC = () => {
                     description: 'سس پستو، مرغ گریل، پنیر موزارلا،‌ پنیر پارمسان',
                     price: '۲۵۰',
                     count: 30,
+                    category_id: 0,
                 },
             ],
         },

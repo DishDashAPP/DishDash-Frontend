@@ -1,5 +1,5 @@
-import { ChangeEvent, createElement, forwardRef, InputHTMLAttributes, MouseEventHandler, ReactNode } from 'react'
-import classJoin from '@utils/classJoin'
+import { ChangeEvent, createElement, forwardRef, InputHTMLAttributes, ReactNode } from 'react'
+import classJoin from '../../_utils/classJoin'
 
 export interface ITextInputProps extends Omit<InputHTMLAttributes<Element>, 'onChange'> {
     label: ReactNode | string
@@ -87,6 +87,7 @@ const TextInput = forwardRef<HTMLInputElement | undefined, ITextInputProps>(func
                     {label}
                     {required ? ' *' : ''}
                 </label>
+                {isOptional && <span className="text-xs text-gray-500 ml-2">اختیاری</span>}
             </div>
             {error && <div className="mt-1 min-h-[20px] text-xs text-red">{error || ''}</div>}
         </div>

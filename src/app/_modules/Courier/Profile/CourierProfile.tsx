@@ -1,17 +1,11 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import UserProfile from '@components/UserProfile/UserProfile'
 import { Controller, RegisterOptions, useForm } from 'react-hook-form'
 import TextInput from '@components/TextInput/TextInput'
 import Button from '@components/Button/Button'
-
-const user = {
-    firstName: 'امیرحسین',
-    lastName: 'عرب‌زاده',
-    phoneNumber: '09304087303',
-    address: 'شهرآرا، بزرگراه جلال آل احمد، خیابان امام منتظر، کوچه سی‌وسوم، پلاک 18، طبقه اول',
-}
+import { getDeliveryPersonProfileReq, updateDeliveryPersonProfileReq } from '@api/services/deliveryPersonService'
 
 type Inputs = {
     firstName: string
@@ -57,17 +51,50 @@ const fields: TFieldType[] = [
 ]
 
 const CourierProfile: FC = () => {
+    const [user, setUser] = useState<Inputs>({
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+    })
     const {
         control,
         handleSubmit,
         formState: { errors, isSubmitting, isValid },
+        setValue,
     } = useForm<Inputs>({
         mode: 'onChange',
         defaultValues: { firstName: '', lastName: '', phoneNumber: '' },
     })
 
-    const submit: (data: Inputs) => void = async (data) => {
-        console.log(data)
+    const fetchProfile = async () => {
+        const res = await getDeliveryPersonProfileReq()
+        if (res.isSuccess) {
+            const { first_name, last_name, phone_number } = res.data
+            setValue('firstName', first_name)
+            setValue('lastName', last_name)
+            setValue('phoneNumber', phone_number)
+            setUser({
+                firstName: first_name,
+                lastName: last_name,
+                phoneNumber: phone_number,
+            })
+        }
+    }
+
+    useEffect(() => {
+        fetchProfile()
+    }, [setValue])
+
+    const submit: (data: Inputs) => void = async (data: Inputs) => {
+        const res = await updateDeliveryPersonProfileReq({
+            first_name: data.firstName,
+            last_name: data.lastName,
+            phone_number: data.phoneNumber,
+        })
+        if (res.isSuccess) {
+            console.log('Profile updated successfully', res.data)
+            await fetchProfile()
+        }
     }
 
     return (

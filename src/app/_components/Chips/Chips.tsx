@@ -3,6 +3,7 @@ import classJoin from '@utils/classJoin'
 import BottomSheet from '@components/BottomSheet/BottomSheet'
 import AddNewCategory from '@modules/Restaurant/Menu/AddNewCategory'
 import { TChip } from '@utils/types'
+import { allCategory } from '@utils/consts'
 
 type TChips = {
     chips: TChip[]
@@ -13,10 +14,7 @@ type TChips = {
 }
 
 const Chips: FC<TChips> = ({ chips, onCategoryChange, canAddNewCategory = true, updateCategories, className }) => {
-    const [category, setCategory] = useState<TChip>({
-        id: 0,
-        name: 'همه',
-    })
+    const [category, setCategory] = useState<TChip>(allCategory)
     const [isBottomSheetOpen, setBottomSheetOpen] = useState(false)
 
     const handleAddCategory = () => {

@@ -50,6 +50,8 @@ export type RestaurantType = {
     imageSrc: string
     name: string
     rate: string
+    rateNumber: string
+    reviewsNumber: string
     courierPrice: string
     WaitingTime: string
 }

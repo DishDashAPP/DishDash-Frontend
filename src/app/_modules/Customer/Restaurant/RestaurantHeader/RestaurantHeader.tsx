@@ -12,7 +12,7 @@ const RestaurantHeader: FC<{ restaurant: RestaurantType }> = ({ restaurant }) =>
         <div className={'grid grid-cols-3 mt-6 bg-gray-line gap-x-0.5'}>
             <RestaurantHeaderPart
                 title={[restaurant.rate, ' از ', '۵']}
-                subtitle={[' از ', '۲۱۷۰ ', 'امتیاز']}
+                subtitle={[' از ', restaurant.rateNumber, ' امتیاز']}
                 iconSrc={STAR}
                 iconAlt={'gray star'}
             />

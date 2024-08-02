@@ -13,6 +13,8 @@ const Comments: FC<RestaurantIdType> = ({ restaurantId }) => {
         rate: '۴.۵',
         courierPrice: '۱۰۰۰۰',
         WaitingTime: '۳۰',
+        rateNumber: '۱۰',
+        reviewsNumber: '۱۰',
     }
 
     const comments: CommentType[] = [

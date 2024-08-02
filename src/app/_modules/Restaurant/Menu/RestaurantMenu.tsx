@@ -3,7 +3,7 @@
 import { FC, useEffect, useState } from 'react'
 import Chips from '@components/Chips/Chips'
 import MenuItems from '@modules/Restaurant/Menu/MenuItems'
-import ADD from '@public/add.svg'
+import ADD from '../../../../../public/add.svg'
 import Image from 'next/image'
 import NewFoodItem from '@modules/Restaurant/Menu/NewFoodItem'
 import BottomSheet from '@components/BottomSheet/BottomSheet'

@@ -3,8 +3,8 @@
 import { FC, useState } from 'react'
 import Button from '@components/Button/Button'
 import Image from 'next/image'
-import PLUS from '@public/PLUS.svg'
-import MINUS from '@public/MINUS.svg'
+import PLUS from '../../../../public/PLUS.svg'
+import MINUS from '../../../../public/MINUS.svg'
 import { RestaurantIdFoodIdType } from '@utils/types'
 import classJoin from '@utils/classJoin'
 

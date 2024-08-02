@@ -2,9 +2,9 @@
 
 import { RestaurantType } from '@utils/types'
 import { FC } from 'react'
-import STAR from '@public/star-gray.svg'
-import COURIER from '@public/courier.svg'
-import WATCH from '@public/watch.svg'
+import STAR from '../../../../../../public/star-gray.svg'
+import COURIER from '../../../../../../public/courier.svg'
+import WATCH from '../../../../../../public/watch.svg'
 import RestaurantHeaderPart from '@modules/Customer/Restaurant/RestaurantHeader/RestaurantHeaderPart'
 
 const RestaurantHeader: FC<{ restaurant: RestaurantType }> = ({ restaurant }) => {

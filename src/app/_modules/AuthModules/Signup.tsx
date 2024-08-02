@@ -2,7 +2,7 @@
 
 import { FC } from 'react'
 import Image from 'next/image'
-import LOGO from '@public/logo.svg'
+import LOGO from '../../../../public/logo.svg'
 import Tabs from '@components/Tabs/Tabs'
 import Tab from '@components/Tabs/Tab'
 import SignupForm from '@modules/AuthModules/SignupForm'

@@ -13,31 +13,33 @@ axiosInstance.interceptors.request.use(async (config) => {
 });
 
 axiosInstance.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        const statusCode = error?.response?.status;
-        if (statusCode === 401 || statusCode === 403) {
-            localStorage.removeItem("token");
-            window.location.href = "/login";
-        }
-        return Promise.reject(error);
+  (response) => response,
+  (error) => {
+    const statusCode = error?.response?.status;
+    if (statusCode === 401 || statusCode === 403) {
+      localStorage.removeItem("auth-storage");
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      window.location.href = "/login";
     }
+    return Promise.reject(error);
+  },
 );
 
 type TApiResponse<T> = {
-    isSuccess: boolean;
-    data: T;
-    status: number;
-    message?: string;
+  isSuccess: boolean;
+  data: T;
+  status: number;
+  message?: string;
 };
 
 type TMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 export async function sendRequest<T>(
-    url: string,
-    method: TMethod,
-    requestData?: any,
-    signal?: AbortSignal
+  url: string,
+  method: TMethod,
+  requestData?: any,
+  signal?: AbortSignal,
 ): Promise<TApiResponse<T>> {
     const promise: Promise<TApiResponse<T>> = axiosInstance
         .request({

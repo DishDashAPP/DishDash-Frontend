@@ -1,14 +1,21 @@
-import {AvatarGenerator} from "random-avatar-generator";
+import { AvatarGenerator } from "random-avatar-generator";
 import classJoin from "@utils/classJoin";
+import Image from "next/image";
 
-export default function ProfileImage({name, className}: { name: string, className?: string }) {
+export default function ProfileImage({
+  name,
+  className,
+}: {
+  name: string;
+  className?: string;
+}) {
   const avatarGenerator = new AvatarGenerator();
 
   return (
-    <img
-      className={classJoin(['w-14 h-14 rounded-full', className])}
+    <Image
+      className={classJoin(["w-14 h-14 rounded-full", className])}
       src={avatarGenerator.generateRandomAvatar(name)}
-      alt={'profile image'}
+      alt={"profile image"}
     />
-  )
+  );
 }

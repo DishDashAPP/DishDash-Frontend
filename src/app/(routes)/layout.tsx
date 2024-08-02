@@ -38,7 +38,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="fa" className={classJoin([danaFont.variable])}>
-            <Toaster richColors closeButton position={'bottom-right'} dir={'rtl'} />
+            <Toaster
+                richColors
+                closeButton
+                position={'top-center'}
+                dir={'rtl'}
+                toastOptions={{
+                    style: { fontFamily: 'var(--font-dana)' },
+                }}
+            />
             <body dir="rtl" className="text-sm text-gray-primary">
                 {children}
             </body>

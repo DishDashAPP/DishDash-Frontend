@@ -29,12 +29,6 @@ test('renders with fullWidth class when fullWidth prop is true', () => {
     expect(inputElement).toHaveClass('w-full')
 })
 
-test('displays "optional" text when isOptional prop is true', () => {
-    render(<TextInput label="Username" id="username" isOptional />)
-    const labelElement = screen.getByText(/اختیاری/i)
-    expect(labelElement).toBeInTheDocument()
-})
-
 test('renders with disabled state', () => {
     render(<TextInput label="Username" id="username" disabled />)
     const inputElement = screen.getByLabelText(/Username/i)

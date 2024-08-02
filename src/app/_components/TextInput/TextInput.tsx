@@ -87,7 +87,6 @@ const TextInput = forwardRef<HTMLInputElement | undefined, ITextInputProps>(func
                     {label}
                     {required ? ' *' : ''}
                 </label>
-                {isOptional && <span className="text-xs text-gray-500 ml-2">اختیاری</span>}
             </div>
             {error && <div className="mt-1 min-h-[20px] text-xs text-red">{error || ''}</div>}
         </div>

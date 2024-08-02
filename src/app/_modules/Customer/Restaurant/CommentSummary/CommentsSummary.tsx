@@ -2,8 +2,8 @@
 
 import { FC } from 'react'
 import { RestaurantIdType } from '@utils/types'
-import CHAT from '@public/chat.svg'
-import LEFT_ARROW from '@public/left-arrow.svg'
+import CHAT from '../../../../../../public/chat.svg'
+import LEFT_ARROW from '../../../../../../public/left-arrow.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import { COMMENTS, CUSTOMER_RESTAURANTS } from '@utils/links'

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import classJoin from '@utils/classJoin'
 import ProfileImage from '@components/ProfileImage/ProfileImage'
-import LOGOUT from '@public/logout.svg'
+import LOGOUT from '../../../../public/logout.svg'
 import Image from 'next/image'
 import { LOGIN } from '@utils/links'
 import useAuthStore from '@store/authStore'

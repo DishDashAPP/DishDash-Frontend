@@ -19,7 +19,7 @@
       }
     ],
     "paths": {
-      "@public/*": ["./public/*"],
+      "../../../../public/*": ["./public/*"],
       "@assets/*": ["./src/app/_assets/*"],
       "@components/*": ["./src/app/_components/*"],
       "@constants/*": ["./src/app/_constants/*"],

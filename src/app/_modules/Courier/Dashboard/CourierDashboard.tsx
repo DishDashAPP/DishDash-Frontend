@@ -6,6 +6,7 @@ import Image from 'next/image'
 import LOGOUT from '@public/logout.svg'
 import COURIER_BIKE from '@public/courier-bike.svg'
 import { useRouter } from 'next/navigation'
+import { COURIER_CURRENT_ORDER } from '@utils/links'
 
 type dashboardButton = {
     title: string
@@ -15,7 +16,7 @@ type dashboardButton = {
 const dashboardButtons: dashboardButton[] = [
     {
         title: 'درخواست فعال',
-        link: '/courier/orders',
+        link: COURIER_CURRENT_ORDER,
     },
 ]
 

@@ -11,6 +11,7 @@ export const AUTH = {
 
 // USER - CUSTOMER
 export const CUSTOMER_ORDER = {
+    GET_ALL_RESTAURANTS: `/restaurantOwner/all`,
     CREATE_ORDER: (restaurantOwnerId: string) => `/order/customer?restaurantOwnerId=${restaurantOwnerId}`,
     CREATE_SHOPPING_CART: (restaurantOwnerId: string) => `/order/customer?restaurantOwnerId=${restaurantOwnerId}`, //TODO: change this
     MODIFY_ORDER: (orderId: string) => `/order/customer/modifyOrder?orderId=${orderId}`,

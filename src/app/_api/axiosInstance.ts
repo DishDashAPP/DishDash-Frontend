@@ -1,7 +1,8 @@
 import axios from "axios";
-import { BASE_URL as baseURL } from "./urls";
+import {BASE_URL as baseURL} from "./urls";
+import {toast} from "sonner";
 
-const axiosInstance = axios.create({ baseURL });
+const axiosInstance = axios.create({baseURL});
 
 axiosInstance.interceptors.request.use(async (config) => {
     const token = localStorage.getItem("token");
@@ -38,27 +39,30 @@ export async function sendRequest<T>(
     requestData?: any,
     signal?: AbortSignal
 ): Promise<TApiResponse<T>> {
-    return axiosInstance
+    const promise: Promise<TApiResponse<T>> = axiosInstance
         .request({
             method,
             url,
             data: requestData,
-            ...(signal ? { signal } : {}),
+            ...(signal ? {signal} : {}),
         })
         .then((response) => {
+
             return {
                 isSuccess: true,
                 data: response.data as T,
                 status: response.status,
             };
-        })
-        .catch((error) => {
-            const response = error?.response?.data || {};
-
-            return {
-                isSuccess: false,
-                ...response,
-                message: "خطایی رخ داده است.",
-            };
         });
+
+    toast.promise(promise, {
+        loading: "در حال ارسال درخواست ...",
+        success: "درخواست با موفقیت انجام شد.",
+        error: (error) => {
+            const response = error?.response?.data || {}
+            return response.message || "خطایی رخ داده است."
+        },
+    })
+
+    return promise
 }

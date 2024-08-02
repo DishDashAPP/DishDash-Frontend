@@ -1,10 +1,30 @@
 'use client'
 
-import {FC} from "react";
+import {FC, useEffect, useState} from "react";
 import RestaurantCard from "@modules/Customer/AllRestaurants/RestaurantCard/RestaurantCard";
 import {RestaurantType} from "@utils/types";
+import {allRestaurantsReq} from "@api/services/customerService";
 
 const AllRestaurant: FC = () => {
+    const [allRestaurants, setAllRestaurants] = useState<RestaurantType[]>([]);
+
+    useEffect(() => {
+        const fetchAllRestaurants = async () => {
+            const response = await allRestaurantsReq();
+
+            if (response.isSuccess) {
+                console.log(response.data);
+            } else {
+                console.log(response.status, response.message);
+            }
+        }
+
+
+        fetchAllRestaurants().then(
+            () => console.log("All restaurants fetched.")
+        );
+    })
+
     const restaurantList: RestaurantType[] = [
         {
             id: "1",

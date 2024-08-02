@@ -3,6 +3,7 @@ import type {Metadata, Viewport} from 'next'
 import localFont from 'next/font/local'
 import '@styles/tailwind.css'
 import classJoin from '@utils/classJoin'
+import {Toaster} from "sonner";
 
 const danaFont = localFont({
     src: '../_assets/DanaVF.woff2',
@@ -40,6 +41,7 @@ export default function RootLayout({children}: { children: ReactNode }) {
             lang="fa"
             className={classJoin([danaFont.variable])}
         >
+        <Toaster richColors closeButton position={'bottom-right'} visibleToasts={9} dir={"rtl"}/>
         <body dir="rtl" className="text-sm text-gray-primary">
         {children}
         </body>

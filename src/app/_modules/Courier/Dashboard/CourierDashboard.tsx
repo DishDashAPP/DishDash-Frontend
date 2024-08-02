@@ -1,26 +1,25 @@
 'use client'
 
-import {FC} from "react";
-import Button from "@components/Button/Button";
-import Image from "next/image";
-import LOGOUT from "@public/logout.svg";
-import COURIER_BIKE from "@public/courier-bike.svg";
-import {useRouter} from "next/navigation";
+import { FC } from 'react'
+import Button from '@components/Button/Button'
+import Image from 'next/image'
+import LOGOUT from '@public/logout.svg'
+import COURIER_BIKE from '@public/courier-bike.svg'
+import { useRouter } from 'next/navigation'
 
 type dashboardButton = {
-    title: string,
+    title: string
     link: string
 }
 
 const dashboardButtons: dashboardButton[] = [
     {
         title: 'درخواست فعال',
-        link: '/courier/orders'
-    }
+        link: '/courier/orders',
+    },
 ]
 
 const CourierDashboard: FC = () => {
-
     const router = useRouter()
 
     const handleLink = (link: string) => () => {
@@ -37,14 +36,12 @@ const CourierDashboard: FC = () => {
             <div className="flex flex-col w-full">
                 {dashboardButtons.map((button, index) => (
                     <Button key={index} variant="secondary" className="mb-6" onClick={handleLink(button.link)}>
-                        <div className="flex items-center justify-center">
-                            {button.title}
-                        </div>
+                        <div className="flex items-center justify-center">{button.title}</div>
                     </Button>
                 ))}
                 <Button variant="outline" onClick={handleLogout}>
                     <div className="flex items-center justify-center">
-                        <Image src={LOGOUT} alt="logput" className="ml-1"/>
+                        <Image src={LOGOUT} alt="logput" className="ml-1" />
                         خروج
                     </div>
                 </Button>
@@ -53,7 +50,7 @@ const CourierDashboard: FC = () => {
                 <Image src={COURIER_BIKE} alt="bike" className="mt-6" />
             </div>
         </div>
-    );
+    )
 }
 
-export default CourierDashboard;
+export default CourierDashboard

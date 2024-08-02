@@ -1,5 +1,5 @@
-import {ReactNode} from 'react'
-import type {Metadata, Viewport} from 'next'
+import { ReactNode } from 'react'
+import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import '@styles/tailwind.css'
 import classJoin from '@utils/classJoin'
@@ -34,15 +34,12 @@ export const metadata: Metadata = {
     },
 }
 
-export default function RootLayout({children}: { children: ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
     return (
-        <html
-            lang="fa"
-            className={classJoin([danaFont.variable])}
-        >
-        <body dir="rtl" className="text-sm text-gray-primary">
-        {children}
-        </body>
+        <html lang="fa" className={classJoin([danaFont.variable])}>
+            <body dir="rtl" className="text-sm text-gray-primary">
+                {children}
+            </body>
         </html>
     )
 }

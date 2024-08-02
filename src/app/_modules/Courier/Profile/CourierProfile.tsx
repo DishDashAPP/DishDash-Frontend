@@ -52,10 +52,11 @@ const fields: TFieldType[] = [
 ]
 
 const CourierProfile: FC = () => {
-    const [user, setUser] = useState<Inputs>({
+    const [user, setUser] = useState<Inputs & { username: string }>({
         firstName: '',
         lastName: '',
         phoneNumber: '',
+        username: '',
     })
     const {
         control,
@@ -70,7 +71,7 @@ const CourierProfile: FC = () => {
     const fetchProfile = async () => {
         const res = await getDeliveryPersonProfileReq()
         if (res.isSuccess) {
-            const { first_name, last_name, phone_number } = res.data
+            const { first_name, last_name, phone_number, username } = res.data
             setValue('firstName', first_name)
             setValue('lastName', last_name)
             setValue('phoneNumber', phone_number)
@@ -78,6 +79,7 @@ const CourierProfile: FC = () => {
                 firstName: first_name,
                 lastName: last_name,
                 phoneNumber: phone_number,
+                username: username || '',
             })
         }
     }

@@ -64,11 +64,12 @@ const fields: TFieldType[] = [
 ]
 
 const CustomerProfile: FC = () => {
-    const [user, setUser] = useState<Inputs>({
+    const [user, setUser] = useState<Inputs & { username: string }>({
         firstName: '',
         lastName: '',
         phoneNumber: '',
         address: '',
+        username: '',
     })
 
     const {
@@ -89,7 +90,7 @@ const CustomerProfile: FC = () => {
     const fetchProfile = async () => {
         const res = await getCustomerProfileReq()
         if (res.isSuccess) {
-            const { first_name, last_name, restaurant_name, phone_number, address } = res.data
+            const { first_name, last_name, restaurant_name, phone_number, address, username } = res.data
             setValue('firstName', first_name)
             setValue('lastName', last_name)
             setValue('phoneNumber', phone_number)
@@ -99,6 +100,7 @@ const CustomerProfile: FC = () => {
                 lastName: last_name,
                 phoneNumber: phone_number,
                 address: address || '',
+                username: username || '',
             })
         }
     }

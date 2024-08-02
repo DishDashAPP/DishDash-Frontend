@@ -7,6 +7,7 @@ export type User = {
     address?: string
     first_name: string
     last_name: string
+    username?: string
     phone_number: string
     restaurant_name?: string
 }

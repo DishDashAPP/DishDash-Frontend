@@ -1,4 +1,4 @@
-import {FC, ReactNode} from 'react'
+import { FC, ReactNode } from 'react'
 import classJoin from '@utils/classJoin'
 
 export interface IButtonProps {
@@ -23,27 +23,20 @@ export interface IButtonProps {
 type TButtonProps = IButtonProps &
     (
         | {
-        children?: never
-        label: string
-    }
+              children?: never
+              label: string
+          }
         | {
-        label?: never
-        children: ReactNode
-    }
-        )
+              label?: never
+              children: ReactNode
+          }
+    )
 
 /**
  * Primary UI component for user interaction
  */
 const Button: FC<TButtonProps> = (props) => {
-    const {
-        variant = 'primary',
-        label,
-        disabled = false,
-        className,
-        children,
-        ...otherProps
-    } = props
+    const { variant = 'primary', label, disabled = false, className, children, ...otherProps } = props
     const mode = {
         primary: 'bg-primary text-white active:bg-gray-secondary',
         secondary: 'bg-gray-primary text-white active:bg-gray-secondary',

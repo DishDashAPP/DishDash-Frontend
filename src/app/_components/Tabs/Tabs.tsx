@@ -1,22 +1,22 @@
-import React, { useState, ReactNode, ReactElement } from 'react';
+import React, { useState, ReactNode, ReactElement } from 'react'
 
 interface TabsProps {
-    children: ReactElement<TabProps>[];
+    children: ReactElement<TabProps>[]
 }
 
 interface TabProps {
-    isActive?: boolean;
-    onClick?: () => void;
-    children: ReactNode;
-    label: string;
+    isActive?: boolean
+    onClick?: () => void
+    children: ReactNode
+    label: string
 }
 
 const Tabs: React.FC<TabsProps> = ({ children }) => {
-    const [activeTab, setActiveTab] = useState(0);
+    const [activeTab, setActiveTab] = useState(0)
 
     const handleTabClick = (index: number) => {
-        setActiveTab(index);
-    };
+        setActiveTab(index)
+    }
 
     return (
         <div>
@@ -26,21 +26,21 @@ const Tabs: React.FC<TabsProps> = ({ children }) => {
                         return React.cloneElement(child, {
                             isActive: activeTab === index,
                             onClick: () => handleTabClick(index),
-                        } as Partial<TabProps>);
+                        } as Partial<TabProps>)
                     }
-                    return null;
+                    return null
                 })}
             </div>
             <div>
                 {React.Children.map(children, (child, index) => {
                     if (React.isValidElement(child) && activeTab === index) {
-                        return child.props.children;
+                        return child.props.children
                     }
-                    return null;
+                    return null
                 })}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Tabs;
+export default Tabs

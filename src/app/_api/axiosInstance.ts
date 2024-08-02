@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { BASE_URL as baseURL } from './urls'
 import { toast } from 'sonner'
+import errorTranslations from './errorTranslations'
 
 const axiosInstance = axios.create({ baseURL })
 
@@ -63,7 +64,13 @@ export async function sendRequest<T>(
         })
         .catch((error) => {
             const response = error?.response?.data || {}
-            const message = response.message || 'خطایی رخ داده است.'
+            let message = response.message || 'خطایی رخ داده است.'
+
+            if (message && errorTranslations[message]) {
+                message = errorTranslations[message]
+            } else {
+                message = message.replace(/_/g, ' ')
+            }
 
             toast.error(message, {
                 id: toastId,

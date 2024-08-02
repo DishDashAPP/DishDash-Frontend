@@ -6,6 +6,6 @@ export function toFarsiNumber(n: number | undefined) {
     return n
         .toString()
         .split('')
-        .map((x) => farsiDigits[Number(x)])
+        .map((x) => (x == '.' ? '.' : farsiDigits[Number(x)]))
         .join('')
 }

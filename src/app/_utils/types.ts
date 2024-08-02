@@ -46,18 +46,23 @@ export type TChip = {
 }
 export type RestaurantType = {
     id: string
+    username: string
     imageSrc: string
     name: string
     rate: string
     courierPrice: string
     WaitingTime: string
 }
+export type MenuType = {
+    categories: TChip[]
+    foods: FoodType[]
+}
 export type FoodType = {
-    id: string
     imageSrc: string
     name: string
     description: string
     price: string
+    category_id: number
 }
 export type CommentType = {
     id: string

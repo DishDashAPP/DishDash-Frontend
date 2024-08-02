@@ -12,6 +12,7 @@ const Food: FC<RestaurantIdFoodIdType> = ({ restaurantId, foodId }) => {
         name: 'پاستا پستو',
         description: 'سس پستو، مرغ گریل، پنیر موزارلا،‌ پنیر پارمسان',
         price: '۲۸۰',
+        category_id: 0,
     }
 
     return (

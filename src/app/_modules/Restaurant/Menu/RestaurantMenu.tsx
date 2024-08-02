@@ -9,6 +9,7 @@ import NewFoodItem from '@modules/Restaurant/Menu/NewFoodItem'
 import BottomSheet from '@components/BottomSheet/BottomSheet'
 import { MenuItem, TChip } from '@utils/types'
 import { getAllCategoriesReq, getAllFoodsReq } from '@api/services/restaurantService'
+import { allCategory } from '@utils/consts'
 
 const RestaurantMenu: FC = () => {
     const [loading, setLoading] = useState(true)
@@ -16,10 +17,7 @@ const RestaurantMenu: FC = () => {
     const [categories, setCategories] = useState<TChip[]>([])
     const [menuItems, setMenuItems] = useState<MenuItem[]>([])
     const [filteredItems, setFilteredItems] = useState<MenuItem[]>([])
-    const [selectedCategory, setSelectedCategory] = useState<TChip>({
-        id: 0,
-        name: 'همه',
-    })
+    const [selectedCategory, setSelectedCategory] = useState<TChip>(allCategory)
 
     useEffect(() => {
         const fetchData = async () => {

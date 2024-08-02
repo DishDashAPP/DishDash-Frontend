@@ -2,14 +2,6 @@ import { RestaurantMenuResponseType, RestaurantsResponseType } from '@utils/apiT
 import { MenuType, RestaurantType } from '@utils/types'
 import { toFarsiNumber } from '@utils/toFarsiNumber'
 
-function getRandomFloat(min: number, max: number): number {
-    return Math.random() * (max - min) + min
-}
-
-function getRandomInt(min: number, max: number): number {
-    return Math.floor(getRandomFloat(min, max))
-}
-
 function getFloatHash(str: string, min: number, max: number): number {
     let hash = 0
 
@@ -35,8 +27,10 @@ export function convertAllRestaurantsResponse(allRestaurantsResponse: Restaurant
         imageSrc: `/RestaurantDefault/restaurant${getIntHash(restaurant.username, 1, 4)}.svg`,
         name: restaurant.restaurant_name,
         rate: toFarsiNumber(Number(Number(restaurant.restaurant_comments.avg).toFixed(2))),
-        courierPrice: toFarsiNumber(getRandomInt(1, 10) * 10000),
-        WaitingTime: toFarsiNumber(getRandomInt(1, 10) * 5),
+        rateNumber: toFarsiNumber(restaurant.restaurant_comments.number_of_rate),
+        reviewsNumber: toFarsiNumber(restaurant.restaurant_comments.number_of_review),
+        courierPrice: toFarsiNumber(getIntHash(restaurant.username, 1, 10) * 10000),
+        WaitingTime: toFarsiNumber(getIntHash(restaurant.username, 1, 10) * 5),
     }))
 }
 
@@ -46,10 +40,12 @@ export function convertRestaurantInfoResponse(restaurantInfoResponse: Restaurant
 
 export function convertRestaurantMenuResponse(restaurantMenuResponse: RestaurantMenuResponseType): MenuType {
     return {
-        categories: restaurantMenuResponse.categories.map((category) => ({
-            id: Number(category.id),
-            name: category.name,
-        })),
+        categories: restaurantMenuResponse.categories
+            .sort((a, b) => a.id - b.id)
+            .map((category) => ({
+                id: category.id,
+                name: category.name,
+            })),
         foods: restaurantMenuResponse.foods.map((food) => ({
             id: '1',
             imageSrc: `/FoodDefault/food${getIntHash(food.name, 1, 4)}.svg`,

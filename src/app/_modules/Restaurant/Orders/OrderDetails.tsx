@@ -1,13 +1,27 @@
 import { FC } from 'react'
 import Button from '@components/Button/Button'
 import { Order } from '@utils/types'
+import { updateRestaurantOrderStatusReq } from '@api/services/restaurantService'
 
-type orderDetailsProps = {
+type OrderDetailsProps = {
     order: Order
+    onUpdate: () => void
 }
 
-const OrderDetails: FC<orderDetailsProps> = ({ order }) => {
+const OrderDetails: FC<OrderDetailsProps> = ({ order, onUpdate }) => {
     const isActiveOrder = order.status === 'PREPARING'
+
+    const handleClick = async () => {
+        if (isActiveOrder) {
+            const response = await updateRestaurantOrderStatusReq(order.id.toString(), 'DELIVERING')
+            if (response.isSuccess) {
+                onUpdate()
+            }
+        } else {
+            console.log('Printing invoice')
+        }
+    }
+
     return (
         <div>
             <div className="flex flex-col gap-y-4">
@@ -46,7 +60,9 @@ const OrderDetails: FC<orderDetailsProps> = ({ order }) => {
                     </span>
                 </div>
             )}
-            <Button className="mt-8 w-full">{isActiveOrder ? 'ارسال سفارش توسط پیک' : 'چاپ فاکتور'}</Button>
+            <Button className="mt-8 w-full" onClick={handleClick}>
+                {isActiveOrder ? 'ارسال سفارش توسط پیک' : 'چاپ فاکتور'}
+            </Button>
         </div>
     )
 }

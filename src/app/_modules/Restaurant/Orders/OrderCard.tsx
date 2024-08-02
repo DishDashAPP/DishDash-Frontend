@@ -1,7 +1,5 @@
-'use client'
-
 import { useState } from 'react'
-import { Order, OrderItem } from '@utils/types'
+import { Order } from '@utils/types'
 import { FC } from 'react'
 import Badge from '@components/Badge/Badge'
 import Button from '@components/Button/Button'
@@ -10,9 +8,10 @@ import OrderDetails from '@modules/Restaurant/Orders/OrderDetails'
 
 type OrderCardProps = {
     order: Order
+    onUpdate: () => void
 }
 
-const OrderCard: FC<OrderCardProps> = ({ order }) => {
+const OrderCard: FC<OrderCardProps> = ({ order, onUpdate }) => {
     const [isBottomSheetOpen, setBottomSheetOpen] = useState(false)
 
     const badgeText = {
@@ -23,6 +22,11 @@ const OrderCard: FC<OrderCardProps> = ({ order }) => {
     }[order.status]
 
     const isActiveOrder = order.status === 'PREPARING'
+
+    const handleUpdate = () => {
+        onUpdate?.()
+        setBottomSheetOpen(false)
+    }
 
     return (
         <div className="flex flex-col rounded-lg border border-gray-border p-4 w-full">
@@ -43,7 +47,7 @@ const OrderCard: FC<OrderCardProps> = ({ order }) => {
 
             <BottomSheet isOpen={isBottomSheetOpen} onClose={() => setBottomSheetOpen(false)}>
                 <h2 className="text-base font-semibold mt-4 mb-6">{isActiveOrder ? 'جزئیات سفارش' : 'فاکتور'}</h2>
-                <OrderDetails order={order} />
+                <OrderDetails order={order} onUpdate={handleUpdate} />
             </BottomSheet>
         </div>
     )

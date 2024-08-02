@@ -12,22 +12,22 @@ const OrderList: FC = () => {
     const [orders, setOrders] = useState<Order[]>([])
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        const fetchOrders = async () => {
-            setLoading(true)
-            let response
-            if (orderType === 'active') {
-                response = await getRestaurantActiveOrdersReq()
-            } else {
-                response = await getRestaurantOrderHistoryReq()
-            }
-
-            if (response.isSuccess) {
-                setOrders(response.data)
-            }
-            setLoading(false)
+    const fetchOrders = async () => {
+        setLoading(true)
+        let response
+        if (orderType === 'active') {
+            response = await getRestaurantActiveOrdersReq()
+        } else {
+            response = await getRestaurantOrderHistoryReq()
         }
 
+        if (response.isSuccess) {
+            setOrders(response.data)
+        }
+        setLoading(false)
+    }
+
+    useEffect(() => {
         fetchOrders()
     }, [orderType])
 
@@ -38,7 +38,7 @@ const OrderList: FC = () => {
     return (
         <div className="flex flex-col gap-y-4 w-full mt-6">
             {orders.map((order, index) => (
-                <OrderCard order={order as Order} key={index} />
+                <OrderCard order={order} key={index} onUpdate={fetchOrders} />
             ))}
         </div>
     )

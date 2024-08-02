@@ -20,6 +20,7 @@ export type Order = {
     create_price: Price
     create_time: string
     delivery_person: User | null
+    restaurant_owner?: User | null
     customer_dto: User
 }
 export type OrderItem = {

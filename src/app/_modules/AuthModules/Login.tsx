@@ -2,7 +2,7 @@
 
 import { FC } from 'react'
 import Image from 'next/image'
-import LOGO from '../../../../public/logo.svg'
+import LOGO from '@public/logo.svg'
 import { Controller, RegisterOptions, useForm } from 'react-hook-form'
 import TextInput from '@components/TextInput/TextInput'
 import Button from '@components/Button/Button'

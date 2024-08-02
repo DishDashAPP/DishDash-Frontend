@@ -1,13 +1,13 @@
 'use client'
 
 import { FC, useState } from 'react'
-import { CustomerOrderType } from '@utils/types'
+import { CustomerOrderType, ShoppingCartType } from '@utils/types'
 import Rate from '@components/Rate/Rate'
 import Image from 'next/image'
 import Button from '@components/Button/Button'
 import Link from 'next/link'
 import { SHOPPING_CARTS } from '@utils/links'
-import COMMENT from '../../../../../../public/comment.svg'
+import COMMENT from '@public/comment.svg'
 import BottomSheet from '@components/BottomSheet/BottomSheet'
 import CommentBottomSheet from '@modules/Customer/ShoppingCarts/Orders/CommentBottomSheet/CommentBottomSheet'
 

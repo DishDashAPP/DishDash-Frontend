@@ -1,7 +1,7 @@
 'use client'
 
 import { FC } from 'react'
-import AVATAR from '../../../../../../public/avatar.svg'
+import AVATAR from '@public/avatar.svg'
 import Image from 'next/image'
 
 const Avatar: FC = () => {

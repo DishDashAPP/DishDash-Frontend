@@ -2,10 +2,10 @@
 
 import { FC } from 'react'
 import { UserType } from '@utils/types'
-import LOGO from '../../../../public/logo.svg'
+import LOGO from '@public/logo.svg'
 import Image from 'next/image'
-import ARROW_BACK from '../../../../public/arrow-back.svg'
-import SHOPPING_CART from '../../../../public/shopping-cart.svg'
+import ARROW_BACK from '@public/arrow-back.svg'
+import SHOPPING_CART from '@public/shopping-cart.svg'
 import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { SHOPPING_CARTS } from '@utils/links'

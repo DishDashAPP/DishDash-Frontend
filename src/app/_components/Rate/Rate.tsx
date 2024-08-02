@@ -2,7 +2,7 @@
 
 import { FC } from 'react'
 import Image from 'next/image'
-import STAR from '../../../../public/star.svg'
+import STAR from '@public/star.svg'
 import classJoin from '@utils/classJoin'
 
 type RateProps = {

@@ -2,7 +2,7 @@
 
 import { FC } from 'react'
 import { CommentType } from '@utils/types'
-import AVATAR from '../../../../public/avatar.svg'
+import AVATAR from '@public/avatar.svg'
 import Image from 'next/image'
 import Avatar from '@modules/Customer/Comments/Avatar/Avatar'
 import { Rating } from '@mui/material'

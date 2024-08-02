@@ -1,6 +1,7 @@
 export type UserType = 'CUSTOMER' | 'RESTAURANT_OWNER' | 'DELIVERY_PERSON'
 export type OrderStatus = 'PREPARING' | 'DELIVERED' | 'NOT_PAID' | 'DELIVERING'
 export type OrderType = 'active' | 'completed'
+
 export type User = {
     id: number
     address?: string
@@ -11,13 +12,14 @@ export type User = {
 }
 export type Order = {
     id: number
-    customer: User
-    deliveryPerson: User
-    restaurantOwnerId: number
-    orderItems: OrderItem[]
     status: OrderStatus
-    createdAt: string
-    totalPrice: Price
+    customer_id: number
+    restaurant_owner_id: number
+    order_items: OrderItem[]
+    create_price: Price
+    create_time: string
+    delivery_person: User | null
+    customer_dto: User
 }
 export type OrderItem = {
     price: Price

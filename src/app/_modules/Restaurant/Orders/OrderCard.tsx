@@ -5,6 +5,8 @@ import Badge from '@components/Badge/Badge'
 import Button from '@components/Button/Button'
 import BottomSheet from '@components/BottomSheet/BottomSheet'
 import OrderDetails from '@modules/Restaurant/Orders/OrderDetails'
+import { formatDateTime } from '@utils/date'
+import { priceWithCommas } from '@utils/maskPrice'
 
 type OrderCardProps = {
     order: Order
@@ -31,15 +33,15 @@ const OrderCard: FC<OrderCardProps> = ({ order, onUpdate }) => {
     return (
         <div className="flex flex-col rounded-lg border border-gray-border p-4 w-full">
             <div className="flex items-center justify-between">
-                <span>{order.customer.first_name}</span>
+                <span>{order.customer_dto.first_name}</span>
                 <Badge text={badgeText} color={isActiveOrder ? 'green' : 'red'} />
             </div>
             <div className="flex items-center justify-between my-4">
                 <div>
-                    <span>{order.totalPrice.amount}</span>
+                    <span>{priceWithCommas(order.create_price.amount)}</span>
                     <span> تومان</span>
                 </div>
-                <span>{order.createdAt}</span>
+                <span>{formatDateTime(order.create_time, 'fullDateTime')}</span>
             </div>
             <Button variant="secondary" className="py-3 text-base" onClick={() => setBottomSheetOpen(true)}>
                 {isActiveOrder ? 'جزئیات سفارش' : 'مشاهده‌ی فاکتور'}

@@ -83,6 +83,10 @@ export async function createFoodReq(data: TFood) {
   return sendRequest(FOOD.CREATE, "POST", data);
 }
 
+export async function editFoodReq(foodId: string, data: TFood) {
+  return sendRequest(FOOD.EDIT(foodId), "PUT", data);
+}
+
 export async function deleteFoodReq(foodId: string) {
   return sendRequest(FOOD.DELETE(foodId), "DELETE");
 }

@@ -12,10 +12,20 @@ import { deleteFoodReq } from "@api/services/restaurantService";
 
 interface MenuCardProps extends MenuItem {
   onDelete: (id: number) => void;
+  onUpdate: () => void;
 }
 
 const MenuCard: FC<MenuCardProps> = (props) => {
-  const { id, name, description, price, stock, category_id, onDelete } = props;
+  const {
+    id,
+    name,
+    description,
+    price,
+    stock,
+    category_id,
+    onDelete,
+    onUpdate,
+  } = props;
 
   const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
 
@@ -71,7 +81,12 @@ const MenuCard: FC<MenuCardProps> = (props) => {
         isOpen={isBottomSheetOpen}
         onClose={() => setBottomSheetOpen(false)}
       >
-        <NewFoodItem mode="edit" />
+        <NewFoodItem
+          mode="edit"
+          foodItem={props}
+          onUpdate={onUpdate}
+          onClose={() => setBottomSheetOpen(false)}
+        />
       </BottomSheet>
     </div>
   );

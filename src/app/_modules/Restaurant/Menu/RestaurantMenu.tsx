@@ -19,7 +19,10 @@ const RestaurantMenu: FC = () => {
   const [categories, setCategories] = useState<TChip[]>([]);
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [filteredItems, setFilteredItems] = useState<MenuItem[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<TChip | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<TChip>({
+    id: 0,
+    name: "همه",
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,6 +66,27 @@ const RestaurantMenu: FC = () => {
     }
   };
 
+  const handleUpdate = async () => {
+    const updatedFoodsRes = await getAllFoodsReq();
+    if (updatedFoodsRes.isSuccess) {
+      setMenuItems(updatedFoodsRes.data);
+      setFilteredItems(
+        selectedCategory?.id === 0
+          ? updatedFoodsRes.data
+          : updatedFoodsRes.data.filter(
+              (item) => item.category_id === selectedCategory?.id,
+            ),
+      );
+    }
+  };
+
+  const handleCategoryUpdate = async () => {
+    const categoriesRes = await getAllCategoriesReq();
+    if (categoriesRes.isSuccess) {
+      setCategories([{ id: 0, name: "همه" }, ...categoriesRes.data]);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center w-full">
       <h1 className="text-lg font-medium my-6">محصولات</h1>
@@ -75,23 +99,32 @@ const RestaurantMenu: FC = () => {
           <Chips
             chips={categories}
             onCategoryChange={handleCategoryChange}
+            updateCategories={handleCategoryUpdate}
             className="mb-6"
           />
-          <MenuItems menuItems={filteredItems} onDelete={handleDelete} />
-          <button
-            className="flex items-center justify-center bg-primary rounded-full w-[64px] h-[64px] fixed left-[32px] bottom-[95px] z-50"
-            onClick={() => setBottomSheetOpen(true)}
-          >
-            <Image src={ADD} alt="add" />
-          </button>
-          <BottomSheet
-            isOpen={isBottomSheetOpen}
-            onClose={() => setBottomSheetOpen(false)}
-          >
-            <NewFoodItem mode="add" />
-          </BottomSheet>
+          <MenuItems
+            menuItems={filteredItems}
+            onDelete={handleDelete}
+            onUpdate={handleUpdate}
+          />
         </>
       )}
+      <button
+        className="flex items-center justify-center bg-primary rounded-full w-[64px] h-[64px] fixed left-[32px] bottom-[95px] z-50"
+        onClick={() => setBottomSheetOpen(true)}
+      >
+        <Image src={ADD} alt="add" />
+      </button>
+      <BottomSheet
+        isOpen={isBottomSheetOpen}
+        onClose={() => setBottomSheetOpen(false)}
+      >
+        <NewFoodItem
+          mode="add"
+          onUpdate={handleUpdate}
+          onClose={() => setBottomSheetOpen(false)}
+        />
+      </BottomSheet>
     </div>
   );
 };

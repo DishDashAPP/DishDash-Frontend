@@ -18,10 +18,13 @@ axiosInstance.interceptors.response.use(
     (error) => {
         const statusCode = error?.response?.status
         if (statusCode === 401 || statusCode === 403) {
-            localStorage.removeItem('auth-storage')
-            localStorage.removeItem('token')
-            localStorage.removeItem('role')
-            window.location.href = '/login'
+            const currentPath = window.location.pathname
+            if (currentPath !== '/login' && currentPath !== '/signup') {
+                localStorage.removeItem('auth-storage')
+                localStorage.removeItem('token')
+                localStorage.removeItem('role')
+                window.location.href = '/login'
+            }
         }
         return Promise.reject(error)
     }

@@ -27,7 +27,7 @@ export type OrderItem = {
     quantity: number
     order_id: number
     food_id: number
-    food_name: string
+    name: string
 }
 export type Price = {
     amount: number

@@ -25,9 +25,6 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order, onUpdate }) => {
                 htmlToImage
                     .toPng(orderRef.current, {
                         backgroundColor: 'white',
-                        style: {
-                            padding: '16px',
-                        },
                     })
                     .then((dataUrl) => {
                         const link = document.createElement('a')
@@ -47,7 +44,7 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order, onUpdate }) => {
             <div ref={orderRef} className="flex flex-col gap-y-4">
                 {order.order_items.map((foodItem, index) => (
                     <div key={index} className="flex justify-between items-center">
-                        <span className="text-sm">{foodItem.food_name}</span>
+                        <span className="text-sm">{foodItem.name}</span>
                         <div className="flex items-center">
                             <span className="ml-4">x{foodItem.quantity}</span>
                             <span>{priceWithCommas(foodItem.price.amount)} تومان</span>

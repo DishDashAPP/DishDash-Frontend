@@ -1,4 +1,4 @@
-import { toEnglishDigits } from '@utils/toEnglishDigits'
+import { toEnglishDigits } from './toEnglishDigits'
 
 export function numberWithCommas(x: number | string) {
     return `${x}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')

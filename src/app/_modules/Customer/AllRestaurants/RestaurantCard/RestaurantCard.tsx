@@ -20,7 +20,7 @@ const RestaurantCard: FC<{ restaurant: RestaurantType }> = ({ restaurant }) => {
                 />
                 <div className={'flex justify-between items-center mt-2'}>
                     <div className={'text-sm font-medium'}>
-                        {restaurant.name}
+                        {restaurant.name ? restaurant.name : restaurant.username}
                         <div className={'text-gray-secondary text-xs font-normal mt-1'}>
                             <span>پیک رستوران </span>
                             <span>{restaurant.courierPrice} تومان</span>

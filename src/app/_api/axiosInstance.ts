@@ -41,7 +41,9 @@ export async function sendRequest<T>(
     requestData?: any,
     signal?: AbortSignal
 ): Promise<TApiResponse<T>> {
-    const promise: Promise<TApiResponse<T>> = axiosInstance
+    const toastId = toast.loading("در حال ارسال درخواست ...")
+
+    return axiosInstance
         .request({
             method,
             url,
@@ -50,21 +52,27 @@ export async function sendRequest<T>(
         })
         .then((response) => {
 
+            toast.success("درخواست با موفقیت انجام شد.", {
+                id: toastId
+            })
+
             return {
                 isSuccess: true,
                 data: response.data as T,
                 status: response.status,
             };
+        })
+        .catch((error) => {
+            const response = error?.response?.data || {};
+            const message = response.message || "خطایی رخ داده است."
+
+            toast.error(message, {
+                id: toastId
+            })
+
+            return {
+                isSuccess: false,
+                ...response,
+            };
         });
-
-    toast.promise(promise, {
-        loading: 'در حال ارسال درخواست ..',
-        success: 'درخواست با موفقیت انجام شد.',
-        error: (error) => {
-            const response = error?.response?.data || {}
-            return response.message || 'خطایی رخ داده است.'
-        },
-    })
-
-    return promise
 }

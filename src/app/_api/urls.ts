@@ -12,6 +12,7 @@ export const AUTH = {
 // USER - CUSTOMER
 export const CUSTOMER_ORDER = {
     GET_ALL_RESTAURANTS: `/restaurantOwner/all`,
+    GET_RESTAURANT: (restaurantId: string) => `/customer/restaurant?restaurantId=${restaurantId}`,
     CREATE_ORDER: (restaurantOwnerId: string) => `/order/customer?restaurantOwnerId=${restaurantOwnerId}`,
     CREATE_SHOPPING_CART: (restaurantOwnerId: string) => `/order/customer?restaurantOwnerId=${restaurantOwnerId}`, //TODO: change this
     MODIFY_ORDER: (orderId: string) => `/order/customer/modifyOrder?orderId=${orderId}`,
@@ -38,13 +39,16 @@ export const DELIVERY_PERSON_ORDER = {
 
 // REVIEW
 export const REVIEW = {
-    SET_ORDER_REVIEW: (orderId: string, comment: string) => `/review/order?orderId=${orderId}&comment=${comment}`,
+    SET_ORDER_REVIEW: (orderId: string, comment: string) =>
+        `/review/order?orderId=${orderId}&comment=${comment}`,
 }
 
 // RATE
 export const RATE = {
-    SET_ORDER_RATE: (orderId: string, point: number) => `/rate/order?orderId=${orderId}&point=${point}`,
-    SET_DELIVERY_PERSON_RATE: (orderId: string, point: number) => `/rate/delivery?orderId=${orderId}&point=${point}`,
+    SET_ORDER_RATE: (orderId: string, point: number) =>
+        `/rate/order?orderId=${orderId}&point=${point}`,
+    SET_DELIVERY_PERSON_RATE: (orderId: string, point: number) =>
+        `/rate/delivery?orderId=${orderId}&point=${point}`,
 }
 
 // DELIVERY

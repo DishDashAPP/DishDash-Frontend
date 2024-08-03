@@ -45,8 +45,6 @@ export async function sendRequest<T>(
     requestData?: any,
     signal?: AbortSignal
 ): Promise<TApiResponse<T>> {
-    const toastId = toast.loading('در حال ارسال درخواست ...')
-
     return axiosInstance
         .request({
             method,
@@ -55,10 +53,6 @@ export async function sendRequest<T>(
             ...(signal ? { signal } : {}),
         })
         .then((response) => {
-            toast.success('درخواست با موفقیت انجام شد.', {
-                id: toastId,
-            })
-
             return {
                 isSuccess: true,
                 data: response.data as T,
@@ -75,9 +69,7 @@ export async function sendRequest<T>(
                 message = message.replace(/_/g, ' ')
             }
 
-            toast.error(message, {
-                id: toastId,
-            })
+            toast.error(message)
 
             return {
                 isSuccess: false,

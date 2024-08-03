@@ -3,6 +3,7 @@ import { Controller, useForm } from 'react-hook-form'
 import TextInput from '@components/TextInput/TextInput'
 import Button from '@components/Button/Button'
 import { createCategoryReq } from '@api/services/restaurantService'
+import { toast } from 'sonner'
 
 type Inputs = {
     name: string
@@ -23,6 +24,7 @@ const AddNewCategory: FC<AddNewCategoryProps> = ({ onAddCategory, onClosed }) =>
     const submit: (data: Inputs) => void = async (data) => {
         const res = await createCategoryReq(data)
         if (res.isSuccess) {
+            toast.success('دسته با موفقیت افزوده شد.')
             onAddCategory?.()
             onClosed()
         }

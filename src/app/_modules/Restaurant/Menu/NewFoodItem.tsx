@@ -6,6 +6,7 @@ import { createFoodReq, editFoodReq, getAllCategoriesReq } from '@api/services/r
 import { MenuItem, TChip } from '@utils/types'
 import Dropdown from '@components/Dropdown/Dropdown'
 import { toEnglishDigits } from '@utils/toEnglishDigits'
+import { toast } from 'sonner'
 
 type NewFoodItemProps = {
     mode: 'add' | 'edit'
@@ -121,12 +122,14 @@ const NewFoodItem: FC<NewFoodItemProps> = ({ mode, foodItem, onClose, onUpdate }
         if (mode === 'add') {
             const response = await createFoodReq(foodData)
             if (response.isSuccess) {
+                toast.success('محصول با موفقیت افزوده شد')
                 onUpdate()
                 onClose()
             }
         } else if (mode === 'edit' && foodItem) {
             const response = await editFoodReq(foodItem.id.toString(), foodData)
             if (response.isSuccess) {
+                toast.success('محصول با موفقیت ویرایش شد')
                 onUpdate()
                 onClose()
             }

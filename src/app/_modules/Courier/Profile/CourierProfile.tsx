@@ -7,6 +7,7 @@ import TextInput from '@components/TextInput/TextInput'
 import Button from '@components/Button/Button'
 import { getDeliveryPersonProfileReq, updateDeliveryPersonProfileReq } from '@api/services/deliveryPersonService'
 import { toEnglishDigits } from '@utils/toEnglishDigits'
+import { toast } from 'sonner'
 
 type Inputs = {
     firstName: string
@@ -95,7 +96,7 @@ const CourierProfile: FC = () => {
             phone_number: toEnglishDigits(data.phoneNumber),
         })
         if (res.isSuccess) {
-            console.log('Profile updated successfully', res.data)
+            toast.success('اطلاعات شما با موفقیت به‌روزرسانی شد.')
             await fetchProfile()
         }
     }

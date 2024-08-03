@@ -15,8 +15,10 @@ const AllRestaurant: FC = () => {
         const fetchAllRestaurants = async () => {
             const response = await allRestaurantsReq()
 
-            if (response.isSuccess) setAllRestaurants(convertAllRestaurantsResponse(response.data))
-            else setAllRestaurants([])
+            if (response.isSuccess)
+                setAllRestaurants(convertAllRestaurantsResponse(response.data))
+            else
+                setAllRestaurants([])
         }
 
         fetchAllRestaurants()

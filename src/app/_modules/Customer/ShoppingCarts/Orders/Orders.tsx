@@ -9,6 +9,7 @@ const Orders: FC = () => {
         {
             id: '1',
             restaurantId: '1',
+            restaurantUsername: 'نام کاربری رستوران',
             restaurantName: 'نام رستوران',
             restaurantRate: '۴.۵',
             foods: [
@@ -17,7 +18,7 @@ const Orders: FC = () => {
                     imageSrc: '/FoodDefault/food4.svg',
                     name: 'پاستا گوجه',
                     description: 'سس گوجه، گوشت چرخ‌کرده، پنیر موزارلا،‌ فلفل قرمز',
-                    price: '۲۵۰',
+                    price: 250,
                     count: 2,
                     category_id: 0,
                 },
@@ -26,7 +27,7 @@ const Orders: FC = () => {
                     imageSrc: '/FoodDefault/food4.svg',
                     name: 'پاستا پستو',
                     description: 'سس پستو، مرغ گریل، پنیر موزارلا،‌ پنیر پارمسان',
-                    price: '۲۵۰',
+                    price: 250,
                     count: 3,
                     category_id: 0,
                 },
@@ -35,6 +36,7 @@ const Orders: FC = () => {
         {
             id: '2',
             restaurantId: '1',
+            restaurantUsername: 'نام کاربری رستوران',
             restaurantName: 'نام رستوران',
             restaurantRate: '۴.۵',
             foods: [
@@ -43,7 +45,7 @@ const Orders: FC = () => {
                     imageSrc: '/FoodDefault/food4.svg',
                     name: 'پاستا گوجه',
                     description: 'سس گوجه، گوشت چرخ‌کرده، پنیر موزارلا،‌ فلفل قرمز',
-                    price: '۲۵۰',
+                    price: 250,
                     count: 2,
                     category_id: 0,
                 },
@@ -52,7 +54,7 @@ const Orders: FC = () => {
                     imageSrc: '/FoodDefault/food4.svg',
                     name: 'پاستا پستو',
                     description: 'سس پستو، مرغ گریل، پنیر موزارلا،‌ پنیر پارمسان',
-                    price: '۲۵۰',
+                    price: 250,
                     count: 30,
                     category_id: 0,
                 },
@@ -62,7 +64,7 @@ const Orders: FC = () => {
 
     return (
         <div className={'px-8 w-full'}>
-            <div className={'text-base font-medium mt-6'}>سبدهای خرید</div>
+            <div className={'text-base font-medium mt-6'}>سفارش‌ها</div>
             <div className={'mt-3'}>
                 {orders.map((order, index) => (
                     <ShoppingCartCard key={index} shoppingCart={order} isHistory={true} />

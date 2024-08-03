@@ -7,10 +7,10 @@ import Comment from '@modules/Customer/Comments/Comment/Comment'
 const Comments: FC<RestaurantIdType> = ({ restaurantId }) => {
     const restaurant: RestaurantType = {
         id: restaurantId,
+        rate: '۴.۵',
         username: 'نام کاربری',
         imageSrc: '/RestaurantDefault/restaurant1.svg',
         name: 'اسم رستوران',
-        rate: '۴.۵',
         courierPrice: '۱۰۰۰۰',
         WaitingTime: '۳۰',
         rateNumber: '۱۰',

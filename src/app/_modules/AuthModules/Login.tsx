@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { loginReq, signupReq } from '@api/services/authService'
 import { useRouter } from 'next/navigation'
 import useAuthStore from '@store/authStore'
+import { toast } from 'sonner'
 
 type Inputs = {
     username: string
@@ -67,6 +68,7 @@ const Login: FC = (props) => {
     const submit: (data: Inputs) => void = async (data) => {
         const res = await loginReq(data.username, data.password)
         if (res.isSuccess) {
+            toast.success('ورود موفقیت‌آمیز بود.')
             const { token, role } = res.data
             setToken(token)
             setRole(role)

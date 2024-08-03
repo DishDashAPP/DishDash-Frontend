@@ -65,3 +65,7 @@ export async function createOrderReq(restaurantOwnerId: string, shoppingCartId: 
 export async function getCustomerOrdersReq() {
     return sendRequest(CUSTOMER_ORDER.GET_CUSTOMER_ORDERS, 'GET')
 }
+
+export async function getCustomerCurrentOrderReq() {
+    return sendRequest(CUSTOMER_ORDER.GET_CUSTOMER_CURRENT_ORDER, 'GET')
+}

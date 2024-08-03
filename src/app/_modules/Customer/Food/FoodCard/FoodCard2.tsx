@@ -27,7 +27,7 @@ const FoodCard2: FC<RestaurantIdFoodType> = ({ restaurantId, food }) => {
                         <span className={'text-sm'}>{food.price}</span>
                         <span className={'text-xs'}> هزار تومان</span>
                     </div>
-                    <AddFoodButton restaurantId={restaurantId} foodId={food.id} />
+                    <AddFoodButton restaurantId={restaurantId} foodId={food.id} count={food.count} />
                 </div>
             </Link>
             <div className={'border-t border-gray-line'} />

@@ -34,7 +34,7 @@ export async function createShoppingCartReq(restaurantId: string) {
 }
 
 export async function modifyShoppingCartReq(shoppingCartId: string, foodPlusCount: FoodPlusCountType[]) {
-    const requestData = foodPlusCount.map(item => ({
+    const requestData = foodPlusCount.map((item) => ({
         food_id: item.id,
         price: {
             amount: item.price,
@@ -43,7 +43,11 @@ export async function modifyShoppingCartReq(shoppingCartId: string, foodPlusCoun
         quantity: item.count,
     }))
 
-    return sendRequest<ShoppingCartResponseType>(CUSTOMER_ORDER.MODIFY_SHOPPING_CART(shoppingCartId), 'POST', requestData)
+    return sendRequest<ShoppingCartResponseType>(
+        CUSTOMER_ORDER.MODIFY_SHOPPING_CART(shoppingCartId),
+        'POST',
+        requestData
+    )
 }
 
 export async function getCustomerProfileReq() {
@@ -55,5 +59,9 @@ export async function updateCustomerProfileReq(data: TCourierProfile) {
 }
 
 export async function createOrderReq(restaurantOwnerId: string, shoppingCartId: string) {
-    return sendRequest(CUSTOMER_ORDER.CREATE_ORDER(restaurantOwnerId), 'POST', { 'shopping_cart_id': shoppingCartId })
+    return sendRequest(CUSTOMER_ORDER.CREATE_ORDER(restaurantOwnerId), 'POST', { shopping_cart_id: shoppingCartId })
+}
+
+export async function getCustomerOrdersReq() {
+    return sendRequest(CUSTOMER_ORDER.GET_CUSTOMER_ORDERS, 'GET')
 }

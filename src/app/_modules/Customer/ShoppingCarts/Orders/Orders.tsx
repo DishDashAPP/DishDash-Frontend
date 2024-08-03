@@ -1,66 +1,28 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import ShoppingCartCard from '@modules/Customer/ShoppingCarts/ShoppingCartCard/ShoppingCartCard'
+import { getCustomerOrdersReq } from '@api/services/customerService'
 import { CustomerOrderType } from '@utils/types'
+import { toast } from 'sonner'
 
 const Orders: FC = () => {
-    const orders: CustomerOrderType[] = [
-        {
-            id: '1',
-            restaurantId: '1',
-            restaurantUsername: 'نام کاربری رستوران',
-            restaurantName: 'نام رستوران',
-            restaurantRate: '۴.۵',
-            foods: [
-                {
-                    id: '1',
-                    imageSrc: '/FoodDefault/food4.svg',
-                    name: 'پاستا گوجه',
-                    description: 'سس گوجه، گوشت چرخ‌کرده، پنیر موزارلا،‌ فلفل قرمز',
-                    price: 250,
-                    count: 2,
-                    category_id: 0,
-                },
-                {
-                    id: '2',
-                    imageSrc: '/FoodDefault/food4.svg',
-                    name: 'پاستا پستو',
-                    description: 'سس پستو، مرغ گریل، پنیر موزارلا،‌ پنیر پارمسان',
-                    price: 250,
-                    count: 3,
-                    category_id: 0,
-                },
-            ],
-        },
-        {
-            id: '2',
-            restaurantId: '1',
-            restaurantUsername: 'نام کاربری رستوران',
-            restaurantName: 'نام رستوران',
-            restaurantRate: '۴.۵',
-            foods: [
-                {
-                    id: '1',
-                    imageSrc: '/FoodDefault/food4.svg',
-                    name: 'پاستا گوجه',
-                    description: 'سس گوجه، گوشت چرخ‌کرده، پنیر موزارلا،‌ فلفل قرمز',
-                    price: 250,
-                    count: 2,
-                    category_id: 0,
-                },
-                {
-                    id: '2',
-                    imageSrc: '/FoodDefault/food4.svg',
-                    name: 'پاستا پستو',
-                    description: 'سس پستو، مرغ گریل، پنیر موزارلا،‌ پنیر پارمسان',
-                    price: 250,
-                    count: 30,
-                    category_id: 0,
-                },
-            ],
-        },
-    ]
+    const [orders, setOrders] = useState<CustomerOrderType[]>([])
+
+    useEffect(() => {
+        getCustomerOrdersReq()
+            .then((response) => {
+                if (response.isSuccess) {
+                    const res = response.data as CustomerOrderType[]
+                    setOrders(res)
+                } else {
+                    toast.error('خطایی در دریافت اطلاعات سفارش‌ها رخ داده است.')
+                }
+            })
+            .catch(() => {
+                toast.error('خطایی در دریافت اطلاعات سفارش‌ها رخ داده است.')
+            })
+    }, [])
 
     return (
         <div className={'px-8 w-full'}>

@@ -5,8 +5,14 @@ import { Controller, useForm } from 'react-hook-form'
 import TextInput from '@components/TextInput/TextInput'
 import Button from '@components/Button/Button'
 import { Rating } from '@mui/material'
+import { setReviewReq, setOrderRateReq, setDeliveryPersonRateReq } from '@api/services/customerService'
+import { toast } from 'sonner'
 
-const CommentBottomSheet: FC = () => {
+type CommentBottomSheetProps = {
+    orderId: string
+}
+
+const CommentBottomSheet: FC<CommentBottomSheetProps> = ({ orderId }) => {
     const {
         control,
         handleSubmit,
@@ -20,8 +26,16 @@ const CommentBottomSheet: FC = () => {
         },
     })
 
-    const submit: (data: any) => void = async (data) => {
-        console.log(data)
+    const submit = async (data: any) => {
+        try {
+            await setReviewReq(orderId, data.comment)
+            await setOrderRateReq(orderId, data.restaurantRate)
+            await setDeliveryPersonRateReq(orderId, data.courierRate)
+
+            toast.success('نظر و امتیاز با موفقیت ثبت شد.')
+        } catch (error) {
+            toast.error('خطایی در ثبت نظر و امتیاز رخ داده است.')
+        }
     }
 
     return (

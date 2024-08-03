@@ -1,5 +1,5 @@
 import { sendRequest } from '@api/axiosInstance'
-import { CUSTOMER, CUSTOMER_ORDER, MENU, FOOD } from '@api/urls'
+import { CUSTOMER, CUSTOMER_ORDER, MENU, FOOD, REVIEW, RATE } from '@api/urls'
 import {
     RestaurantMenuResponseType,
     RestaurantsResponseType,
@@ -64,4 +64,16 @@ export async function createOrderReq(restaurantOwnerId: string, shoppingCartId: 
 
 export async function getCustomerOrdersReq() {
     return sendRequest(CUSTOMER_ORDER.GET_CUSTOMER_ORDERS, 'GET')
+}
+
+export async function setReviewReq(orderId: string, comment: string) {
+    return sendRequest(REVIEW.SET_ORDER_REVIEW(orderId, comment), 'POST')
+}
+
+export async function setOrderRateReq(orderId: string, point: number) {
+    return sendRequest(RATE.SET_ORDER_RATE(orderId, point), 'POST')
+}
+
+export async function setDeliveryPersonRateReq(orderId: string, point: number) {
+    return sendRequest(RATE.SET_DELIVERY_PERSON_RATE(orderId, point), 'POST')
 }

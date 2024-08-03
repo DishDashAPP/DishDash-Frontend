@@ -68,7 +68,7 @@ const ShoppingCartCard: FC<ShoppingCartCardProps> = ({ shoppingCart, isHistory =
             </Link>
 
             <BottomSheet isOpen={isBottomSheetOpen} onClose={() => setIsBottomSheetOpen(false)}>
-                <CommentBottomSheet />
+                <CommentBottomSheet orderId={shoppingCart.id} />
             </BottomSheet>
         </>
     )

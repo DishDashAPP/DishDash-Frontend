@@ -9,16 +9,28 @@ import { RestaurantIdFoodIdType } from '@utils/types'
 import classJoin from '@utils/classJoin'
 
 type AddFoodButtonProps = RestaurantIdFoodIdType & {
+    count: number
+    onChangeFoodCount?: (foodId: string, newCount: number) => void
     simpleClassName?: string
     addClassName?: string
 }
 
-const AddFoodButton: FC<AddFoodButtonProps> = ({ restaurantId, foodId, simpleClassName, addClassName }) => {
-    const [foodNumber, setFoodNumber] = useState<number>(0)
+const AddFoodButton: FC<AddFoodButtonProps> = ({
+                                                   restaurantId,
+                                                   foodId,
+                                                   count,
+                                                   onChangeFoodCount,
+                                                   simpleClassName,
+                                                   addClassName,
+                                               }) => {
+    const [foodNumber, setFoodNumber] = useState<number>(count)
 
-    function onButtonClick(e: any, newFoodNumber: number) {
+    function onButtonClick(e: any, newCount: number) {
         e.preventDefault()
-        setFoodNumber(newFoodNumber)
+        setFoodNumber(newCount)
+
+        if (onChangeFoodCount)
+            onChangeFoodCount(foodId, newCount)
     }
 
     return (

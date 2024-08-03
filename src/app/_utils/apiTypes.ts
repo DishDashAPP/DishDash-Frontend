@@ -20,7 +20,8 @@ type CategoryResponseType = {
     name: string
 }
 
-type FoodResponseType = {
+export type FoodResponseType = {
+    id: number
     name: string
     description: string
     stock: number
@@ -36,6 +37,29 @@ export type RestaurantMenuResponseType = {
     restaurant_id: string
     categories: CategoryResponseType[]
     foods: FoodResponseType[]
+}
+
+export type ShoppingCartItemResponseType = {
+    name: string
+    description: string
+    price: {
+        amount: number
+        unit: string
+    }
+    quantity: number
+    shopping_cart_id: number
+    food_id: number
+}
+
+export type ShoppingCartResponseType = {
+    id: number
+    customer_id: number
+    restaurant_owner_id: number
+    shopping_cart_items: ShoppingCartItemResponseType[]
+    total_price: {
+        amount: number
+        unit: string
+    }
 }
 
 export type TCourierProfile = {

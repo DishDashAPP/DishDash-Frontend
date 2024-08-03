@@ -64,7 +64,7 @@ export type FoodType = {
     imageSrc: string
     name: string
     description: string
-    price: string
+    price: number
     category_id: number
 }
 export type CommentType = {
@@ -74,14 +74,16 @@ export type CommentType = {
     rate: number
     comment: string
 }
+export type FoodPlusCountType = FoodType & {
+    count: number
+}
 export type CustomerOrderType = {
     id: string
     restaurantId: string
+    restaurantUsername: string
     restaurantName: string
     restaurantRate: string
-    foods: (FoodType & {
-        count: number
-    })[]
+    foods: FoodPlusCountType[]
 }
 export type ShoppingCartType = CustomerOrderType & {
     total: string
@@ -98,7 +100,7 @@ export type RestaurantIdFoodIdType = {
 }
 export type RestaurantIdFoodType = {
     restaurantId: string
-    food: FoodType
+    food: FoodPlusCountType
 }
 export type ShoppingCartIdType = {
     shoppingCartId: string

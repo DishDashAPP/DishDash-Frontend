@@ -13,12 +13,12 @@ export const AUTH = {
 export const CUSTOMER_ORDER = {
     GET_ALL_RESTAURANTS: `/restaurantOwner/all`,
     GET_RESTAURANT: (restaurantId: string) => `/customer/restaurant?restaurantId=${restaurantId}`,
+    GET_SHOPPING_CARTS: `shoppingCart/customer/customerShoppingCarts`,
+    CREATE_SHOPPING_CART: (restaurantOwnerId: string) => `/shoppingCart/customer/${restaurantOwnerId}`,
+    MODIFY_SHOPPING_CART: (shoppingCartId: string) => `/shoppingCart/customer/modifyShoppingCart?orderId=${shoppingCartId}`,
     CREATE_ORDER: (restaurantOwnerId: string) => `/order/customer?restaurantOwnerId=${restaurantOwnerId}`,
-    CREATE_SHOPPING_CART: (restaurantOwnerId: string) => `/order/customer?restaurantOwnerId=${restaurantOwnerId}`, //TODO: change this
     MODIFY_ORDER: (orderId: string) => `/order/customer/modifyOrder?orderId=${orderId}`,
-    MODIFY_SHOPPING_CART: (orderId: string) => `/order/customer/modifyOrder?orderId=${orderId}`, //TODO: change this
     GET_CUSTOMER_ORDERS: `/order/customer/customerOrders`,
-    GET_CUSTOMER_SHOPPING_CARTS: `/order/customer/customerOrders`, //TODO: change this
     GET_CUSTOMER_CURRENT_ORDER: `/order/customer/current`,
 }
 
@@ -67,6 +67,7 @@ export const CATEGORY = {
 export const FOOD = {
     GET_ALL: `/food`,
     GET_BY_ID: (foodId: string) => `/food/${foodId}`,
+    CUSTOMER_GET_BY_ID: (foodId: string) => `/customer/food/${foodId}`,
     CREATE: `/food`,
     EDIT: (foodId: string) => `/food/${foodId}`,
     DELETE: (foodId: string) => `/food/${foodId}`,

@@ -2,12 +2,14 @@
 
 import { FC, useEffect, useState } from 'react'
 import CourierCurrentOrderDetails from '@modules/Courier/Order/CourierCurrentOrderDetails'
-import Map from '@modules/Map/Map'
+import dynamic from 'next/dynamic'
 import { toast } from 'sonner'
 import { setDeliveryPersonLocationReq } from '@api/services/deliveryPersonService'
 import { TLocation } from '@utils/apiTypes'
 import { useGeolocation } from '@reactuses/core'
 import { Times } from '@utils/constants'
+
+const DynamicMap = dynamic(() => import('@modules/Map/Map'), { ssr: false })
 
 const CourierCurrentOrder: FC = () => {
     const [position, setPosition] = useState<TLocation | null>(null)
@@ -35,7 +37,7 @@ const CourierCurrentOrder: FC = () => {
     return (
         <div className="flex flex-col w-full bg-gray-secondary relative">
             <div className="flex flex-1 max-w-full max-h-[90vh] overflow-hidden z-0">
-                <Map position={position} />
+                <DynamicMap position={position} />
             </div>
             <CourierCurrentOrderDetails />
         </div>

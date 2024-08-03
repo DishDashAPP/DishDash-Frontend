@@ -4,7 +4,7 @@ import { FC } from 'react'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { LatLng } from 'leaflet'
 import { TLocation } from '@utils/apiTypes'
-import 'leaflet/dist/leaflet.css' // Import Leaflet CSS
+import 'leaflet/dist/leaflet.css'
 
 type MapProps = {
     position: TLocation | null

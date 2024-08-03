@@ -24,7 +24,7 @@ const FoodCard2: FC<RestaurantIdFoodType> = ({ restaurantId, food }) => {
 
                 <div className={'flex justify-between w-full items-center h-10'}>
                     <div className={''}>
-                        <span className={'text-sm'}>{food.price}</span>
+                        <span className={'text-sm'}>{food.price / 1000}</span>
                         <span className={'text-xs'}> هزار تومان</span>
                     </div>
                     <AddFoodButton restaurantId={restaurantId} foodId={food.id} count={food.count} />

@@ -89,6 +89,9 @@ export type CustomerOrderType = {
     restaurantName: string
     restaurantRate: string
     foods: FoodPlusCountType[]
+    total: string
+    deliveryPrice: string
+    finalPrice: string
 }
 export type ShoppingCartType = CustomerOrderType & {
     total: string

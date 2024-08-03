@@ -9,3 +9,4 @@ export const COURIER_CURRENT_ORDER = '/courier/orders'
 export const CUSTOMER_RESTAURANTS = '/customer/restaurants'
 export const COMMENTS = '/comments'
 export const SHOPPING_CARTS = '/customer/shopping-carts'
+export const ORDER_TRACKING = (orderId: string) => `/customer/order-tracking/${orderId}`

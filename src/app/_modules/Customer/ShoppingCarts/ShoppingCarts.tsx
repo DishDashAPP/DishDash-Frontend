@@ -19,7 +19,7 @@ const ShoppingCarts: FC = () => {
 
             if (response.isSuccess) {
                 const tempShoppingCarts = convertShoppingCartsReqAll(response.data)
-                console.log(tempShoppingCarts)
+
                 setShoppingCarts(
                     tempShoppingCarts.filter((shoppingCart) => shoppingCart !== null && shoppingCart.foods.length > 0)
                 )

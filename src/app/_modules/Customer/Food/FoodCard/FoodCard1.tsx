@@ -6,7 +6,6 @@ import Image from 'next/image'
 import AddFoodButton from '@components/AddFoodButton/AddFoodButton'
 import Link from 'next/link'
 import { CUSTOMER_RESTAURANTS } from '@utils/links'
-import { toFarsiNumber } from '@utils/toFarsiNumber'
 
 type FoodCard1Props = RestaurantIdFoodType & {
     onChangeFoodCount?: (foodId: string, newCount: number) => void
@@ -22,7 +21,7 @@ const FoodCard1: FC<FoodCard1Props> = ({ restaurantId, food, onChangeFoodCount }
                 <div className={'text-sm text-black'}>{food.name}</div>
                 <div className={'mt-2 text-xs text-gray-tertiary'}>{food.description}</div>
                 <div className={'mt-6'}>
-                    <span className={'text-sm'}>{toFarsiNumber(food.price / 1000)}</span>
+                    <span className={'text-sm'}>{food.price / 1000}</span>
                     <span className={'text-xs'}> هزار تومان</span>
                 </div>
             </div>

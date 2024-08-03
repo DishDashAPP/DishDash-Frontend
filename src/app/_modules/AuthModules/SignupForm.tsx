@@ -10,6 +10,7 @@ import { UserType } from '@utils/types'
 import { loginReq, signupReq } from '@api/services/authService'
 import useAuthStore from '@store/authStore'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 type TSingUpFormProps = {
     type: UserType
@@ -81,6 +82,7 @@ const SignupForm: FC<TSingUpFormProps> = ({ type }) => {
         if (res.isSuccess) {
             const res = await loginReq(data.username, data.password)
             if (res.isSuccess) {
+                toast.success('ثبت‌نام موفقیت‌آمیز بود.')
                 const { token, role } = res.data
                 setToken(token)
                 setRole(role)

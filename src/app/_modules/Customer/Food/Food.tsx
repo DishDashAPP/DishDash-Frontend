@@ -4,11 +4,9 @@ import { FC, useEffect, useState } from 'react'
 import { FoodPlusCountType, FoodType, RestaurantIdFoodIdType, TChip } from '@utils/types'
 import AddFoodButton from '@components/AddFoodButton/AddFoodButton'
 import Image from 'next/image'
-import { toFarsiNumber } from '@utils/toFarsiNumber'
 import CustomCircularProgress from '@components/CustomCircularProgress/CustomCircularProgress'
 import { getFoodReq, modifyShoppingCartReq, shoppingCartsReq } from '@api/services/customerService'
 import { convertGetFoodResponse, convertShoppingCartsReq } from '@utils/converters'
-import { allCategory } from '@utils/consts'
 import { useShoppingCart } from '@store/customerStore'
 
 const Food: FC<RestaurantIdFoodIdType> = ({ restaurantId, foodId }) => {
@@ -75,7 +73,7 @@ const Food: FC<RestaurantIdFoodIdType> = ({ restaurantId, foodId }) => {
                             <div className={'text-lg text-black'}>{food.name}</div>
                             <div className={'mt-2 text-gray-tertiary'}>{food.description}</div>
                             <div className={'mt-8'}>
-                                <span className={'text-lg font-medium'}>{toFarsiNumber(food.price / 1000)}</span>
+                                <span className={'text-lg font-medium'}>{food.price / 1000}</span>
                                 <span> هزار تومان</span>
                             </div>
                         </div>

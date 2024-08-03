@@ -18,6 +18,7 @@ const CourierCurrentOrder: FC = () => {
     useEffect(() => {
         const handler = setTimeout(() => {
             if (geolocation.coordinates.latitude && geolocation.coordinates.longitude) {
+                console.log(geolocation.coordinates.latitude, geolocation.coordinates.longitude)
                 const newPosition = {
                     latitude: geolocation.coordinates.latitude,
                     longitude: geolocation.coordinates.longitude,

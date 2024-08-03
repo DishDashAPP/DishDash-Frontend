@@ -7,6 +7,7 @@ import TextInput from '@components/TextInput/TextInput'
 import Button from '@components/Button/Button'
 import { getRestaurantProfileReq, updateRestaurantProfileReq } from '@api/services/restaurantService'
 import { toEnglishDigits } from '@utils/toEnglishDigits'
+import { toast } from 'sonner'
 
 type Inputs = {
     firstName: string
@@ -127,7 +128,7 @@ const RestaurantProfile: FC = () => {
             address: data.address,
         })
         if (res.isSuccess) {
-            console.log('Profile updated successfully', res.data)
+            toast.success('اطلاعات شما با موفقیت به‌روزرسانی شد.')
             await fetchProfile()
         }
     }

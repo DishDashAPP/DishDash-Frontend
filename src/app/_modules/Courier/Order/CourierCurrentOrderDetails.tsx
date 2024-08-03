@@ -32,14 +32,12 @@ const CourierCurrentOrderDetails: FC = () => {
             if (response.isSuccess) {
                 toast.success('سفارش با موفقیت تحویل داده شد.')
                 setOrder({ ...order, status: 'DELIVERED' })
-            } else {
-                toast.error('خطایی در تحویل سفارش رخ داده است.')
             }
         }
     }
 
-    const restaurantName = `آدرس مبدا (رستوران${order?.restaurant_owner?.restaurant_name ? ` ${order?.restaurant_owner.restaurant_name}` : ''})`
-    const customerName = [order?.customer_dto.first_name, order?.customer_dto.last_name].join(' ')
+    const restaurantName = `آدرس مبدا (رستوران${order?.restaurant_owner?.restaurant_name ? ` ${order?.restaurant_owner?.restaurant_name}` : ''})`
+    const customerName = [order?.customer_dto?.first_name, order?.customer_dto?.last_name].join(' ')
     const destinationLabel = `آدرس مقصد (${customerName})`
 
     return (

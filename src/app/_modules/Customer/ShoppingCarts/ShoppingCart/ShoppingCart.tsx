@@ -4,30 +4,39 @@ import { FC, useEffect, useState } from 'react'
 import { ShoppingCartIdType, ShoppingCartType } from '@utils/types'
 import FoodCard2 from '@modules/Customer/Food/FoodCard/FoodCard2'
 import Button from '@components/Button/Button'
-import { createOrderReq, createShoppingCartReq } from '@api/services/customerService'
-import { convertCreateShoppingCartResponse, convertShoppingCartsReq } from '@utils/converters'
+import { createOrderReq, createShoppingCartReq, shoppingCartsReq } from '@api/services/customerService'
+import {
+    convertCreateShoppingCartResponse,
+    convertShoppingCartsOnShoppingCartIdReq,
+    convertShoppingCartsReq,
+} from '@utils/converters'
 import CustomCircularProgress from '@components/CustomCircularProgress/CustomCircularProgress'
+import { useRouter } from 'next/navigation'
+import { LOGIN, ORDER_TRACKING } from '@utils/links'
 
 const ShoppingCart: FC<ShoppingCartIdType> = ({ shoppingCartId }) => {
+    const router = useRouter()
     const [shoppingCart, setShoppingCart] = useState<ShoppingCartType | undefined>(undefined)
 
     useEffect(() => {
-        const createShoppingCart = async (restaurantId: string) => {
-            const response = await createShoppingCartReq(restaurantId)
+        const fetchShoppingCarts = async (shoppingCartId: string) => {
+            const response = await shoppingCartsReq()
 
             if (response.isSuccess)
-                setShoppingCart(convertCreateShoppingCartResponse(response.data))
+                setShoppingCart(convertShoppingCartsOnShoppingCartIdReq(response.data, shoppingCartId))
         }
 
-        createShoppingCart(shoppingCartId)
+        fetchShoppingCarts(shoppingCartId)
     }, [])
 
-    function onPayment() {
+    async function onPayment() {
         if (shoppingCart === undefined)
             return
 
-        console.log(shoppingCart)
-        const a = createOrderReq(shoppingCart.restaurantId, shoppingCartId)
+        // console.log(shoppingCart)
+        const a = await createOrderReq(shoppingCart.restaurantId, shoppingCartId)
+        console.log(a)
+        // router.push(ORDER_TRACKING())
     }
 
     return (
@@ -72,7 +81,7 @@ const ShoppingCart: FC<ShoppingCartIdType> = ({ shoppingCartId }) => {
                         </div>
                     </div>
 
-                    <Button label={'پرداخت'} className={'sticky bottom-[85px] w-4/5 mx-auto'} onClick={onPayment}/>
+                    <Button label={'پرداخت'} className={'sticky bottom-[85px] w-4/5 mx-auto'} onClick={onPayment} />
                 </div>
             }
         </>

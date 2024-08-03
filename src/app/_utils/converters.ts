@@ -81,9 +81,9 @@ export function convertCreateShoppingCartResponse(shoppingCartResponse: Shopping
     return {
         id: shoppingCartResponse.id.toString(),
         restaurantId: shoppingCartResponse.restaurant_owner_id.toString(),
-        restaurantUsername: 'hi',
-        restaurantName: 'he',
-        restaurantRate: '4',
+        restaurantUsername: shoppingCartResponse.restaurant_owner.username,
+        restaurantName: shoppingCartResponse.restaurant_owner.restaurant_name,
+        restaurantRate: toFarsiNumber(shoppingCartResponse.restaurant_owner.restaurant_comments.avg),
         foods: shoppingCartResponse.shopping_cart_items.map((food) => ({
             id: food.food_id.toString(),
             name: food.name,
@@ -144,9 +144,41 @@ export function convertShoppingCartsReq(shoppingCarts: ShoppingCartResponseType[
     return {
         id: shoppingCart.id.toString(),
         restaurantId: shoppingCart.restaurant_owner_id.toString(),
-        restaurantUsername: 'hi',
-        restaurantName: 'hi',
-        restaurantRate: 'hi',
+        restaurantUsername: shoppingCart.restaurant_owner.id,
+        restaurantName: shoppingCart.restaurant_owner.restaurant_name,
+        restaurantRate: toFarsiNumber(shoppingCart.restaurant_owner.restaurant_comments.avg),
+        foods: shoppingCart.shopping_cart_items.map((food: ShoppingCartItemResponseType) => ({
+            id: food.food_id.toString(),
+            name: food.name,
+            description: food.description,
+            imageSrc: `/FoodDefault/food${getIntHash(food.name, 1, 4)}.svg`,
+            category_id: 1,
+            price: food.price.amount,
+            count: food.quantity,
+        })),
+        total: toFarsiNumber(total),
+        deliveryPrice: toFarsiNumber(deliveryPrice),
+        finalPrice: toFarsiNumber(finalPrice),
+    }
+}
+
+export function convertShoppingCartsOnShoppingCartIdReq(shoppingCarts: ShoppingCartResponseType[], shoppingCartId: string): ShoppingCartType | undefined {
+    const shoppingCart = shoppingCarts.find((cart: ShoppingCartResponseType) =>
+        cart.id.toString() === shoppingCartId)
+
+    if (!shoppingCart)
+        return undefined
+
+    const total = shoppingCart.total_price.amount
+    const deliveryPrice = getIntHash(shoppingCart.id.toString(), 1, 10) * 10000
+    const finalPrice = total + deliveryPrice
+
+    return {
+        id: shoppingCart.id.toString(),
+        restaurantId: shoppingCart.restaurant_owner_id.toString(),
+        restaurantUsername: shoppingCart.restaurant_owner.id,
+        restaurantName: shoppingCart.restaurant_owner.restaurant_name,
+        restaurantRate: toFarsiNumber(shoppingCart.restaurant_owner.restaurant_comments.avg),
         foods: shoppingCart.shopping_cart_items.map((food: ShoppingCartItemResponseType) => ({
             id: food.food_id.toString(),
             name: food.name,

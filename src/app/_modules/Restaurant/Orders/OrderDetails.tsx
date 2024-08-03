@@ -4,6 +4,7 @@ import { Order } from '@utils/types'
 import { updateRestaurantOrderStatusReq } from '@api/services/restaurantService'
 import { priceWithCommas } from '@utils/maskPrice'
 import * as htmlToImage from 'html-to-image'
+import { toast } from 'sonner'
 
 type OrderDetailsProps = {
     order: Order
@@ -18,6 +19,7 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order, onUpdate }) => {
         if (isActiveOrder) {
             const response = await updateRestaurantOrderStatusReq(order.id.toString(), 'DELIVERING')
             if (response.isSuccess) {
+                toast.success('سفارش با موفقیت به پیک ارسال شد.')
                 onUpdate()
             }
         } else {
@@ -31,9 +33,10 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order, onUpdate }) => {
                         link.download = `فاکتور-${order.id}.png`
                         link.href = dataUrl
                         link.click()
+                        toast.success('فاکتور با موفقیت چاپ شد.')
                     })
                     .catch((error) => {
-                        console.error('oops, something went wrong!', error)
+                        toast.error('مشکلی در چاپ فاکتور به وجود آمد.')
                     })
             }
         }

@@ -9,6 +9,8 @@ import EDIT from '@public/edit.svg'
 import BottomSheet from '@components/BottomSheet/BottomSheet'
 import NewFoodItem from '@modules/Restaurant/Menu/NewFoodItem'
 import { deleteFoodReq } from '@api/services/restaurantService'
+import { priceWithCommas } from '@utils/maskPrice'
+import { toast } from 'sonner'
 
 interface MenuCardProps extends MenuItem {
     onDelete: (id: number) => void
@@ -23,9 +25,8 @@ const MenuCard: FC<MenuCardProps> = (props) => {
     const handleDelete = async () => {
         const response = await deleteFoodReq(id.toString())
         if (response.isSuccess) {
+            toast.success('محصول با موفقیت حذف شد')
             onDelete(id)
-        } else {
-            console.error('Failed to delete food item:', response.message)
         }
     }
 
@@ -51,7 +52,7 @@ const MenuCard: FC<MenuCardProps> = (props) => {
             </div>
             <div className="flex items-center justify-between mt-2">
                 <div className="flex items-center">
-                    <span className="text-sm font-medium">{price.amount}</span>
+                    <span className="text-sm font-medium">{priceWithCommas(price.amount)}</span>
                     <span className="text-xs mr-1">تومان</span>
                 </div>
                 <Badge text={badgeText} color={badgeColor} />

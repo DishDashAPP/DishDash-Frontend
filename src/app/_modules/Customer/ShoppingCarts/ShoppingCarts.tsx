@@ -1,80 +1,41 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { ShoppingCartType } from '@utils/types'
 import ShoppingCartCard from '@modules/Customer/ShoppingCarts/ShoppingCartCard/ShoppingCartCard'
+import { shoppingCartsReq } from '@api/services/customerService'
+import { convertShoppingCartsReqAll } from '@utils/converters'
+import CustomCircularProgress from '@components/CustomCircularProgress/CustomCircularProgress'
 
 const ShoppingCarts: FC = () => {
-    const shoppingCarts: ShoppingCartType[] = [
-        // {
-        //     id: '1',
-        //     restaurantId: '1',
-        //     restaurantName: 'نام رستوران',
-        //     restaurantRate: '۴.۵',
-        //     foods: [
-        //         {
-        //             id: '1',
-        //             imageSrc: '/FoodDefault/food4.svg',
-        //             name: 'پاستا گوجه',
-        //             description: 'سس گوجه، گوشت چرخ‌کرده، پنیر موزارلا،‌ فلفل قرمز',
-        //             price: 250000,
-        //             count: 2,
-        //             category_id: 0,
-        //         },
-        //         {
-        //             id: '2',
-        //             imageSrc: '/FoodDefault/food4.svg',
-        //             name: 'پاستا پستو',
-        //             description: 'سس پستو، مرغ گریل، پنیر موزارلا،‌ پنیر پارمسان',
-        //             price: 250000,
-        //             count: 3,
-        //             category_id: 0,
-        //         },
-        //     ],
-        //     total: '۱۵۰۰۰',
-        //     deliveryPrice: '۱۰۰۰۰',
-        //     finalPrice: '۲۵۰۰۰',
-        // },
-        // {
-        //     id: '2',
-        //     restaurantId: '1',
-        //     restaurantName: 'نام رستوران',
-        //     restaurantRate: '۴.۵',
-        //     foods: [
-        //         {
-        //             id: '1',
-        //             imageSrc: '/FoodDefault/food4.svg',
-        //             name: 'پاستا گوجه',
-        //             description: 'سس گوجه، گوشت چرخ‌کرده، پنیر موزارلا،‌ فلفل قرمز',
-        //             price: 250000,
-        //             count: 2,
-        //             category_id: 0,
-        //         },
-        //         {
-        //             id: '2',
-        //             imageSrc: '/FoodDefault/food4.svg',
-        //             name: 'پاستا پستو',
-        //             description: 'سس پستو، مرغ گریل، پنیر موزارلا،‌ پنیر پارمسان',
-        //             price: 250000,
-        //             count: 30,
-        //             category_id: 0,
-        //         },
-        //     ],
-        //     total: '۱۵۰۰۰',
-        //     deliveryPrice: '۱۰۰۰۰',
-        //     finalPrice: '۲۵۰۰۰',
-        // },
-    ]
+    const [shoppingCarts, setShoppingCarts] = useState<ShoppingCartType[] | undefined>(undefined)
+
+    useEffect(() => {
+        const fetchShoppingCarts = async () => {
+            const response = await shoppingCartsReq()
+
+            if (response.isSuccess)
+                setShoppingCarts(convertShoppingCartsReqAll(response.data))
+        }
+
+        fetchShoppingCarts()
+    }, [])
 
     return (
-        <div className={'px-8 w-full'}>
-            <div className={'text-base font-medium mt-6'}>سبدهای خرید</div>
-            <div className={'mt-3'}>
-                {shoppingCarts.map((shoppingCart, index) => (
-                    <ShoppingCartCard key={index} shoppingCart={shoppingCart} />
-                ))}
-            </div>
-        </div>
+        <>
+            {shoppingCarts === undefined ?
+                <CustomCircularProgress />
+                :
+                <div className={'px-8 w-full'}>
+                    <div className={'text-base font-medium mt-6'}>سبدهای خرید</div>
+                    <div className={'mt-3'}>
+                        {shoppingCarts.map((shoppingCart, index) => (
+                            <ShoppingCartCard key={index} shoppingCart={shoppingCart} />
+                        ))}
+                    </div>
+                </div>
+            }
+        </>
     )
 }
 

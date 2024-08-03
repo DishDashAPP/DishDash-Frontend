@@ -76,6 +76,34 @@ export function convertGetFoodResponse(foodResponse: FoodResponseType): FoodType
     }
 }
 
+export function convertShoppingCartsReqAll(shoppingCartsResponse: ShoppingCartResponseType[]): ShoppingCartType[] {
+    return shoppingCartsResponse.map((shoppingCart) => {
+        const total = shoppingCart.total_price.amount
+        const deliveryPrice = getIntHash('hi', 1, 10) * 10000
+        const finalPrice = total + deliveryPrice
+
+        return {
+            id: shoppingCart.id.toString(),
+            restaurantId: shoppingCart.restaurant_owner_id.toString(),
+            restaurantUsername: 'hi',
+            restaurantName: 'he',
+            restaurantRate: '4',
+            foods: shoppingCart.shopping_cart_items.map((food) => ({
+                id: food.food_id.toString(),
+                name: food.name,
+                description: food.description,
+                imageSrc: `/FoodDefault/food${getIntHash(food.name, 1, 4)}.svg`,
+                category_id: 1,
+                price: food.price.amount,
+                count: food.quantity,
+            })),
+            total: toFarsiNumber(total),
+            deliveryPrice: toFarsiNumber(deliveryPrice),
+            finalPrice: toFarsiNumber(finalPrice),
+        }
+    })
+}
+
 export function convertShoppingCartsReq(shoppingCarts: ShoppingCartResponseType[], restaurantId: string): ShoppingCartType | null {
     const shoppingCart = shoppingCarts.find((cart: ShoppingCartResponseType) =>
         cart.restaurant_owner_id.toString() === restaurantId)

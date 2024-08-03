@@ -99,3 +99,8 @@ export type TFood = {
     price: Price
     category_id: number
 }
+
+export type TLocation = {
+    latitude: number
+    longitude: number
+}

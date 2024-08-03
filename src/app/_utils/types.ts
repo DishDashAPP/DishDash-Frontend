@@ -7,6 +7,7 @@ export type User = {
     address?: string
     first_name: string
     last_name: string
+    username?: string
     phone_number: string
     restaurant_name?: string
 }
@@ -19,6 +20,7 @@ export type Order = {
     create_price: Price
     create_time: string
     delivery_person: User | null
+    restaurant_owner?: User | null
     customer_dto: User
 }
 export type OrderItem = {
@@ -26,7 +28,7 @@ export type OrderItem = {
     quantity: number
     order_id: number
     food_id: number
-    food_name: string
+    name: string
 }
 export type Price = {
     amount: number

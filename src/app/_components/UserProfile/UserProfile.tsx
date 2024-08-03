@@ -13,6 +13,7 @@ export type UserProfileProps = {
         firstName: string
         lastName: string
         restaurantName?: string
+        username: string
         phoneNumber: string
         address?: string
     }
@@ -34,11 +35,12 @@ const UserProfile: FC<UserProfileProps> = ({ user, className }) => {
     return (
         <div className={classJoin(['flex items-center justify-between', className])}>
             <div className="flex items-stretch">
-                <ProfileImage name={user.firstName} />
+                <ProfileImage name={user.username} />
                 <div className="flex flex-col justify-between mr-2 py-2">
                     <h1 className="text-base font-medium">
                         {user.firstName} {user.lastName}
                     </h1>
+                    {user.username && <p className="text-xs lrt">{user.username}@</p>}
                 </div>
             </div>
             <div onClick={handleLogout}>

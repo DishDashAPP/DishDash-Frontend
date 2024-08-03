@@ -6,6 +6,7 @@ import { Controller, RegisterOptions, useForm } from 'react-hook-form'
 import TextInput from '@components/TextInput/TextInput'
 import Button from '@components/Button/Button'
 import { getDeliveryPersonProfileReq, updateDeliveryPersonProfileReq } from '@api/services/deliveryPersonService'
+import { toEnglishDigits } from '@utils/toEnglishDigits'
 
 type Inputs = {
     firstName: string
@@ -42,7 +43,7 @@ const fields: TFieldType[] = [
         label: 'شماره تماس',
         rules: {
             validate: (value: string) => {
-                if (!value.match(/^09[0-9]{9}$/)) {
+                if (!toEnglishDigits(value)?.match(/^09[0-9]{9}$/)) {
                     return 'شماره تماس باید با ۰۹ شروع شود و ۱۱ رقم باشد.'
                 }
             },
@@ -51,10 +52,11 @@ const fields: TFieldType[] = [
 ]
 
 const CourierProfile: FC = () => {
-    const [user, setUser] = useState<Inputs>({
+    const [user, setUser] = useState<Inputs & { username: string }>({
         firstName: '',
         lastName: '',
         phoneNumber: '',
+        username: '',
     })
     const {
         control,
@@ -69,7 +71,7 @@ const CourierProfile: FC = () => {
     const fetchProfile = async () => {
         const res = await getDeliveryPersonProfileReq()
         if (res.isSuccess) {
-            const { first_name, last_name, phone_number } = res.data
+            const { first_name, last_name, phone_number, username } = res.data
             setValue('firstName', first_name)
             setValue('lastName', last_name)
             setValue('phoneNumber', phone_number)
@@ -77,6 +79,7 @@ const CourierProfile: FC = () => {
                 firstName: first_name,
                 lastName: last_name,
                 phoneNumber: phone_number,
+                username: username || '',
             })
         }
     }
@@ -89,7 +92,7 @@ const CourierProfile: FC = () => {
         const res = await updateDeliveryPersonProfileReq({
             first_name: data.firstName,
             last_name: data.lastName,
-            phone_number: data.phoneNumber,
+            phone_number: toEnglishDigits(data.phoneNumber),
         })
         if (res.isSuccess) {
             console.log('Profile updated successfully', res.data)

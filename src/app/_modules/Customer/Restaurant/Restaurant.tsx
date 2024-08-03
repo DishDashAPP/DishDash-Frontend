@@ -133,7 +133,6 @@ const Restaurant: FC<RestaurantIdType> = ({ restaurantId }) => {
                 setShoppingCart(convertShoppingCartsReq([response.data], restaurantId))
         }
 
-
         if (!shoppingCart)
             return
 

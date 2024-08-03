@@ -6,10 +6,12 @@ import { RestaurantType } from '@utils/types'
 import { allRestaurantsReq } from '@api/services/customerService'
 import { convertAllRestaurantsResponse } from '@utils/converters'
 import CustomCircularProgress from '@components/CustomCircularProgress/CustomCircularProgress'
+import { useShoppingCart } from '@store/customerStore'
 
 const AllRestaurant: FC = () => {
     const [isAllRestaurantsLoading, setIsAllRestaurantsLoading] = useState<boolean>(true)
-    const [allRestaurants, setAllRestaurants] = useState<RestaurantType[] | undefined>(undefined)
+    const allRestaurants = useShoppingCart((state) => state.allRestaurants)
+    const setAllRestaurants = useShoppingCart((state) => state.setAllRestaurants)
 
     useEffect(() => {
         const fetchAllRestaurants = async () => {

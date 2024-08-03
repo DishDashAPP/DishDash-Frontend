@@ -7,6 +7,7 @@ import {
 } from '@utils/apiTypes'
 import { FoodType, MenuType, RestaurantType, ShoppingCartType } from '@utils/types'
 import { toFarsiNumber } from '@utils/toFarsiNumber'
+import Restaurant from '@modules/Customer/Restaurant/Restaurant'
 
 function getFloatHash(str: string, min: number, max: number): number {
     let hash = 0
@@ -76,32 +77,64 @@ export function convertGetFoodResponse(foodResponse: FoodResponseType): FoodType
     }
 }
 
-export function convertShoppingCartsReqAll(shoppingCartsResponse: ShoppingCartResponseType[]): ShoppingCartType[] {
-    return shoppingCartsResponse.map((shoppingCart) => {
-        const total = shoppingCart.total_price.amount
-        const deliveryPrice = getIntHash('hi', 1, 10) * 10000
-        const finalPrice = total + deliveryPrice
+export function convertCreateShoppingCartResponse(shoppingCartResponse: ShoppingCartResponseType): ShoppingCartType {
+    return {
+        id: shoppingCartResponse.id.toString(),
+        restaurantId: shoppingCartResponse.restaurant_owner_id.toString(),
+        restaurantUsername: 'hi',
+        restaurantName: 'he',
+        restaurantRate: '4',
+        foods: shoppingCartResponse.shopping_cart_items.map((food) => ({
+            id: food.food_id.toString(),
+            name: food.name,
+            description: food.description,
+            imageSrc: `/FoodDefault/food${getIntHash(food.name, 1, 4)}.svg`,
+            category_id: 1,
+            price: food.price.amount,
+            count: food.quantity,
+        })),
+        total: toFarsiNumber(shoppingCartResponse.total_price.amount),
+        deliveryPrice: toFarsiNumber(getIntHash(shoppingCartResponse.id.toString(), 1, 10) * 10000),
+        finalPrice: toFarsiNumber(shoppingCartResponse.total_price.amount + getIntHash(shoppingCartResponse.id.toString(), 1, 10) * 10000),
+    }
+}
 
-        return {
-            id: shoppingCart.id.toString(),
-            restaurantId: shoppingCart.restaurant_owner_id.toString(),
-            restaurantUsername: 'hi',
-            restaurantName: 'he',
-            restaurantRate: '4',
-            foods: shoppingCart.shopping_cart_items.map((food) => ({
-                id: food.food_id.toString(),
-                name: food.name,
-                description: food.description,
-                imageSrc: `/FoodDefault/food${getIntHash(food.name, 1, 4)}.svg`,
-                category_id: 1,
-                price: food.price.amount,
-                count: food.quantity,
-            })),
-            total: toFarsiNumber(total),
-            deliveryPrice: toFarsiNumber(deliveryPrice),
-            finalPrice: toFarsiNumber(finalPrice),
-        }
-    })
+export function convertShoppingCartsReqAll(shoppingCartsResponse: ShoppingCartResponseType[], allRestaurants: RestaurantType[]): ShoppingCartType[] {
+    const shoppingCarts = shoppingCartsResponse.map((shoppingCart) => {
+            const total = shoppingCart.total_price.amount
+            const deliveryPrice = getIntHash(shoppingCart.id.toString(), 1, 10) * 10000
+            const finalPrice = total + deliveryPrice
+
+            // const restaurant = allRestaurants.find((restaurant) => restaurant.id === shoppingCart.restaurant_owner_id.toString())
+            // if (!restaurant)
+            //     return null
+
+            return {
+                id: shoppingCart.id.toString(),
+                restaurantId: shoppingCart.restaurant_owner_id.toString(),
+                // restaurantUsername: restaurant.username,
+                // restaurantName: restaurant.name,
+                // restaurantRate: restaurant.rate,
+                restaurantUsername: 'hi',
+                restaurantName: 'تالیانا',
+                restaurantRate: '4',
+                foods: shoppingCart.shopping_cart_items.map((food) => ({
+                    id: food.food_id.toString(),
+                    name: food.name,
+                    description: food.description,
+                    imageSrc: `/FoodDefault/food${getIntHash(food.name, 1, 4)}.svg`,
+                    category_id: 1,
+                    price: food.price.amount,
+                    count: food.quantity,
+                })),
+                total: toFarsiNumber(total),
+                deliveryPrice: toFarsiNumber(deliveryPrice),
+                finalPrice: toFarsiNumber(finalPrice),
+            }
+        },
+    )
+
+    return shoppingCarts.filter((shoppingCart) => shoppingCart !== null) as ShoppingCartType[]
 }
 
 export function convertShoppingCartsReq(shoppingCarts: ShoppingCartResponseType[], restaurantId: string): ShoppingCartType | null {
@@ -111,15 +144,15 @@ export function convertShoppingCartsReq(shoppingCarts: ShoppingCartResponseType[
         return null
 
     const total = shoppingCart.total_price.amount
-    const deliveryPrice = getIntHash('hi', 1, 10) * 10000
+    const deliveryPrice = getIntHash(shoppingCart.id.toString(), 1, 10) * 10000
     const finalPrice = total + deliveryPrice
 
     return {
         id: shoppingCart.id.toString(),
         restaurantId: shoppingCart.restaurant_owner_id.toString(),
-        restaurantUsername: 'hi',
-        restaurantName: 'he',
-        restaurantRate: '4',
+        restaurantUsername: '',
+        restaurantName: '',
+        restaurantRate: '',
         foods: shoppingCart.shopping_cart_items.map((food: ShoppingCartItemResponseType) => ({
             id: food.food_id.toString(),
             name: food.name,

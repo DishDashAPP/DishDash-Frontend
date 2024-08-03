@@ -5,7 +5,7 @@ import {
     RestaurantsResponseType,
     ShoppingCartResponseType,
     TCourierProfile,
-    FoodResponseType
+    FoodResponseType,
 } from '@utils/apiTypes'
 import { FoodPlusCountType, User } from '@utils/types'
 
@@ -42,7 +42,6 @@ export async function modifyShoppingCartReq(shoppingCartId: string, foodPlusCoun
         },
         quantity: item.count,
     }))
-    console.log('requestData', requestData)
 
     return sendRequest<ShoppingCartResponseType>(CUSTOMER_ORDER.MODIFY_SHOPPING_CART(shoppingCartId), 'POST', requestData)
 }
@@ -53,4 +52,8 @@ export async function getCustomerProfileReq() {
 
 export async function updateCustomerProfileReq(data: TCourierProfile) {
     return sendRequest(CUSTOMER.MODIFY, 'PUT', data)
+}
+
+export async function createOrderReq(restaurantOwnerId: string, shoppingCartId: string) {
+    return sendRequest(CUSTOMER_ORDER.CREATE_ORDER(restaurantOwnerId), 'POST', { 'shopping_cart_id': shoppingCartId })
 }

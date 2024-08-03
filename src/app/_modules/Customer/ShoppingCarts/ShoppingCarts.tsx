@@ -18,9 +18,11 @@ const ShoppingCarts: FC = () => {
             const response = await shoppingCartsReq()
 
             if (response.isSuccess) {
-                const tempShoppingCarts = convertShoppingCartsReqAll(response.data, allRestaurants!)
+                const tempShoppingCarts = convertShoppingCartsReqAll(response.data)
                 console.log(tempShoppingCarts)
-                setShoppingCarts(tempShoppingCarts.filter((shoppingCart) => shoppingCart !== null && shoppingCart.foods.length > 0))
+                setShoppingCarts(
+                    tempShoppingCarts.filter((shoppingCart) => shoppingCart !== null && shoppingCart.foods.length > 0)
+                )
             }
         }
 
@@ -29,9 +31,9 @@ const ShoppingCarts: FC = () => {
 
     return (
         <>
-            {shoppingCarts === undefined ?
+            {shoppingCarts === undefined ? (
                 <CustomCircularProgress />
-                :
+            ) : (
                 <div className={'px-8 w-full'}>
                     <div className={'text-base font-medium mt-6'}>سبدهای خرید</div>
                     <div className={'mt-3'}>
@@ -40,7 +42,7 @@ const ShoppingCarts: FC = () => {
                         ))}
                     </div>
                 </div>
-            }
+            )}
         </>
     )
 }

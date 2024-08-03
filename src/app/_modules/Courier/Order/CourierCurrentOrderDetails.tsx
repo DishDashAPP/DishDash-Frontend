@@ -43,7 +43,7 @@ const CourierCurrentOrderDetails: FC = () => {
     const destinationLabel = `آدرس مقصد (${customerName})`
 
     return (
-        <div className="flex flex-col p-6 bg-white absolute inset-x-0 bottom-[24px] mx-4 rounded-xl">
+        <div className="flex flex-col p-6 bg-white absolute inset-x-0 bottom-[24px] mx-4 rounded-xl z-40">
             {loading ? (
                 <div className="flex items-center justify-center animate-pulse text-base">در حال بارگذاری...</div>
             ) : !order ? (

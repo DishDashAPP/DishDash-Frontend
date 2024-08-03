@@ -30,6 +30,7 @@ import {
 import CustomCircularProgress from '@components/CustomCircularProgress/CustomCircularProgress'
 import { allCategory } from '@utils/consts'
 import { useShoppingCart } from '@store/customerStore'
+import shoppingCarts from '@modules/Customer/ShoppingCarts/ShoppingCarts'
 
 const Restaurant: FC<RestaurantIdType> = ({ restaurantId }) => {
     const [isDataLoading, setIsDataLoading] = useState<boolean>(true)
@@ -66,9 +67,9 @@ const Restaurant: FC<RestaurantIdType> = ({ restaurantId }) => {
         const fetchMenu = async () => {
             const response = await restaurantMenuReq(restaurantId)
 
-            if (response.isSuccess)
+            if (response.isSuccess && response.status !== 204) {
                 setMenu(convertRestaurantMenuResponse(response.data))
-            else
+            } else
                 setMenu(null)
         }
 
@@ -92,7 +93,7 @@ const Restaurant: FC<RestaurantIdType> = ({ restaurantId }) => {
             setCategories([allCategory].concat(menu.categories))
             setSelectedCategory(allCategory)
 
-            if (shoppingCart) {
+            if (shoppingCart && shoppingCart.restaurantId === restaurantId) {
                 const newFoods = addCountToFoods(menu.foods, shoppingCart)
                 setFoods(newFoods)
             }
@@ -108,8 +109,13 @@ const Restaurant: FC<RestaurantIdType> = ({ restaurantId }) => {
             const response = await createShoppingCartReq(restaurantId)
         }
 
-        if (shoppingCart == null)
+
+        if (shoppingCart === undefined)
+            return
+        else if (shoppingCart === null)
             createShoppingCart(restaurantId)
+        else if (shoppingCart.restaurantId !== restaurantId)
+            return
         else if (shoppingCart && menu)
             setFoods(addCountToFoods(menu.foods, shoppingCart))
     }, [shoppingCart])
@@ -132,7 +138,6 @@ const Restaurant: FC<RestaurantIdType> = ({ restaurantId }) => {
             if (response.isSuccess)
                 setShoppingCart(convertShoppingCartsReq([response.data], restaurantId))
         }
-
 
         if (!shoppingCart)
             return

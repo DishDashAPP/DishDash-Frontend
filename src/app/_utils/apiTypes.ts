@@ -55,6 +55,7 @@ export type ShoppingCartResponseType = {
     id: number
     customer_id: number
     restaurant_owner_id: number
+    restaurant_owner: RestaurantsResponseType
     shopping_cart_items: ShoppingCartItemResponseType[]
     total_price: {
         amount: number

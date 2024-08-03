@@ -1,7 +1,7 @@
 'use client'
 
 import { FC, useState } from 'react'
-import { CustomerOrderType, ShoppingCartType } from '@utils/types'
+import { CustomerOrderType, FoodPlusCountType, OrderItem, ShoppingCartType } from '@utils/types'
 import Rate from '@components/Rate/Rate'
 import Image from 'next/image'
 import Button from '@components/Button/Button'
@@ -12,7 +12,7 @@ import BottomSheet from '@components/BottomSheet/BottomSheet'
 import CommentBottomSheet from '@modules/Customer/ShoppingCarts/Orders/CommentBottomSheet/CommentBottomSheet'
 
 type ShoppingCartCardProps = {
-    shoppingCart: CustomerOrderType
+    shoppingCart: ShoppingCartType
     isHistory?: boolean
 }
 
@@ -44,9 +44,8 @@ const ShoppingCartCard: FC<ShoppingCartCardProps> = ({ shoppingCart, isHistory =
                     </div>
 
                     <div className={'mt-5'}>
-                        {shoppingCart.foods.map((food) => (
+                        {shoppingCart.foods.map((food: FoodPlusCountType) => (
                             <div className={'flex mt-1'} key={food.id}>
-                                <Image src={food.imageSrc} width={30} height={30} alt={food.name} />
                                 <div className={'flex items-center mr-2 font-normal text-xs text-black'}>
                                     <span className={'ml-2'}>({food.count})</span>
                                     <span>{food.name}</span>

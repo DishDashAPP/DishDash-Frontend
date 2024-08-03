@@ -5,7 +5,7 @@ import {
     RestaurantsResponseType,
     ShoppingCartResponseType,
     TCourierProfile,
-    FoodResponseType
+    FoodResponseType,
 } from '@utils/apiTypes'
 import { FoodPlusCountType, User } from '@utils/types'
 
@@ -34,7 +34,7 @@ export async function createShoppingCartReq(restaurantId: string) {
 }
 
 export async function modifyShoppingCartReq(shoppingCartId: string, foodPlusCount: FoodPlusCountType[]) {
-    const requestData = foodPlusCount.map(item => ({
+    const requestData = foodPlusCount.map((item) => ({
         food_id: item.id,
         price: {
             amount: item.price,
@@ -44,7 +44,11 @@ export async function modifyShoppingCartReq(shoppingCartId: string, foodPlusCoun
     }))
     console.log('requestData', requestData)
 
-    return sendRequest<ShoppingCartResponseType>(CUSTOMER_ORDER.MODIFY_SHOPPING_CART(shoppingCartId), 'POST', requestData)
+    return sendRequest<ShoppingCartResponseType>(
+        CUSTOMER_ORDER.MODIFY_SHOPPING_CART(shoppingCartId),
+        'POST',
+        requestData
+    )
 }
 
 export async function getCustomerProfileReq() {
@@ -53,4 +57,8 @@ export async function getCustomerProfileReq() {
 
 export async function updateCustomerProfileReq(data: TCourierProfile) {
     return sendRequest(CUSTOMER.MODIFY, 'PUT', data)
+}
+
+export async function getCustomerCurrentOrderReq() {
+    return sendRequest(CUSTOMER_ORDER.GET_CUSTOMER_CURRENT_ORDER, 'GET')
 }

@@ -1,22 +1,31 @@
 'use client'
 
-import { OrderIdType } from '@utils/types'
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import classJoin from '@utils/classJoin'
 import ProfileImage from '@components/ProfileImage/ProfileImage'
 import Image from 'next/image'
 import CALL from '@public/call.svg'
+import { Order } from '@utils/types'
 
-const CustomerCurrentOrderDetails: FC<OrderIdType> = ({ orderId }) => {
-    const [orderStatus, setOrderStatus] = useState('delivering')
+type CustomerCurrentOrderDetailsProps = {
+    order: Order
+}
+
+const CustomerCurrentOrderDetails: FC<CustomerCurrentOrderDetailsProps> = ({ order }) => {
+    const [orderStatus, setOrderStatus] = useState(order.status)
     let activeStep = 0
-    if (orderStatus === 'preparing') {
+    if (orderStatus === 'PREPARING') {
         activeStep = 1
-    } else if (orderStatus === 'delivering') {
+    } else if (orderStatus === 'DELIVERING') {
         activeStep = 2
-    } else if (orderStatus === 'delivered') {
+    } else if (orderStatus === 'DELIVERED') {
         activeStep = 3
     }
+
+    useEffect(() => {
+        setOrderStatus(order.status)
+    }, [order.status])
+
     return (
         <div className="flex flex-col p-6 bg-white absolute inset-x-0 bottom-[24px] mx-4 rounded-xl z-5">
             <div className="flex flex-col mt-6">
@@ -90,18 +99,22 @@ const CustomerCurrentOrderDetails: FC<OrderIdType> = ({ orderId }) => {
                         </p>
                     </div>
                 </div>
-                <div className={classJoin(['flex items-center justify-between'])}>
-                    <div className="flex items-stretch">
-                        <ProfileImage name="del" />
-                        <div className="flex flex-col justify-between mr-2 py-2">
-                            <h1 className="text-base font-medium">محمدرضا محمدی</h1>
-                            <p className="text-xs lrt">پیک</p>
+                {order.delivery_person?.username && (
+                    <div className={classJoin(['flex items-center justify-between'])}>
+                        <div className="flex items-stretch">
+                            <ProfileImage name={order.delivery_person?.username || ''} />
+                            <div className="flex flex-col justify-between mr-2 py-2">
+                                <h1 className="text-base font-medium">
+                                    {order.delivery_person?.first_name} {order.delivery_person?.last_name}
+                                </h1>
+                                <p className="text-xs lrt">پیک</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-center bg-primary min-h-[36px] min-w-[36px] rounded-full">
+                            <Image src={CALL} alt="call" />
                         </div>
                     </div>
-                    <div className="flex items-center justify-center bg-primary min-h-[36px] min-w-[36px] rounded-full">
-                        <Image src={CALL} alt="call" />
-                    </div>
-                </div>
+                )}
             </div>
         </div>
     )

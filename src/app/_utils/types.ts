@@ -1,3 +1,5 @@
+import { TLocation } from '@utils/apiTypes'
+
 export type UserType = 'CUSTOMER' | 'RESTAURANT_OWNER' | 'DELIVERY_PERSON'
 export type OrderStatus = 'PREPARING' | 'DELIVERED' | 'NOT_PAID' | 'DELIVERING'
 export type OrderType = 'active' | 'completed'
@@ -10,6 +12,7 @@ export type User = {
     username?: string
     phone_number: string
     restaurant_name?: string
+    location?: TLocation
 }
 export type Order = {
     id: number

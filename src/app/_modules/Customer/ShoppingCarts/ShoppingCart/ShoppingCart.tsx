@@ -33,9 +33,8 @@ const ShoppingCart: FC<ShoppingCartIdType> = ({ shoppingCartId }) => {
         if (shoppingCart === undefined)
             return
 
-        // console.log(shoppingCart)
-        const a = await createOrderReq(shoppingCart.restaurantId, shoppingCartId)
-        console.log(a)
+        const createOrderResponse = await createOrderReq(shoppingCart.restaurantId, shoppingCartId)
+        console.log(createOrderResponse)
         // router.push(ORDER_TRACKING())
     }
 

@@ -30,9 +30,12 @@ import {
 import CustomCircularProgress from '@components/CustomCircularProgress/CustomCircularProgress'
 import { allCategory } from '@utils/consts'
 import { useShoppingCart } from '@store/customerStore'
-import shoppingCarts from '@modules/Customer/ShoppingCarts/ShoppingCarts'
+import { useRouter } from 'next/navigation'
+import { SHOPPING_CARTS } from '@utils/links'
 
 const Restaurant: FC<RestaurantIdType> = ({ restaurantId }) => {
+    const router = useRouter()
+
     const [isDataLoading, setIsDataLoading] = useState<boolean>(true)
     const [restaurant, setRestaurant] = useState<RestaurantType | undefined>(undefined)
     const [menu, setMenu] = useState<MenuType | undefined | null>(undefined)
@@ -192,7 +195,10 @@ const Restaurant: FC<RestaurantIdType> = ({ restaurantId }) => {
                             })}
                     </div>
 
-                    <Button label={'تکمیل خرید'} className={'sticky bottom-[85px] w-4/5 mx-auto mt-4'} />
+                    <Button label={'تکمیل خرید'} className={'sticky bottom-[85px] w-4/5 mx-auto mt-4'}
+                            disabled={shoppingCart === undefined || shoppingCart === null ||
+                                shoppingCart?.foods.length === 0}
+                            onClick={() => router.push(SHOPPING_CARTS + '/' + shoppingCart?.id)} />
                 </div>
             )}
         </>

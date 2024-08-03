@@ -99,25 +99,19 @@ export function convertCreateShoppingCartResponse(shoppingCartResponse: Shopping
     }
 }
 
-export function convertShoppingCartsReqAll(shoppingCartsResponse: ShoppingCartResponseType[], allRestaurants: RestaurantType[]): ShoppingCartType[] {
+export function convertShoppingCartsReqAll(shoppingCartsResponse: ShoppingCartResponseType[]): ShoppingCartType[] {
     const shoppingCarts = shoppingCartsResponse.map((shoppingCart) => {
             const total = shoppingCart.total_price.amount
             const deliveryPrice = getIntHash(shoppingCart.id.toString(), 1, 10) * 10000
             const finalPrice = total + deliveryPrice
 
-            // const restaurant = allRestaurants.find((restaurant) => restaurant.id === shoppingCart.restaurant_owner_id.toString())
-            // if (!restaurant)
-            //     return null
 
             return {
                 id: shoppingCart.id.toString(),
                 restaurantId: shoppingCart.restaurant_owner_id.toString(),
-                // restaurantUsername: restaurant.username,
-                // restaurantName: restaurant.name,
-                // restaurantRate: restaurant.rate,
-                restaurantUsername: 'hi',
-                restaurantName: 'تالیانا',
-                restaurantRate: '4',
+                restaurantUsername: shoppingCart.restaurant_owner.username,
+                restaurantName: shoppingCart.restaurant_owner.restaurant_name,
+                restaurantRate: toFarsiNumber(shoppingCart.restaurant_owner.restaurant_comments.avg),
                 foods: shoppingCart.shopping_cart_items.map((food) => ({
                     id: food.food_id.toString(),
                     name: food.name,
@@ -150,9 +144,9 @@ export function convertShoppingCartsReq(shoppingCarts: ShoppingCartResponseType[
     return {
         id: shoppingCart.id.toString(),
         restaurantId: shoppingCart.restaurant_owner_id.toString(),
-        restaurantUsername: '',
-        restaurantName: '',
-        restaurantRate: '',
+        restaurantUsername: 'hi',
+        restaurantName: 'hi',
+        restaurantRate: 'hi',
         foods: shoppingCart.shopping_cart_items.map((food: ShoppingCartItemResponseType) => ({
             id: food.food_id.toString(),
             name: food.name,

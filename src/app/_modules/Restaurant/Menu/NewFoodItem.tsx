@@ -136,7 +136,7 @@ const NewFoodItem: FC<NewFoodItemProps> = ({ mode, foodItem, onClose, onUpdate }
     return (
         <div>
             <h2 className="text-base font-semibold mt-4 mb-6">{title}</h2>
-            <form className="mt-12">
+            <form className="mt-12 max-h-[65vh] overflow-y-auto">
                 <Dropdown
                     items={categories}
                     selectedItem={selectedCategory}
@@ -167,10 +167,10 @@ const NewFoodItem: FC<NewFoodItemProps> = ({ mode, foodItem, onClose, onUpdate }
                         )}
                     />
                 ))}
-                <Button className="mt-8 w-full" disabled={!isValid || isSubmitting} onClick={handleSubmit(submit)}>
-                    {buttonText}
-                </Button>
             </form>
+            <Button className="mt-8 w-full" disabled={!isValid || isSubmitting} onClick={handleSubmit(submit)}>
+                {buttonText}
+            </Button>
         </div>
     )
 }

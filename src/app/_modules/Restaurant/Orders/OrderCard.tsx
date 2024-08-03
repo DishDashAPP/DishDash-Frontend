@@ -33,15 +33,17 @@ const OrderCard: FC<OrderCardProps> = ({ order, onUpdate }) => {
     return (
         <div className="flex flex-col rounded-lg border border-gray-border p-4 w-full">
             <div className="flex items-center justify-between">
-                <span>{order.customer_dto.first_name}</span>
+                <span className="text-base font-medium">
+                    {order.customer_dto.first_name + ' ' + order.customer_dto.last_name}
+                </span>
                 <Badge text={badgeText} color={isActiveOrder ? 'green' : 'red'} />
             </div>
             <div className="flex items-center justify-between my-4">
                 <div>
-                    <span>{priceWithCommas(order.create_price.amount)}</span>
-                    <span> تومان</span>
+                    <span className="font-medium text-sm">{priceWithCommas(order.create_price.amount)}</span>
+                    <span className="text-xs"> تومان</span>
                 </div>
-                <span>{formatDateTime(order.create_time, 'fullDateTime')}</span>
+                <span className="text-xs">{formatDateTime(order.create_time, 'fullDateTime')}</span>
             </div>
             <Button variant="secondary" className="py-3 text-base" onClick={() => setBottomSheetOpen(true)}>
                 {isActiveOrder ? 'جزئیات سفارش' : 'مشاهده‌ی فاکتور'}

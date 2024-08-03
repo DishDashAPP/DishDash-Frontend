@@ -18,13 +18,15 @@ const Map: FC<MapProps> = ({ position }) => {
         <div className="w-full h-full overflow-hidden">
             <MapContainer
                 center={markerPosition}
-                zoom={13}
+                zoom={15}
                 scrollWheelZoom={false}
                 style={{ height: '100%', width: '100%' }}
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    tileSize={256}
+                    detectRetina={true}
                 />
                 <Marker position={markerPosition}>
                     <Popup>موقعیت فعلی شما</Popup>

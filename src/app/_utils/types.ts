@@ -96,6 +96,9 @@ export type ShoppingCartType = CustomerOrderType & {
 export type RestaurantIdType = {
     restaurantId: string
 }
+export type OrderIdType = {
+    orderId: string
+}
 export type RestaurantIdFoodIdType = {
     restaurantId: string
     foodId: string
